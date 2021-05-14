@@ -15,6 +15,7 @@ public class Book {
 	public void testBook() {
 		
 		System.out.println("방태현 입니다.");
+		System.out.println("잘부탁드립니다.");
 		
 	}
 
