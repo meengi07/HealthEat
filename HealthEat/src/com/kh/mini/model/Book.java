@@ -1,7 +1,8 @@
 package com.kh.mini.model;
 
 public class Book {
-
+//dfdff
+	
 	
 	private String kkjname2;
 	private int kkjprice2;
@@ -12,6 +13,9 @@ public class Book {
 		// TODO Auto-generated constructor stub
 	}
 
+	
+	
+	
 
 	public Book(String kkjname2, int kkjprice2, int kkjnum2) {
 		super();
@@ -54,7 +58,7 @@ public class Book {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "»ß˜— °æÁØÀÔ´Ï´Ù";
+		return "ï¿½ß˜ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½";
 	}
 
 }
