@@ -2,7 +2,7 @@ package com.kh.mini.model;
 
 public class Book {
 	
-	//이민재
+	//이민재1
 	
 	private String name;
 	
