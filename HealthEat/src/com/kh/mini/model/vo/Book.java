@@ -6,16 +6,19 @@ public class Book {
 	
 	
 	void PostIt() {
-		//이민재1
+		//�씠誘쇱옱1
 		
-		System.out.println("성공");
+		System.out.println("�꽦怨�");
 		
+	}
+	public void testKKJ() {
+		System.out.println("잘올라갔나?");
 	}
 	
 	public void testBook() {
 		
-		System.out.println("방태현 입니다.");
-		System.out.println("잘부탁드립니다.");
+		System.out.println("諛⑺깭�쁽 �엯�땲�떎.");
+		System.out.println("�옒遺��긽�뱶由쎈땲�떎.");
 		
 	}
 
