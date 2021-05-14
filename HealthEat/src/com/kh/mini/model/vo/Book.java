@@ -11,6 +11,12 @@ public class Book {
 		System.out.println("성공");
 		
 	}
+	
+	public void testBook() {
+		
+		System.out.println("방태현 입니다.");
+		
+	}
 
 
 	private String kkjname;
