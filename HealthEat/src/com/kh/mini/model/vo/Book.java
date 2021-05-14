@@ -6,7 +6,7 @@ public class Book {
 	
 	
 	void PostIt() {
-		//이민재
+		//이민재1
 		
 		System.out.println("성공");
 		
