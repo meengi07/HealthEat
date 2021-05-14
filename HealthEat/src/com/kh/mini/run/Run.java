@@ -3,8 +3,8 @@ package com.kh.mini.run;
 public class Run {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		
+		// Git test를 위한 프로젝트 공간입니다.
 	}
 
 }
