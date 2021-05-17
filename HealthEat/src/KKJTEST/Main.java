@@ -286,12 +286,28 @@ public class Main extends JFrame {
 		});
 
 		btn11.addActionListener(new ActionListener() {
+			
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				panel4.setVisible(false);
 				panel5.setVisible(true);
-				counts = Integer.toString(count);
+				String coment ="";
+				if(count > 0 || count < 21) {
+					coment = "건강하시네요!!!!";
+				}else if(count < 41){
+					coment = "정상범위 이내입니다 좀더 노력하세요!";
+				}else if(count < 61) {
+					coment = "건강 좀 챙기셔야해요!!!!";
+				}else if(count < 81) {
+					coment = "당신 위험해!!!!!";
+				}else {
+					coment = "어떻게 살아있지???";
+				}
+				
+				
+				
+				counts = Integer.toString(count)+"점" + "\t" +coment;
 
 				// 점수 체크 메뉴
 				JButton btn20 = new JButton("확인");
@@ -308,9 +324,12 @@ public class Main extends JFrame {
 				});
 				panel5.setLayout(null);
 				panel5.setBounds(0, 0, 500, 700);
-				JLabel label15 = new JLabel("건강 점수 : " + counts);
-				label15.setLocation(200, 100);
-				label15.setSize(100, 100);
+				JLabel label15 = new JLabel("건강 점수 및 코맨트 : " + counts);
+				
+				
+				
+				label15.setLocation(100, 100);
+				label15.setSize(500, 100);
 				panel5.add(label15);
 				panel5.add(btn20);
 
