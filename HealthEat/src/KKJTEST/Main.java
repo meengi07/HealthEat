@@ -79,7 +79,6 @@ public class Main extends JFrame {
 		btn3.setBounds(120, 300, 100, 100);
 		btn3.addActionListener(new ActionListener() {
 
-			// 미구현
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
@@ -110,6 +109,7 @@ public class Main extends JFrame {
 		panel4.setBounds(0, 0, 500, 700);
 		JLabel label10 = new JLabel("주 음주 횟수");
 		JCheckBox box1 = new JCheckBox("주 1회");
+
 		box1.addItemListener(new ItemListener() {
 
 			@Override
@@ -212,6 +212,62 @@ public class Main extends JFrame {
 		box7.setBounds(290, 140, 100, 50);
 		box8.setBounds(290, 180, 100, 50);
 
+		JLabel label12 = new JLabel("아침에 일어나는게 피곤하고 힘들다");
+		JCheckBox box9 = new JCheckBox("YES");
+		box9.addItemListener(new ItemListener() {
+
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				count += 4;
+			}
+
+		});
+		JCheckBox box10 = new JCheckBox("NO");
+		box10.addItemListener(new ItemListener() {
+
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				count += 0;
+			}
+
+		});
+		
+		label12.setBounds(20, 280, 200, 100);
+		box9.setBounds(60, 340, 100, 50);
+		box10.setBounds(60, 380, 100, 50);
+		panel4.add(label12);
+		panel4.add(box9);
+		panel4.add(box10);
+		
+		
+		JLabel label13 = new JLabel("피부가 가렵다");
+		JCheckBox box11 = new JCheckBox("YES");
+		box9.addItemListener(new ItemListener() {
+
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				count += 4;
+			}
+
+		});
+		JCheckBox box12 = new JCheckBox("NO");
+		box10.addItemListener(new ItemListener() {
+
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				count += 0;
+			}
+
+		});
+		
+		label13.setBounds(250, 280, 200, 100);
+		box11.setBounds(290, 340, 100, 50);
+		box12.setBounds(290, 380, 100, 50);
+		panel4.add(label13);
+		panel4.add(box11);
+		panel4.add(box12);
+
+
 		JButton btn10 = new JButton("취소");
 		JButton btn11 = new JButton("다음");
 
@@ -236,11 +292,11 @@ public class Main extends JFrame {
 				panel4.setVisible(false);
 				panel5.setVisible(true);
 				counts = Integer.toString(count);
-				
+
 				// 점수 체크 메뉴
 				JButton btn20 = new JButton("확인");
 				btn20.setLocation(200, 400);
-				btn20.setSize(100,50);
+				btn20.setSize(100, 50);
 				btn20.addActionListener(new ActionListener() {
 
 					@Override
@@ -248,11 +304,11 @@ public class Main extends JFrame {
 						panel5.setVisible(false);
 						panel1.setVisible(true);
 					}
-					
+
 				});
 				panel5.setLayout(null);
 				panel5.setBounds(0, 0, 500, 700);
-				JLabel label15 = new JLabel("건강 점수 : " +  counts);
+				JLabel label15 = new JLabel("건강 점수 : " + counts);
 				label15.setLocation(200, 100);
 				label15.setSize(100, 100);
 				panel5.add(label15);
