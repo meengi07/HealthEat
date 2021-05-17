@@ -218,7 +218,7 @@ public class Main extends JFrame {
 
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-				count += 4;
+				count += 20;
 			}
 
 		});
@@ -246,7 +246,7 @@ public class Main extends JFrame {
 
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-				count += 4;
+				count += 20;
 			}
 
 		});
