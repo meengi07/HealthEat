@@ -10,6 +10,8 @@ import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 public class Main extends JFrame {
 
@@ -30,11 +32,10 @@ public class Main extends JFrame {
 		JPanel panel4 = new JPanel(); // 건강 체크 페이지
 		JPanel panel5 = new JPanel(); // 건강 확인 페이지
 		JPanel panel6 = new JPanel(); // 건강 체크 페이지2
-		
-		JPanel panel7 = new JPanel(); //게시판 등록 페이지
-		JPanel panel8 = new JPanel(); //게시판 수정 페이지
-		JPanel panel9 = new JPanel(); //게시글 눌렀을 시 페이지
-		
+
+		JPanel panel7 = new JPanel(); // 게시판 등록 페이지
+		JPanel panel8 = new JPanel(); // 게시판 수정 페이지
+		JPanel panel9 = new JPanel(); // 게시글 눌렀을 시 페이지
 
 		panel1.setVisible(true);
 		panel2.setVisible(false);
@@ -94,8 +95,7 @@ public class Main extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				panel1.setVisible(false);
 				panel3.setVisible(true);
-			
-			
+
 			}
 
 		});
@@ -372,54 +372,47 @@ public class Main extends JFrame {
 		panel6.add(label31);
 		panel6.add(box22);
 		panel6.add(box23);
-		
-		
+
 		JLabel label32 = new JLabel("다리가 저리다");
 		JCheckBox box24 = new JCheckBox("Yes");
 		box24.addItemListener(new ItemListener() {
 
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-				count +=10;
+				count += 10;
 			}
-			
+
 		});
-		
+
 		JCheckBox box25 = new JCheckBox("NO");
 		label32.setBounds(250, 280, 200, 100);
 		box24.setBounds(290, 340, 100, 50);
 		box25.setBounds(290, 380, 100, 50);
-		
+
 		panel6.add(label32);
 		panel6.add(box24);
 		panel6.add(box25);
 
-		
-		
 		JLabel label33 = new JLabel("손에 땀이 찬다");
 		JCheckBox box26 = new JCheckBox("YES");
 		box26.addItemListener(new ItemListener() {
 
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-				count +=10;
+				count += 10;
 			}
-			
+
 		});
-		
+
 		JCheckBox box27 = new JCheckBox("NO");
 		label33.setBounds(20, 280, 200, 100);
 		box26.setBounds(60, 340, 100, 50);
 		box27.setBounds(60, 380, 100, 50);
-		
+
 		panel6.add(label33);
 		panel6.add(box26);
 		panel6.add(box27);
-		
-		
-		
-		
-		
+
 		JButton btn30 = new JButton("취소");
 		JButton btn31 = new JButton("다음");
 
@@ -471,7 +464,7 @@ public class Main extends JFrame {
 				box10.setSelected(false);
 				box11.setSelected(false);
 				box12.setSelected(false);
-				box20.setSelected(false);	
+				box20.setSelected(false);
 				box21.setSelected(false);
 				box22.setSelected(false);
 				box23.setSelected(false);
@@ -488,7 +481,6 @@ public class Main extends JFrame {
 		});
 		panel6.add(btn30);
 		panel6.add(btn31);
-		
 
 		panel4.add(label10);
 		panel4.add(label11);
@@ -503,6 +495,19 @@ public class Main extends JFrame {
 		panel4.add(btn10);
 		panel4.add(btn11);
 
+////////////////////////게시판 구현 예정//TEST중////////////////////
+		panel3.setBounds(0,0,500,700);
+		panel3.setLayout(null);
+
+		//별명, 영양제, 제목
+		String[] header = { "별명", "영양제", "제목" };
+		String[][] con = {{ "쭈니", "고려은단", "이거짱" }, { "말랑이","오메가99","이거별루"}};
+		JTable table = new JTable(con, header);
+
+		JScrollPane scroll = new JScrollPane(table);
+		scroll.setBounds(150, 150, 150, 150);
+		panel3.add(scroll);
+
 		// 컨테이너에 메인 페이지 panel 추가
 		this.add(panel1);
 		this.add(panel2);
@@ -513,20 +518,9 @@ public class Main extends JFrame {
 
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 	}
 
-	////////////////////////게시판 구현 예정//////////////////////////
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	public static void main(String[] args) {
 
 		new Main();
