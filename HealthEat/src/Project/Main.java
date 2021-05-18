@@ -12,6 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 public class Main extends JFrame {
 
@@ -43,6 +45,7 @@ public class Main extends JFrame {
 		panel4.setVisible(false);
 		panel5.setVisible(false);
 		panel6.setVisible(false);
+		panel7.setVisible(false);
 
 		//
 
@@ -496,18 +499,104 @@ public class Main extends JFrame {
 		panel4.add(btn11);
 
 ////////////////////////게시판 구현 예정//TEST중////////////////////
-		panel3.setBounds(0,0,500,700);
+		panel3.setBounds(0, 0, 500, 700);
 		panel3.setLayout(null);
 
-		//별명, 영양제, 제목
-		String[] header = { "별명", "영양제", "제목" };
-		String[][] con = {{ "쭈니", "고려은단", "이거짱" }, { "말랑이","오메가99","이거별루"}};
-		JTable table = new JTable(con, header);
+		// 별명, 영양제, 제목
+		String[] header = { "별명", "영양제", "제목", "내용" };
+		String[][] con = { { "쭈니", "고려은단", "이거짱", " " }, { "말랑이", "오메가99", "이거별루", " " } };
+
+		DefaultTableModel model = new DefaultTableModel(con, header);
+		JTable table = new JTable(model);
 
 		JScrollPane scroll = new JScrollPane(table);
-		scroll.setBounds(150, 150, 150, 150);
+		scroll.setBounds(80, 200, 300, 200);
 		panel3.add(scroll);
 
+		JButton btn40 = new JButton("추가");
+		btn40.setBounds(100, 500, 70, 70);
+		btn40.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				panel3.setVisible(false);
+				panel7.setVisible(true);
+
+			}
+
+		});
+		panel3.add(btn40);
+
+		//////////// table 추가//////////////
+		panel7.setBounds(0, 0, 500, 700);
+		panel7.setLayout(null);
+		JLabel label50 = new JLabel("별명");
+		JLabel label51 = new JLabel("영양제");
+		JLabel label52 = new JLabel("제목");
+		JLabel label53 = new JLabel("내용");
+
+		label50.setBounds(50, 10, 50, 150);
+		label51.setBounds(250, 10, 50, 150);
+		label52.setBounds(50, 100, 50, 150);
+		label53.setBounds(50, 250, 50, 150);
+
+		panel7.add(label50);
+		panel7.add(label51);
+		panel7.add(label52);
+		panel7.add(label53);
+
+		JTextField namef = new JTextField();
+		JTextField eat = new JTextField();
+		JTextField title = new JTextField();
+		JTextField content = new JTextField();
+
+		namef.setBounds(50, 120, 150, 50);
+		eat.setBounds(250, 120, 150, 50);
+		title.setBounds(50, 200, 150, 50);
+		content.setBounds(50, 340, 350, 200);
+
+		panel7.add(namef);
+		panel7.add(eat);
+		panel7.add(title);
+		panel7.add(content);
+
+		JButton btn60 = new JButton("추가");
+		btn60.setBounds(100, 550, 60, 60);
+		panel7.add(btn60);
+		btn60.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String[] input = new String[4];
+
+				input[0] = namef.getText();
+				input[1] = eat.getText();
+				input[2] = title.getText();
+				input[3] = content.getText();
+				model.addRow(input);
+
+				namef.setText("");
+				eat.setText("");
+				title.setText("");
+				content.setText("");
+
+				panel7.setVisible(false);
+				panel3.setVisible(true);
+
+			}
+
+		});
+		
+	
+
+		
+		
+		
+		
+		
+		
+		
+		
 		// 컨테이너에 메인 페이지 panel 추가
 		this.add(panel1);
 		this.add(panel2);
@@ -515,7 +604,7 @@ public class Main extends JFrame {
 		this.add(panel4);
 		this.add(panel5);
 		this.add(panel6);
-
+		this.add(panel7);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
