@@ -30,6 +30,11 @@ public class Main extends JFrame {
 		JPanel panel4 = new JPanel(); // 건강 체크 페이지
 		JPanel panel5 = new JPanel(); // 건강 확인 페이지
 		JPanel panel6 = new JPanel(); // 건강 체크 페이지2
+		
+		JPanel panel7 = new JPanel(); //게시판 등록 페이지
+		JPanel panel8 = new JPanel(); //게시판 수정 페이지
+		JPanel panel9 = new JPanel(); //게시글 눌렀을 시 페이지
+		
 
 		panel1.setVisible(true);
 		panel2.setVisible(false);
@@ -89,6 +94,8 @@ public class Main extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				panel1.setVisible(false);
 				panel3.setVisible(true);
+			
+			
 			}
 
 		});
@@ -508,6 +515,18 @@ public class Main extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
+	////////////////////////게시판 구현 예정//////////////////////////
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public static void main(String[] args) {
 
 		new Main();
