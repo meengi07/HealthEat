@@ -514,7 +514,7 @@ public class Main extends JFrame {
 		panel3.add(scroll);
 
 		JButton btn40 = new JButton("추가");
-		btn40.setBounds(100, 500, 70, 70);
+		btn40.setBounds(100, 500, 60, 60);
 		btn40.addActionListener(new ActionListener() {
 
 			@Override
@@ -526,6 +526,26 @@ public class Main extends JFrame {
 
 		});
 		panel3.add(btn40);
+		
+		JButton btn41 = new JButton("삭제");
+		btn41.setBounds(200, 500, 60, 60);
+		panel3.add(btn41);
+		
+		btn41.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			if(table.getSelectedRow() == -1) {
+				return;
+			}else {
+				model.removeRow(table.getSelectedRow());
+			}
+				
+				
+			}
+			
+		});
+
 
 		//////////// table 추가//////////////
 		panel7.setBounds(0, 0, 500, 700);
@@ -560,6 +580,8 @@ public class Main extends JFrame {
 		panel7.add(title);
 		panel7.add(content);
 
+		
+		
 		JButton btn60 = new JButton("추가");
 		btn60.setBounds(100, 550, 60, 60);
 		panel7.add(btn60);
@@ -588,8 +610,7 @@ public class Main extends JFrame {
 		});
 		
 	
-
-		
+				
 		
 		
 		
