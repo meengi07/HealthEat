@@ -19,6 +19,11 @@ public class Main extends JFrame {
 
 	int count = 0;
 	String counts = "123";
+	// 게시글 확인용 변수///
+	String a = "";
+	String b = "";
+	String c = "";
+	String d = "";
 
 	public Main() {
 
@@ -46,8 +51,55 @@ public class Main extends JFrame {
 		panel5.setVisible(false);
 		panel6.setVisible(false);
 		panel7.setVisible(false);
+		panel8.setVisible(false);
+		// 게시글 확인
 
-		//
+		panel8.setBounds(0, 0, 500, 700);
+		panel8.setLayout(null);
+
+		JLabel label60 = new JLabel("별명");
+		JLabel label61 = new JLabel("영양제");
+		JLabel label62 = new JLabel("제목");
+		JLabel label63 = new JLabel("내용");
+
+		label60.setBounds(50, 10, 50, 150);
+		label61.setBounds(250, 10, 50, 150);
+		label62.setBounds(50, 100, 50, 150);
+		label63.setBounds(50, 250, 50, 150);
+
+		JLabel label64 = new JLabel(a);
+		label64.setBorder(null);
+		JLabel label65 = new JLabel(b);
+		JLabel label66 = new JLabel(c);
+		JLabel label67 = new JLabel(d);
+
+		label64.setBounds(50, 120, 150, 50);
+		label65.setBounds(250, 120, 150, 50);
+		label66.setBounds(50, 200, 150, 50);
+		label67.setBounds(50, 340, 350, 200);
+
+		JButton btn70 = new JButton("이전");
+		btn70.setBounds(150, 550, 60, 60);
+		btn70.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				panel8.setVisible(false);
+				panel3.setVisible(true);
+
+			}
+
+		});
+		panel8.add(btn70);
+
+		panel8.add(label60);
+		panel8.add(label61);
+		panel8.add(label62);
+		panel8.add(label63);
+		panel8.add(label64);
+		panel8.add(label65);
+		panel8.add(label66);
+		panel8.add(label67);
 
 		// 점수체크
 		// 점수 체크 메뉴
@@ -504,7 +556,7 @@ public class Main extends JFrame {
 
 		// 별명, 영양제, 제목
 		String[] header = { "별명", "영양제", "제목", "내용" };
-		String[][] con = { { "쭈니", "고려은단", "이거짱", " " }, { "말랑이", "오메가99", "이거별루", " " } };
+		String[][] con = { { "쭈니", "고려은단", "이거짱", "ㅎㅇㅎㅇㅎ" }, { "말랑이", "오메가99", "이거별루", "ㅎㅇㅎㅇㅎ " } };
 
 		DefaultTableModel model = new DefaultTableModel(con, header);
 		JTable table = new JTable(model);
@@ -526,26 +578,73 @@ public class Main extends JFrame {
 
 		});
 		panel3.add(btn40);
-		
+
 		JButton btn41 = new JButton("삭제");
 		btn41.setBounds(200, 500, 60, 60);
 		panel3.add(btn41);
-		
+
 		btn41.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			if(table.getSelectedRow() == -1) {
-				return;
-			}else {
-				model.removeRow(table.getSelectedRow());
+				if (table.getSelectedRow() == -1) {
+					return;
+				} else {
+					model.removeRow(table.getSelectedRow());
+				}
+
 			}
-				
-				
-			}
-			
+
 		});
 
+		JButton btn42 = new JButton("게시글 확인");
+		btn42.setBounds(260, 500, 150, 60);
+		btn42.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (table.getSelectedRow() == -1) {
+					return;
+				} else {
+					a = (model.getValueAt(table.getSelectedRow(), 0)).toString();
+					System.out.println(a);
+					label64.setText(a);
+					b = (model.getValueAt(table.getSelectedRow(), 1)).toString();
+					System.out.println(b);
+					label65.setText(b);
+					c = (model.getValueAt(table.getSelectedRow(), 2)).toString();
+					System.out.println(c);
+					label66.setText(c);
+					d = (model.getValueAt(table.getSelectedRow(), 3)).toString();
+					System.out.println(d);
+					label67.setText(d);
+					label64.repaint();
+					label65.repaint();
+					label66.repaint();
+					label67.repaint();
+
+					panel8.repaint();
+					panel3.setVisible(false);
+					panel8.setVisible(true);
+				}
+			}
+
+		});
+
+		JButton btn43 = new JButton("이전");
+		btn43.setBounds(260, 400, 150, 60);
+		btn43.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				panel3.setVisible(false);
+				panel1.setVisible(true);
+			}
+
+		});
+
+		panel3.add(btn43);
+		panel3.add(btn42);
 
 		//////////// table 추가//////////////
 		panel7.setBounds(0, 0, 500, 700);
@@ -580,8 +679,6 @@ public class Main extends JFrame {
 		panel7.add(title);
 		panel7.add(content);
 
-		
-		
 		JButton btn60 = new JButton("추가");
 		btn60.setBounds(100, 550, 60, 60);
 		panel7.add(btn60);
@@ -608,16 +705,7 @@ public class Main extends JFrame {
 			}
 
 		});
-		
-	
-				
-		
-		
-		
-		
-		
-		
-		
+
 		// 컨테이너에 메인 페이지 panel 추가
 		this.add(panel1);
 		this.add(panel2);
@@ -626,6 +714,8 @@ public class Main extends JFrame {
 		this.add(panel5);
 		this.add(panel6);
 		this.add(panel7);
+		this.add(panel8);
+		this.add(panel9);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
