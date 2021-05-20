@@ -1,4 +1,4 @@
-package com.kh.mini.MemberLogin.view;
+package com.kh.mini.MemberLogin.view.front;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -75,27 +75,27 @@ public class SignIn extends Frame{
 		panel.add(okay);
 		// =================
 		//			(가로위치, 세로위치, 가로크기, 세로크기)
-		id.setBounds	(320, 50, 79, 49); //id border line 1px 예정 
-		idTxt.setBounds	(400, 50, 200, 50);  
-		pw1.setBounds	(320, 110, 79, 49); //id border line 1px 예정 
-		pw1F.setBounds	(400, 110, 200, 50);  
-		pw2.setBounds	(320, 170, 79, 49); //id border line 1px 예정 
-		pw2F.setBounds	(400, 170, 200, 50); 
-		name.setBounds	(320, 230, 79, 49); //id border line 1px 예정 
-		nameTxt.setBounds(400, 230, 200, 50); 
-		age.setBounds	(320, 290, 79, 49); //id border line 1px 예정 
-		ageTxt.setBounds(400, 290, 200, 50);  
-		gender.setBounds(320, 350, 79, 49); //id border line 1px 예정 
-		genderTxt.setBounds(400, 350, 200, 50);  
-		back.setBounds	(250, 460, 150, 50); //id border line 1px 예정 
-		okay.setBounds	(450, 460, 150, 50); //id border line 1px 예정 
+		id.setBounds		(320, 50, 79, 49); //id border line 1px 예정 
+		idTxt.setBounds		(400, 50, 200, 50);  
+		pw1.setBounds		(320, 110, 79, 49); //id border line 1px 예정 
+		pw1F.setBounds		(400, 110, 200, 50);  
+		pw2.setBounds		(320, 170, 79, 49); //id border line 1px 예정 
+		pw2F.setBounds		(400, 170, 200, 50); 
+		name.setBounds		(320, 230, 79, 49); //id border line 1px 예정 
+		nameTxt.setBounds	(400, 230, 200, 50); 
+		age.setBounds		(320, 290, 79, 49); //id border line 1px 예정 
+		ageTxt.setBounds	(400, 290, 200, 50);  
+		gender.setBounds	(320, 350, 79, 49); //id border line 1px 예정 
+		genderTxt.setBounds	(400, 350, 200, 50);  
+		back.setBounds		(250, 460, 150, 50); //id border line 1px 예정 
+		okay.setBounds		(450, 460, 150, 50); //id border line 1px 예정 
 		
-		id.setBorder	(new LineBorder(Color.black,1));
-		pw1.setBorder	(new LineBorder(Color.black,1));
-		pw2.setBorder	(new LineBorder(Color.black,1));
-		name.setBorder	(new LineBorder(Color.black,1));
-		age.setBorder	(new LineBorder(Color.black,1));
-		gender.setBorder(new LineBorder(Color.black,1));
+		id.setBorder		(new LineBorder(Color.black,1));
+		pw1.setBorder		(new LineBorder(Color.black,1));
+		pw2.setBorder		(new LineBorder(Color.black,1));
+		name.setBorder		(new LineBorder(Color.black,1));
+		age.setBorder		(new LineBorder(Color.black,1));
+		gender.setBorder	(new LineBorder(Color.black,1));
 		
 		
 		

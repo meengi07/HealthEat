@@ -1,4 +1,4 @@
-package com.kh.mini.MemberLogin.view;
+package com.kh.mini.MemberLogin.view.front;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
@@ -87,6 +88,7 @@ public class Login extends Frame {
 		panel.add(sigBtn);
 		panel.add(masterBtn);
 		
+		
 		contentPane.add(panel, BorderLayout.CENTER);
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -108,7 +110,7 @@ public class Login extends Frame {
 				String pw = "1234";
 				if(id.equals(idTxt.getText()) && pw.equals(pwTxt.getText()) ) {
 					JOptionPane.showMessageDialog(null, "로그인에 성공했습니다.");
-					
+					MenuBar menu = new MenuBar();
 				}else {
 					JOptionPane.showMessageDialog(null, "로그인에 실패했습니다.");
 				}
