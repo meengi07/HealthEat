@@ -9,6 +9,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import com.kh.mini.MemberLogin.view.menuBar.UserInfo;
+
 public class MenuBar extends Frame{
 
 	public MenuBar() {
@@ -25,6 +27,14 @@ public class MenuBar extends Frame{
 		JButton healthInfo = new JButton("영양제 정보 조회");
 		JButton help = new JButton("실시간 문의");
 		
+		frame.setTitle("== Health Eat ==");
+		frame.setVisible(true);
+		frame.setSize(900,600);
+		frame.setLocationRelativeTo(null);
+		frame.setResizable(false);
+		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
+		
+		frame.add(panel);
 		panel.setLayout(null);
 		panel.add(userInfo);
 		panel.add(healthNum);
@@ -39,20 +49,15 @@ public class MenuBar extends Frame{
 		healthInfo.setBounds(350, 350, 200, 60);
 		help.setBounds		(350, 450, 200, 60);
 		
-		setTitle("== Health Eat ==");
-		setVisible(true);
-		setSize(900,600);
-		setLocationRelativeTo(null);
-		setResizable(false);
 		
-		add(panel);
+		
 		
 		userInfo.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// 회원 정보 조회 , 관리창으로 연결 
-				
+				UserInfo ui = new UserInfo();
 			}
 			
 		});
@@ -92,7 +97,7 @@ public class MenuBar extends Frame{
 			}
 			
 		});
-		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
+		
 	}
 	
 	

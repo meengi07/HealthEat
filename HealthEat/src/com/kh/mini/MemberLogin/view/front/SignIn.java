@@ -16,6 +16,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
+import com.kh.mini.MemberLogin.model.vo.Member;
+
 public class SignIn extends Frame{
 
 	public SignIn() {
@@ -50,6 +52,13 @@ public class SignIn extends Frame{
 		JButton back = new JButton("돌아가기");
 		JButton okay = new JButton("가입하기");
 		
+		//
+		Member m = new Member();
+		
+		
+		//
+		
+		add(panel);
 		panel.setLayout(null);
 		//패널 = 칸 만들기 .
 		panel.add(id);
@@ -100,15 +109,15 @@ public class SignIn extends Frame{
 		
 		
 		
-		setTitle("회원가입");
-		setVisible(true);
-		setSize(900,600);
-		setLocationRelativeTo(null);
-		setResizable(false);
+		frame.setTitle("회원가입");
+		frame.setVisible(true);
+		frame.setSize(900,600);
+		frame.setLocationRelativeTo(null);
+		frame.setResizable(false);
 		
 		contentPane.add(panel, BorderLayout.CENTER);
 		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
-		add(panel);
+
 	
 		// button -> back okay 
 		back.addActionListener(new ActionListener() {

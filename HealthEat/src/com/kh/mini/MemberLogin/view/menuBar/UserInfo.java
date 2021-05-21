@@ -65,14 +65,14 @@ public class UserInfo extends Frame{
 		deleteInfo.setBounds	(380, 430, 200, 50); //회원탈퇴 버튼 
 		back.setBounds			(380, 480, 200, 50); //돌아가기 버튼 
 		
-		setTitle("회원정보관리");
-		setVisible(true);
-		setSize(900,600);
-		setLocationRelativeTo(null);
-		setResizable(false);
+		frame.setTitle("회원정보관리");
+		frame.setVisible(true);
+		frame.setSize(900,600);
+		frame.setLocationRelativeTo(null);
+		frame.setResizable(false);
 		
 		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
-		add(panel);
+		frame.add(panel);
 		
 		changeInfo.addActionListener(new ActionListener() {
 
@@ -90,7 +90,7 @@ public class UserInfo extends Frame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				int result = JOptionPane.showConfirmDialog(null, "회원을 탈퇴 하시겠습니까?", "확인", JOptionPane.YES_NO_CANCEL_OPTION);
+				int result = JOptionPane.showConfirmDialog(null, "회원을 탈퇴 하시겠습니까?", "확인", JOptionPane.YES_NO_OPTION);
 				if(result == JOptionPane.YES_OPTION) {
 					JOptionPane.showMessageDialog(null, "회원탈퇴가 완료되었습니다.");
 					Login lg = new Login();

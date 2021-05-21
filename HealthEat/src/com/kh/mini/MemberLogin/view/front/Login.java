@@ -62,7 +62,7 @@ public class Login extends Frame {
 		JPanel logP = new JPanel(); //로그인버튼 칸 
 		JPanel signP = new JPanel(); //가입버튼 칸 
 		
-		
+		add(panel);
 		idP.add(id);
 		idT.add(idTxt);
 		pwP.add(pw);
@@ -91,14 +91,14 @@ public class Login extends Frame {
 		
 		contentPane.add(panel, BorderLayout.CENTER);
 		
+		
+		
+		frame.setTitle("영양제 복용일기 프로그램");
+		frame.setVisible(true);
+		frame.setSize(900,600);
+		frame.setLocationRelativeTo(null);
+		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		setTitle("영양제 복용일기 프로그램");
-		setVisible(true);
-		setSize(900,600);
-		setLocationRelativeTo(null);
-		setResizable(false);
-		
 		
  		logBtn.addActionListener(new ActionListener() {
 
@@ -128,7 +128,7 @@ public class Login extends Frame {
  			
  		});
  		
- 		add(panel);
+ 		
  		
 
 	}

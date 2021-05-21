@@ -21,9 +21,18 @@ public class ChangeInfo extends Frame {
 	
 		//회원정보 수정 및 팝업 
 		JFrame frame = new JFrame();
-	
-		
 		JPanel panel = new JPanel();
+		
+		frame.setTitle("회원정보 수정");
+		frame.setVisible(true);
+		frame.setSize(900,600);
+		frame.setLocationRelativeTo(null); //화면 중앙에 띄움 
+		frame.setResizable(false); // 창 크기 고정 (불변)
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.add(panel);
+		
+		
+		
 		
 		JLabel titleInfo = new JLabel("변경할 내용을 입력해주세요");
 		JLabel chgPw1 = new JLabel("변경할 비밀번호");
@@ -65,11 +74,7 @@ public class ChangeInfo extends Frame {
 		panel.add(chgBtn);
 		panel.add(backBtn);
 		
-		setTitle("회원정보 수정");
-		setVisible(true);
-		setSize(900,600);
-		setLocationRelativeTo(null); //화면 중앙에 띄움 
-		setResizable(false); // 창 크기 고정 (불변)
+		
 		
 		chgBtn.addActionListener(new ActionListener() {
 
@@ -92,7 +97,7 @@ public class ChangeInfo extends Frame {
 		});
 		
 		
-		add(panel);
+		
 		
 	}
 }
