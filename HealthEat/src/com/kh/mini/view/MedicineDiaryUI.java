@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 
 public class MedicineDiaryUI extends JFrame{
 // git에 있는 복용 일기 클래스
+	// 되는지 수정해봄
 public MedicineDiaryUI() {
 		
 		this.setTitle("복용 일기 메인메뉴");
