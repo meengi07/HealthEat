@@ -1,17 +1,16 @@
 package com.kh.mini.TaeHyeon.view;
 
-import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -21,9 +20,10 @@ public class MedicineDiaryUI extends JFrame{
 public MedicineDiaryUI() {
 		
 		String[] eatCount = {"1번","2번","3번"};
-	
+		
+		
 		this.setTitle("복용 일기 메인메뉴");
-		this.setBounds(600, 100, 600, 800);
+		this.setBounds(600, 100, 600, 900);
 		//this.setSize(600, 800);
 		this.setLayout(null);
 		
@@ -108,6 +108,10 @@ public MedicineDiaryUI() {
 		JTextField byTextField1 = new JTextField();  // 시작날짜 복용주기 입력 텍스트 필드
 		JTextField byTextField2 = new JTextField();
 		
+		// 버튼 추가
+		JButton backBtn = new JButton("돌아가기");
+		JButton saveBtn = new JButton("등록하기");
+		
 		
 		// 위치 조정
 		
@@ -145,6 +149,8 @@ public MedicineDiaryUI() {
 		byTextField1.setBounds(80, 220, 200, 20);
 		byTextField2.setBounds(300, 220, 200, 20);
 		
+		backBtn.setBounds(400, 750, 150, 50);
+		saveBtn.setBounds(180, 750, 150, 50);
 		
 		//복용 주기 회수 선택 
 		combo.addActionListener(new ActionListener() {
@@ -268,6 +274,34 @@ public MedicineDiaryUI() {
 			}
 		});
 		
+		// 돌아가기 버튼 활성화
+		backBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				panel2.setVisible(false);
+				panel1.setVisible(true);
+				
+			}
+		});
+		
+		// 저장하기 팝업 창 띄우기
+		
+		saveBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int cfm1 =  JOptionPane.showConfirmDialog(null,"복용 일기 등록하시겠습니까?", "영양제 복용 일기", JOptionPane.OK_CANCEL_OPTION);
+				
+				if(cfm1 == JOptionPane.YES_OPTION) {
+					panel1.setVisible(true);
+					panel2.setVisible(false);
+				}
+			}
+		});
+		
+		
 		panel2.add(labelDiary1);
 		panel2.add(textField1);
 		panel2.add(labelDiary2);
@@ -277,7 +311,8 @@ public MedicineDiaryUI() {
 		panel2.add(week);
 		panel2.add(byCycle);
 		panel2.add(combo);
-		
+		panel2.add(backBtn);
+		panel2.add(saveBtn);
 		
 		
 		
