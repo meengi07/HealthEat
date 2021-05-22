@@ -1,8 +1,10 @@
-package com.kh.mini.TaeHyeon;
+package com.kh.mini.TaeHyeon.view;
 
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.io.IOException;
 
 import javax.swing.JButton;
@@ -83,7 +85,6 @@ public MedicineDiaryUI() {
 		JTextField textField2 = new JTextField();
 		JTextField textField3 = new JTextField();
 		JTextField textField4 = new JTextField();
-		JTextField textField5 = new JTextField();
 		
 		JTextArea textArea1 = new JTextArea(); // 메모 내용 적으로 텍스트에리어 생성
 		
@@ -92,10 +93,26 @@ public MedicineDiaryUI() {
 		JCheckBox week = new JCheckBox("요일별"); // 체크박스 생성
 		JCheckBox byCycle = new JCheckBox("주기별");
 		
+		// 요일별 체크시 요일 체크 박스
+		JCheckBox week1 = new JCheckBox("월");
+		JCheckBox week2 = new JCheckBox("화");
+		JCheckBox week3 = new JCheckBox("수");
+		JCheckBox week4 = new JCheckBox("목");
+		JCheckBox week5 = new JCheckBox("금");
+		JCheckBox week6 = new JCheckBox("토");
+		JCheckBox week7 = new JCheckBox("일");
 		
-		//panel2.add(new JLabel("영양제 복용 일기 작성"));
+		// 주기별 체크시 텍스트 필드
+		JLabel bylabelDiary1 = new JLabel("시작날짜를 입력");
+		JLabel bylabelDiary2 = new JLabel("복용주기를 입력");
+		JTextField byTextField1 = new JTextField();  // 시작날짜 복용주기 입력 텍스트 필드
+		JTextField byTextField2 = new JTextField();
+		
+		
+		// 위치 조정
+		
 		labelDiary1.setBounds(100, 30, 200, 40);
-		labelDiary2.setBounds(100, 150, 200, 40);
+		labelDiary2.setBounds(100, 120, 200, 40);
 		labelDiary3.setBounds(20, 270, 200, 40);
 		labelDiary4.setBounds(150, 500, 250, 40);
 		
@@ -104,16 +121,34 @@ public MedicineDiaryUI() {
 		labelDiaryArr[2].setBounds(150, 400, 200, 40);
 		
 		textField1.setBounds(100, 80, 250, 20);
-		textField2.setBounds(100, 200, 250, 20);
-		textField3.setBounds(250, 310, 250, 20);
-		textField4.setBounds(250, 360, 250, 20);
-		textField5.setBounds(250, 410, 250, 20);
+		textField2.setBounds(250, 310, 250, 20);
+		textField3.setBounds(250, 360, 250, 20);
+		textField4.setBounds(250, 410, 250, 20);
 		
 		textArea1.setBounds(75, 530, 400, 200);
 		
 		combo.setBounds(20, 300, 100, 40); // 복용 횟수 선택 콤보 박스
 		
+		week.setBounds(100, 150, 80, 40);
+		byCycle.setBounds(350, 150, 80, 40);
+		
+		week1.setBounds(30, 200, 50, 40);
+		week2.setBounds(80, 200, 50, 40);
+		week3.setBounds(130, 200, 50, 40);
+		week4.setBounds(180, 200, 50, 40);
+		week5.setBounds(230, 200, 50, 40);
+		week6.setBounds(280, 200, 50, 40);
+		week7.setBounds(330, 200, 50, 40);
+		
+		bylabelDiary1.setBounds(80, 180, 200, 40);
+		bylabelDiary2.setBounds(300, 180, 200, 40);
+		byTextField1.setBounds(80, 220, 200, 20);
+		byTextField2.setBounds(300, 220, 200, 20);
+		
+		
+		//복용 주기 회수 선택 
 		combo.addActionListener(new ActionListener() {
+			
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -122,45 +157,125 @@ public MedicineDiaryUI() {
 				
 				if(index == 0) {
 					panel2.add(labelDiaryArr[0]);
-					panel2.add(textField3);
+					panel2.add(textField2);
 					panel2.setBounds(0, 0, 700, 900);
+					
+					labelDiaryArr[0].setVisible(true);
+					labelDiaryArr[1].setVisible(false);
+					labelDiaryArr[2].setVisible(false);
+					textField2.setVisible(true);
+					textField3.setVisible(false);
+					textField4.setVisible(false);
 					
 				}else if(index == 1) {
 					panel2.add(labelDiaryArr[0]);
-					panel2.add(textField3);
+					panel2.add(textField2);
 					panel2.setBounds(0, 0, 700, 900);
 					
 					panel2.add(labelDiaryArr[1]);
-					panel2.add(textField4);
+					panel2.add(textField3);
 					panel2.setBounds(0, 0, 750, 900);
+					
+					labelDiaryArr[0].setVisible(true);
+					labelDiaryArr[1].setVisible(true);
+					labelDiaryArr[2].setVisible(false);
+					textField2.setVisible(true);
+					textField3.setVisible(true);
+					textField4.setVisible(false);
+					
 					
 				}else {
 					panel2.add(labelDiaryArr[0]);
-					panel2.add(textField3);
+					panel2.add(textField2);
 					panel2.setBounds(0, 0, 700, 900);
 					
 					panel2.add(labelDiaryArr[1]);
-					panel2.add(textField4);
+					panel2.add(textField3);
 					panel2.setBounds(0, 0, 750, 900);
 					
 					panel2.add(labelDiaryArr[2]);
-					panel2.add(textField5);
+					panel2.add(textField4);
 					panel2.setBounds(0, 0, 800, 900);
-					;
+					
+					labelDiaryArr[0].setVisible(true);
+					labelDiaryArr[1].setVisible(true);
+					labelDiaryArr[2].setVisible(true);
+					textField2.setVisible(true);
+					textField3.setVisible(true);
+					textField4.setVisible(true);
 				}
 								
 			}
 		});
+		// 요일별 선택 시 요일 등장
+		week.addItemListener(new ItemListener() {
+			
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange() == ItemEvent.SELECTED) {
+					panel2.add(week1);
+					panel2.add(week2);
+					panel2.add(week3);
+					panel2.add(week4);
+					panel2.add(week5);
+					panel2.add(week6);
+					panel2.add(week7);
+					week1.setVisible(true);
+					week2.setVisible(true);
+					week3.setVisible(true);
+					week4.setVisible(true);
+					week5.setVisible(true);
+					week6.setVisible(true);
+					week7.setVisible(true);
+					panel2.setBounds(0, 0, 700, 900);
+				}else {
+					week1.setVisible(false);
+					week2.setVisible(false);
+					week3.setVisible(false);
+					week4.setVisible(false);
+					week5.setVisible(false);
+					week6.setVisible(false);
+					week7.setVisible(false);
+					panel2.setBounds(0, 0, 700, 900);
+				}
+				
+			}
+		});
 		
 		
+		// 주기별 선택 시 주기별 입력 등장
+		byCycle.addItemListener(new ItemListener() {
+			
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange() == ItemEvent.SELECTED) {
+				panel2.add(bylabelDiary1);
+				panel2.add(bylabelDiary2);
+				panel2.add(byTextField1);
+				panel2.add(byTextField2);
+				bylabelDiary1.setVisible(true);
+				bylabelDiary2.setVisible(true);
+				byTextField1.setVisible(true);
+				byTextField2.setVisible(true);
+				panel2.setBounds(0, 0, 700, 900);
+			}else {
+				bylabelDiary1.setVisible(false);
+				bylabelDiary2.setVisible(false);
+				byTextField1.setVisible(false);
+				byTextField2.setVisible(false);
+				panel2.setBounds(0, 0, 700, 900);
+				}
+			}
+		});
 		
 		panel2.add(labelDiary1);
 		panel2.add(textField1);
 		panel2.add(labelDiary2);
-		panel2.add(textField2);
 		panel2.add(labelDiary3);
 		panel2.add(labelDiary4);
 		panel2.add(textArea1);
+		panel2.add(week);
+		panel2.add(byCycle);
 		panel2.add(combo);
 		
 		
