@@ -61,10 +61,12 @@ public class ChangeInfo extends Frame {
 		pwTxt1.setBounds		(420, 100, 200, 50);
 		chgPw2.setBounds		(320, 150, 100, 50);
 		pwTxt2.setBounds		(420, 150, 200, 50);
+		/*
 		age.setBounds			(320, 200, 100, 50);
 		ageTxt1.setBounds		(420, 200, 200, 50);
 		gender.setBounds		(320, 250, 100, 50);
 		genderTxt1.setBounds	(420, 250, 200, 50);
+		*/
 		chgBtn.setBounds		(380, 350, 200, 50);
 		backBtn.setBounds		(380, 400, 200, 50);
 		
@@ -84,34 +86,49 @@ public class ChangeInfo extends Frame {
 		if(!pwTxt1.equals(pwTxt2)) {
 			System.out.println("비밀번호를 확인해주세요");
 		}
-		
+		//회원정보 수정하고 저장 
 		chgBtn.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
 				try {
-					String str;
-					ArrayList arr = new ArrayList<String[]>();
+					String dum = null ;
+					String str = null;
+					String[] arr = new String[5]; //기존 txt 
+					String[] srr = new String[5]; //수정 txt 
 					BufferedReader br = new BufferedReader(new FileReader("UserInfo.txt"));
 					BufferedWriter bw = new BufferedWriter(new FileWriter("UserInfo.txt",true));
+					String pw = pwTxt2.getText();
+					
 					
 					while((str=br.readLine()) !=null) {
-						String[] srr = str.split("/");
-						arr.add(srr);
-						for(int i = 0; i < srr.length; i++) {
-							
-							if(i < 1) {
-								String zip = srr[i]+"/";
-							}
-							
+						arr = str.split("/");		
+					}
+					for(int i = 0; i < srr.length; i++) {
+						if(i == 1) {
+							srr[i] = pw;
+						}
+						if(i != 1) {
+							srr[i] = arr[i];
 						}
 					}
-					bw.close();
+					for(int i = 0; i < srr.length; i++) {
+						dum += srr[i];
+						if(i != 4) {
+							dum +="/";
+						}
+					}
+					BufferedWriter bw2 = new BufferedWriter(new FileWriter("UserInfo.txt"));
+					bw2.write(dum);
 					
+					bw.close();
+					bw2.close();
+					br.close();
 				} catch (IOException e2) {
 					// TODO Auto-generated catch block
 					e2.printStackTrace();
+				
 				}
 				
 				

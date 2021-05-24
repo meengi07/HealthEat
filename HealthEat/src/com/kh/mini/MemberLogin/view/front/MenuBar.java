@@ -29,6 +29,7 @@ public class MenuBar extends Frame{
 		JButton eatNote = new JButton("복용 일기 관리");
 		JButton healthInfo = new JButton("영양제 정보 조회");
 		JButton help = new JButton("실시간 문의");
+		JButton back = new JButton("돌아가기");
 		
 		frame.setTitle("== Health Eat ==");
 		frame.setVisible(true);
@@ -45,13 +46,15 @@ public class MenuBar extends Frame{
 		panel.add(eatNote);
 		panel.add(healthInfo);
 		panel.add(help);
+		panel.add(back);
 		
 		//		(가로위치, 세로위치, 가로크기, 세로크기)
-		userInfo.setBounds	(350, 50, 200, 60);
-		healthNum.setBounds	(350, 150, 200, 60);
-		eatNote.setBounds	(350, 250, 200, 60);
-		healthInfo.setBounds(350, 350, 200, 60);
-		help.setBounds		(350, 450, 200, 60);
+		userInfo.setBounds	(350, 30, 200, 60);
+		healthNum.setBounds	(350, 110, 200, 60);
+		eatNote.setBounds	(350, 190, 200, 60);
+		healthInfo.setBounds(350, 270, 200, 60);
+		help.setBounds		(350, 350, 200, 60);
+		back.setBounds		(350, 430, 200, 60);
 		
 		
 		
@@ -106,7 +109,15 @@ public class MenuBar extends Frame{
 			}
 			
 		});
-		
+		back.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				Login lo = new Login();
+			}
+			
+		});
 	}
 	
 	

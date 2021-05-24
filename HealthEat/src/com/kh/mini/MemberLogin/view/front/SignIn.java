@@ -140,6 +140,7 @@ public class SignIn extends Frame{
 					bw.write(nameTxt.getText() + "/");
 					bw.write(ageTxt.getText() + "/");
 					bw.write(genderTxt.getText() + "/");
+					bw.write("\n");
 					bw.close();
 					JOptionPane.showMessageDialog(null, "회원가입이 완료되었습니다.");
 					Login log = new Login();
