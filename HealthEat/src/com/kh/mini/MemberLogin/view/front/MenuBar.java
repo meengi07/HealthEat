@@ -4,6 +4,7 @@ import java.awt.Container;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -13,7 +14,9 @@ import com.kh.mini.MemberLogin.view.menuBar.UserInfo;
 
 public class MenuBar extends Frame{
 
+	
 	public MenuBar() {
+		
 		
 		JFrame frame = new JFrame();
 		frame.setLocation(350, 250);
@@ -33,6 +36,7 @@ public class MenuBar extends Frame{
 		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
+
 		
 		frame.add(panel);
 		panel.setLayout(null);
@@ -57,7 +61,12 @@ public class MenuBar extends Frame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// 회원 정보 조회 , 관리창으로 연결 
-				UserInfo ui = new UserInfo();
+				try {
+					UserInfo ui = new UserInfo();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 			
 		});

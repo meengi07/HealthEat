@@ -3,6 +3,12 @@ package com.kh.mini.MemberLogin.view.subMenu;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -11,11 +17,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import com.kh.mini.MemberLogin.view.front.MenuBar;
 import com.kh.mini.MemberLogin.view.menuBar.UserInfo;
 
 public class ChangeInfo extends Frame {
 
-	private UserInfo ui = new UserInfo();
+	//private UserInfo ui = new UserInfo();
 	
 	public ChangeInfo() {
 	
@@ -74,15 +81,48 @@ public class ChangeInfo extends Frame {
 		panel.add(chgBtn);
 		panel.add(backBtn);
 		
-		
+		if(!pwTxt1.equals(pwTxt2)) {
+			System.out.println("비밀번호를 확인해주세요");
+		}
 		
 		chgBtn.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				
+				try {
+					String str;
+					ArrayList arr = new ArrayList<String[]>();
+					BufferedReader br = new BufferedReader(new FileReader("UserInfo.txt"));
+					BufferedWriter bw = new BufferedWriter(new FileWriter("UserInfo.txt",true));
+					
+					while((str=br.readLine()) !=null) {
+						String[] srr = str.split("/");
+						arr.add(srr);
+						for(int i = 0; i < srr.length; i++) {
+							
+							if(i < 1) {
+								String zip = srr[i]+"/";
+							}
+							
+						}
+					}
+					bw.close();
+					
+				} catch (IOException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
+				
+				
+				
 				JOptionPane.showMessageDialog(null, "내용이 변경되었습니다.");
-				UserInfo ui = new UserInfo();
+				try {
+					UserInfo ui = new UserInfo();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 			
 		});
@@ -91,7 +131,12 @@ public class ChangeInfo extends Frame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				UserInfo ui = new UserInfo();
+				try {
+					UserInfo ui = new UserInfo();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 			
 		});

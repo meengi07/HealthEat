@@ -8,6 +8,10 @@ import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,7 +19,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
@@ -25,8 +28,6 @@ public class Login extends Frame {
 //로그인 화면 뷰어, 프레임과 패널을 구현해서 로그인창 만들기. 
 	
 	private Member m = new Member();
-	
-	private CardLayout card = new CardLayout();
 	
 	//private JPanel panel;
 	private JLabel id = new JLabel("ID : ");
@@ -62,7 +63,14 @@ public class Login extends Frame {
 		JPanel logP = new JPanel(); //로그인버튼 칸 
 		JPanel signP = new JPanel(); //가입버튼 칸 
 		
-		add(panel);
+		frame.setTitle("영양제 복용일기 프로그램");
+		frame.setVisible(true);
+		frame.setSize(900,600);
+		frame.setLocationRelativeTo(null);
+		frame.setResizable(false);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.add(panel);
+		
 		idP.add(id);
 		idT.add(idTxt);
 		pwP.add(pw);
@@ -93,28 +101,33 @@ public class Login extends Frame {
 		
 		
 		
-		frame.setTitle("영양제 복용일기 프로그램");
-		frame.setVisible(true);
-		frame.setSize(900,600);
-		frame.setLocationRelativeTo(null);
-		frame.setResizable(false);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		//로그인버튼 
  		logBtn.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub\
 				
-				String id = "min";
-				String pw = "1234";
-				if(id.equals(idTxt.getText()) && pw.equals(pwTxt.getText()) ) {
-					JOptionPane.showMessageDialog(null, "로그인에 성공했습니다.");
-					MenuBar menu = new MenuBar();
-				}else {
-					JOptionPane.showMessageDialog(null, "로그인에 실패했습니다.");
+				try {
+					String str;
+					ArrayList arr = new ArrayList<String[]>();
+					BufferedReader br = new BufferedReader(new FileReader("UserInfo.txt"));
+				
+						while((str=br.readLine()) !=null) {
+							String[] srr = str.split("/");
+							arr.add(srr);
+							if(idTxt.getText().equals(srr[0]) && pwTxt.getText().equals(srr[1])) {
+								JOptionPane.showMessageDialog(null, "로그인에 성공했습니다. ");
+								MenuBar mb = new MenuBar();
+							}else {
+								JOptionPane.showMessageDialog(null, "로그인에 실패했습니다. ");
+							}
+						}
+						br.close();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
-				
 			}
  			
  		});
