@@ -6,6 +6,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -15,7 +24,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class mainPanel extends JFrame{
+import sun.java2d.pipe.SpanShapeRenderer.Simple;
+
+public class mainPanel extends JFrame implements ActionListener{
 	
 	// FunctionPanel fp = new FunctionPanel();
 	
@@ -26,13 +37,17 @@ public class mainPanel extends JFrame{
 	private TextArea textArea1;
 	
 	
+	
 	public mainPanel() {
 		// 메인 메뉴 패널 활성화
 		mainPanel.setVisible(true);
 		writePanel.setVisible(false);
 		seePanel.setVisible(false);
 		
+		
 	}
+	
+	
 	
 	public JPanel mainPanelUI() {
 		
@@ -57,12 +72,17 @@ public class mainPanel extends JFrame{
 		btn2.setBounds(250, 600, 100, 40);
 		// 해당 버튼을 누렀을 시 메인 선택창으로 돌아가는 액션리스너를 추가
 		
+		JLabel showTitle = new JLabel("등록된 영양제 복용 일기");
+		
+		
 		mainPanel.add(btn1);
 		mainPanel.add(btn2);
 		
 		return mainPanel;
 		
 	}
+	
+	
 	
 	// 복용일기 UI 설정하기
 	public JPanel writeJPanelUI() {
@@ -100,6 +120,7 @@ public class mainPanel extends JFrame{
 		// 버튼 추가
 		JButton backBtn = new JButton("돌아가기");
 		JButton saveBtn = new JButton("등록하기");
+		saveBtn.addActionListener(this); // 등록하기 버튼 활성화
 		
 		// 텍스트 필드 추가
 		textField1 = new TextField(15);
@@ -314,6 +335,70 @@ public class mainPanel extends JFrame{
 				
 				
 		return writePanel;
+		
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		
+		//String path = "C:\\DiaryDataTextFile";
+		// 현재 날짜 가져오기
+		Date today = new Date();
+		SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
+		String ftToday = ft.format(today);
+		
+		try {
+			File tempDir = new File("C:\\new");
+			if(!tempDir.exists()) // 경로에 폴더가 존재하지 않으면
+				tempDir.mkdirs(); // 물리적으로 폴더 생성
+			//File dirFile = new File(tempDir + File.separator + "\saveDiay.txt");
+			File[] fileList = tempDir.listFiles();
+			
+			// 파일명과 같은 파일명이 있을 경우 덮어쓰기 판단
+			//FileWriter fw = new FileWriter("saveDiary.txt", true);
+			
+			
+			FileWriter fw = new FileWriter(tempDir + File.separator + ftToday + ".txt", true);
+			
+			BufferedWriter bf = new BufferedWriter(fw);
+			
+			
+			bf.write(textField1.getText()+ " ");
+			bf.write(textField2.getText()+ " ");
+			bf.write(textField3.getText()+ " ");
+			bf.write(textField4.getText()+ " ");
+			bf.write(byTextField1.getText()+ " ");
+			bf.write(byTextField2.getText()+ " ");
+			bf.write(textArea1.getText()+ "\n"); // 마지막 입력후 한줄은 내린다
+
+			bf.close(); // 저장 후 텍스트 필드의 값을 가져온 자원들을 해제한다.
+			
+			textField1.setText("");
+			textField2.setText("");
+			textField3.setText("");
+			textField4.setText("");
+			byTextField1.setText("");
+			byTextField2.setText("");
+			textArea1.setText("");
+			
+			FileReader fr = new FileReader("C:\\new\\" + ftToday + ".txt"); // String 형으로 파일을 불러온다.
+			BufferedReader br = new BufferedReader(fr); // 한줄씩 일기 위해(빠른속도로 읽기위해)
+			// 파일 이름을 현제 Date 값으로 받아서 이름을 짓자
+			String str = null; // while의 조건부
+			
+			while((str=br.readLine()) != null) {
+				System.out.println(str); // null이 될때까지 한줄씩 읽어온다.
+				
+			
+			}
+			br.close(); // 읽어온 자원들을 해제한다.
+		} catch (FileNotFoundException e1) {
+			System.out.println("파일이 존재하지 않네용!");
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} 
 		
 		
 	}
