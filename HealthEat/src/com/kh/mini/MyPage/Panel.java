@@ -30,7 +30,7 @@ public class Panel extends JFrame {
 	////////// review /////////////////////////////////////////////////////////
 
 	private JTable table;
-	private String[] header = new String[] { "蹂꾨챸", "�쁺�뼇�젣", "�젣紐�", "�궡�슜" };
+	private String[] header = new String[] { "별명", "영양제", "제목", "내용" };
 
 	DefaultTableModel model = new DefaultTableModel(header, 0) {
 		public boolean isCellEditable(int header, int data) {
