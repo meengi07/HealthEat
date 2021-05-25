@@ -27,7 +27,7 @@ import javax.swing.JTextField;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
+import javax.swing.table.TableRowSorter; 
 
 import com.sy.mvc.controller.NutriManager2;
 import com.sy.mvc.model.vo.Nutri;
