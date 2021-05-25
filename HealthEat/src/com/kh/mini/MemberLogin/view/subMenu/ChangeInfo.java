@@ -3,6 +3,12 @@ package com.kh.mini.MemberLogin.view.subMenu;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -11,19 +17,26 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import com.kh.mini.MemberLogin.view.front.MenuBar;
 import com.kh.mini.MemberLogin.view.menuBar.UserInfo;
 
 public class ChangeInfo extends Frame {
 
-	private UserInfo ui = new UserInfo();
+	//private UserInfo ui = new UserInfo();
 	
 	public ChangeInfo() {
-	
 		//회원정보 수정 및 팝업 
-		JFrame frame = new JFrame();
-	
 		
+		JFrame frame = new JFrame();
 		JPanel panel = new JPanel();
+		//프레임 크기 및 위치 설정 
+		frame.setTitle("회원정보 수정");
+		frame.setVisible(true);
+		frame.setSize(900,600);
+		frame.setLocationRelativeTo(null); //화면 중앙에 띄움 
+		frame.setResizable(false); // 창 크기 고정 (불변)
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.add(panel);
 		
 		JLabel titleInfo = new JLabel("변경할 내용을 입력해주세요");
 		JLabel chgPw1 = new JLabel("변경할 비밀번호");
@@ -45,13 +58,8 @@ public class ChangeInfo extends Frame {
 		pwTxt1.setBounds		(420, 100, 200, 50);
 		chgPw2.setBounds		(320, 150, 100, 50);
 		pwTxt2.setBounds		(420, 150, 200, 50);
-		age.setBounds			(320, 200, 100, 50);
-		ageTxt1.setBounds		(420, 200, 200, 50);
-		gender.setBounds		(320, 250, 100, 50);
-		genderTxt1.setBounds	(420, 250, 200, 50);
 		chgBtn.setBounds		(380, 350, 200, 50);
 		backBtn.setBounds		(380, 400, 200, 50);
-		
 		
 		panel.add(titleInfo);
 		panel.add(chgPw1);
@@ -65,34 +73,84 @@ public class ChangeInfo extends Frame {
 		panel.add(chgBtn);
 		panel.add(backBtn);
 		
-		setTitle("회원정보 수정");
-		setVisible(true);
-		setSize(900,600);
-		setLocationRelativeTo(null); //화면 중앙에 띄움 
-		setResizable(false); // 창 크기 고정 (불변)
+		if( !pwTxt1.getText().equals(pwTxt2.getText()) ) {
+			JOptionPane.showMessageDialog(null, "비밀번호를 확인해주세요");
+		}
 		
+		//회원정보 수정하고 저장 
 		chgBtn.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				
+				try {
+					String dum = "" ;
+					String str ;
+					String[] arr = new String[5]; //기존 txt 
+					String[] srr = new String[5]; //수정 txt 
+					BufferedReader br = new BufferedReader(new FileReader("UserInfo.txt"));
+					BufferedWriter bw = new BufferedWriter(new FileWriter("UserInfo.txt",true));
+					String pw = pwTxt2.getText();
+					
+					
+					while((str=br.readLine()) !=null) {
+						arr = str.split("/");		
+					}
+					for(int i = 0; i < srr.length; i++) {
+						if(i == 1) {
+							srr[i] = pw;
+						}
+						if(i != 1) {
+							srr[i] = arr[i];
+						}
+					}
+					for(int i = 0; i < srr.length; i++) {
+						dum += srr[i];
+						if(i != 4) {
+							dum +="/";
+						}
+					}
+					BufferedWriter bw2 = new BufferedWriter(new FileWriter("UserInfo.txt"));
+					bw2.write(dum);
+					
+					bw.close();
+					bw2.close();
+					br.close();
+				} catch (IOException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				
+				}
+				
 				JOptionPane.showMessageDialog(null, "내용이 변경되었습니다.");
-				UserInfo ui = new UserInfo();
+				try {
+					UserInfo ui = new UserInfo();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 			
 		});
+		
+		//돌아가기 버튼 
 		backBtn.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				UserInfo ui = new UserInfo();
+				try {
+					UserInfo ui = new UserInfo();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 			
 		});
 		
 		
-		add(panel);
+		
 		
 	}
 }
