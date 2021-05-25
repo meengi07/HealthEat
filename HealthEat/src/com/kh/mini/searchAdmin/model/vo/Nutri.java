@@ -1,4 +1,4 @@
-package com.sy.mvc.model.vo;
+package com.kh.mini.searchAdmin.model.vo;
 
 public class Nutri {
 

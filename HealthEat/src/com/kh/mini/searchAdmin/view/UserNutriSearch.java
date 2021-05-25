@@ -1,4 +1,4 @@
-package com.sy.mvc.view;
+package com.kh.mini.searchAdmin.view;
 
 import java.awt.Color;
 import java.awt.Dimension;

@@ -1,4 +1,4 @@
-package com.sy.mvc.controller;
+package com.kh.mini.searchAdmin.controller;
 
 public class NutriManager2 {
 	

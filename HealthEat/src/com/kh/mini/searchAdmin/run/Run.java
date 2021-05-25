@@ -1,6 +1,6 @@
-package com.sy.mvc.run;
+package com.kh.mini.searchAdmin.
 
-import com.sy.mvc.view.AdminMode;
+import com.kh.mini.searchAdmin.view.AdminMode;
 
 public class Run {
 
