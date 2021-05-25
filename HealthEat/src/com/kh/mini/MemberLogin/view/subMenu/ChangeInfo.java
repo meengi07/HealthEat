@@ -25,11 +25,11 @@ public class ChangeInfo extends Frame {
 	//private UserInfo ui = new UserInfo();
 	
 	public ChangeInfo() {
-	
 		//회원정보 수정 및 팝업 
+		
 		JFrame frame = new JFrame();
 		JPanel panel = new JPanel();
-		
+		//프레임 크기 및 위치 설정 
 		frame.setTitle("회원정보 수정");
 		frame.setVisible(true);
 		frame.setSize(900,600);
@@ -37,9 +37,6 @@ public class ChangeInfo extends Frame {
 		frame.setResizable(false); // 창 크기 고정 (불변)
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(panel);
-		
-		
-		
 		
 		JLabel titleInfo = new JLabel("변경할 내용을 입력해주세요");
 		JLabel chgPw1 = new JLabel("변경할 비밀번호");
@@ -61,15 +58,8 @@ public class ChangeInfo extends Frame {
 		pwTxt1.setBounds		(420, 100, 200, 50);
 		chgPw2.setBounds		(320, 150, 100, 50);
 		pwTxt2.setBounds		(420, 150, 200, 50);
-		/*
-		age.setBounds			(320, 200, 100, 50);
-		ageTxt1.setBounds		(420, 200, 200, 50);
-		gender.setBounds		(320, 250, 100, 50);
-		genderTxt1.setBounds	(420, 250, 200, 50);
-		*/
 		chgBtn.setBounds		(380, 350, 200, 50);
 		backBtn.setBounds		(380, 400, 200, 50);
-		
 		
 		panel.add(titleInfo);
 		panel.add(chgPw1);
@@ -83,9 +73,10 @@ public class ChangeInfo extends Frame {
 		panel.add(chgBtn);
 		panel.add(backBtn);
 		
-		if(!pwTxt1.equals(pwTxt2)) {
-			System.out.println("비밀번호를 확인해주세요");
+		if( !pwTxt1.getText().equals(pwTxt2.getText()) ) {
+			JOptionPane.showMessageDialog(null, "비밀번호를 확인해주세요");
 		}
+		
 		//회원정보 수정하고 저장 
 		chgBtn.addActionListener(new ActionListener() {
 
@@ -93,8 +84,8 @@ public class ChangeInfo extends Frame {
 			public void actionPerformed(ActionEvent e) {
 				
 				try {
-					String dum = null ;
-					String str = null;
+					String dum = "" ;
+					String str ;
 					String[] arr = new String[5]; //기존 txt 
 					String[] srr = new String[5]; //수정 txt 
 					BufferedReader br = new BufferedReader(new FileReader("UserInfo.txt"));
@@ -131,8 +122,6 @@ public class ChangeInfo extends Frame {
 				
 				}
 				
-				
-				
 				JOptionPane.showMessageDialog(null, "내용이 변경되었습니다.");
 				try {
 					UserInfo ui = new UserInfo();
@@ -143,6 +132,8 @@ public class ChangeInfo extends Frame {
 			}
 			
 		});
+		
+		//돌아가기 버튼 
 		backBtn.addActionListener(new ActionListener() {
 
 			@Override

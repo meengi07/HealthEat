@@ -14,14 +14,9 @@ import com.kh.mini.MemberLogin.view.menuBar.UserInfo;
 
 public class MenuBar extends Frame{
 
-	
 	public MenuBar() {
-		
-		
+		//메뉴바 
 		JFrame frame = new JFrame();
-		frame.setLocation(350, 250);
-		Container contentPane = frame.getContentPane();
-		
 		JPanel panel = new JPanel();
 		
 		JButton userInfo = new JButton("회원 정보 관리");
@@ -31,14 +26,15 @@ public class MenuBar extends Frame{
 		JButton help = new JButton("실시간 문의");
 		JButton back = new JButton("돌아가기");
 		
+		//프레임 위치 및 크기 설정 
 		frame.setTitle("== Health Eat ==");
 		frame.setVisible(true);
 		frame.setSize(900,600);
 		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
-
 		
+		//프레임, 패널 생성 
 		frame.add(panel);
 		panel.setLayout(null);
 		panel.add(userInfo);
@@ -56,14 +52,12 @@ public class MenuBar extends Frame{
 		help.setBounds		(350, 350, 200, 60);
 		back.setBounds		(350, 430, 200, 60);
 		
-		
-		
-		
+		// 회원 정보 조회 , 관리창으로 연결버튼 
 		userInfo.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// 회원 정보 조회 , 관리창으로 연결 
+				
 				try {
 					UserInfo ui = new UserInfo();
 				} catch (IOException e1) {
@@ -73,42 +67,51 @@ public class MenuBar extends Frame{
 			}
 			
 		});
+		
+		// 영양 점수 관리 기능 연결버튼 
 		healthNum.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// 영양 점수 관리 기능 연결 
+				
 				
 			}
 			
 		});
+		
+		// 복용 일기 연결버튼 
 		eatNote.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// 복용 일기 연결 
+				
 				
 			}
 			
 		});
+		
+		// 영양제 정보 조회버튼 
 		healthInfo.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// 영양제 정보 조회
 				
 			}
 			
 		});
+		
+		// 실시간 문의 연결버튼 
 		help.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// 실시간 문의 연결 
+				 
 				
 			}
 			
 		});
+		
+		//돌아가기 버튼 
 		back.addActionListener(new ActionListener() {
 
 			@Override
