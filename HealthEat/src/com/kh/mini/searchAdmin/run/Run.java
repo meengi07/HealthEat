@@ -1,12 +1,12 @@
-package com.kh.mini.searchAdmin.
+package com.kh.mini.searchAdmin.run;
 
-import com.kh.mini.searchAdmin.view.AdminMode;
+import com.kh.mini.searchAdmin.view.UserNutriSearch;
 
 public class Run {
 
 	public static void main(String[] args) {
-		new AdminMode();
-		//new UserNutriSearch();
+		//new AdminMode();
+		new UserNutriSearch();
 		
 	}
 

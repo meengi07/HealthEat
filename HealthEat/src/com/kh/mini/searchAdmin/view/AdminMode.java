@@ -19,7 +19,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane; 
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -310,8 +310,8 @@ public class AdminMode extends JFrame {
 				panelSelected.setVisible(false);
 				panelEdit.setVisible(false);
 				
-				//메인페이지 클래스 화면 전환
-				//메인페이지클래스명 flip = new 메인페이지클래스명();
+				//------------------------------------------------------------------메인페이지 클래스 화면 전환
+				//Login flip = new Login();
 				//flip.setVisible(true);
 				//frame.dispose();
 			}
@@ -407,16 +407,18 @@ public class AdminMode extends JFrame {
 							e1.printStackTrace();
 						}
 					}
+					
+					//수정 후 목록 재출력
+					showAllList();
 
 					JOptionPane.showMessageDialog(null, "수정이 완료되었습니다.");
-				} else if (answer == JOptionPane.CANCEL_OPTION) {
 					
+					panelMain.setVisible(true);
+					panelSelected.setVisible(false);
+					panelEdit.setVisible(false);
+				} else if (answer == JOptionPane.CANCEL_OPTION) {
+
 				}
-				
-				showAllList();
-				panelMain.setVisible(true);
-				panelSelected.setVisible(false);
-				panelEdit.setVisible(false);
 			}
 		});
 		
@@ -512,18 +514,18 @@ public class AdminMode extends JFrame {
 			try {
 				bw.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 	}
 	
-	//상세조회 메소드
+	//영양제 정보 상세조회 메소드
 	public void showDetail() {
 		
 		int rowSltd = table.getSelectedRow(); //선택한 셀의 행번호
 		TableModel m = table.getModel(); //테이블의 모델 객체 얻어오기
 		
+		//선택한 행의 데이터 가져오기
 		String basicNutri = (String)m.getValueAt(rowSltd, 0);
 		String manufac = (String)m.getValueAt(rowSltd, 1);
 		String quantity = (String)m.getValueAt(rowSltd, 2);
@@ -532,20 +534,21 @@ public class AdminMode extends JFrame {
 		String effect = (String)m.getValueAt(rowSltd, 5);
 		String viewCount = (String)m.getValueAt(rowSltd, 6);
 		
-		txtInfo.setText("");
-		txtInfo.append("주영양소 : ");
+		//textArea에 데이터 작성
+		txtInfo.setText("\n");
+		txtInfo.append(" ▶ 주영양소 : ");
 		txtInfo.append(basicNutri + "\n");
-		txtInfo.append("제조사 : ");
+		txtInfo.append(" ▶ 제조사 : ");
 		txtInfo.append(manufac + "\n");
-		txtInfo.append("용량 : ");
+		txtInfo.append(" ▶ 용량 : ");
 		txtInfo.append(quantity + "\n");
-		txtInfo.append("가격 : ");
+		txtInfo.append(" ▶ 가격 : ");
 		txtInfo.append(price + "원\n");
-		txtInfo.append("부가영양소 : ");
+		txtInfo.append(" ▶ 부가영양소 : ");
 		txtInfo.append(otherNutri + "\n");
-		txtInfo.append("효능효과 : ");
+		txtInfo.append(" ▶ 효능효과 : ");
 		txtInfo.append(effect + "\n");
-		txtInfo.append("인기도(조회수) : ");
+		txtInfo.append(" ▶ 인기도(조회수) : ");
 		txtInfo.append(viewCount + "\n");
 	}
 	

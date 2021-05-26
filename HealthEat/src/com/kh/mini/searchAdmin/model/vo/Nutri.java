@@ -8,7 +8,7 @@ public class Nutri {
 	private String price;		//가격
 	private String otherNutri; //기타영양소
 	private String effect; //효능효과(신체 부위)
-	private String viewCount;	//조회수(인기도) 
+	private String viewCount;	//조회수(인기도)
 	
 	public Nutri() {
 		// TODO Auto-generated constructor stub
