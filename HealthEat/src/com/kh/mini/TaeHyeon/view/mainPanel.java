@@ -109,15 +109,13 @@ public class mainPanel extends JFrame implements ActionListener {
 		table.getColumnModel().getColumn(0).setPreferredWidth(250); // 0번째 열 너비 100으로 조정
 		table.setModel(model);
 
-		
-		
 		JScrollPane scroll = new JScrollPane(table);
 		scroll.setBounds(90, 100, 350, 200);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		table.revalidate();
 		table.repaint();
 
-		showAllList(); // MDiary.txt 정보 출력 메소드
+		showAllList(); // txt 정보 출력 메소드
 
 		// table 마우스 클릭 시 객체 선택하기
 		table.addMouseListener(new MouseAdapter() {
@@ -126,13 +124,13 @@ public class mainPanel extends JFrame implements ActionListener {
 			}
 
 		});
-		
+
 		// table 목록에서 선택하여 더블 클릭 시 상세 조회로 이동
 		table.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				int row = table.getSelectedRow(); // 선택한 셀의 행번호
 				String a = (String) model.getValueAt(row, 0); // 첫번쩨 행에서 몇번짼꺼를 가져올것이다.
-				
+
 				// 데티블에 값을 위치 시키는 코드 필요
 
 			}
@@ -146,7 +144,8 @@ public class mainPanel extends JFrame implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int answer = JOptionPane.showConfirmDialog(null, "삭제하시겠습니까?", "ok", JOptionPane.OK_CANCEL_OPTION);
-				if(answer == JOptionPane.OK_OPTION) {
+				if (answer == JOptionPane.OK_OPTION) {
+					System.out.println("에러나난다");
 					diaryDelete();
 					JOptionPane.showMessageDialog(null, "삭제되었습니다");
 				}
@@ -486,8 +485,8 @@ public class mainPanel extends JFrame implements ActionListener {
 				tempDir.mkdirs(); // 물리적으로 폴더 생성
 
 			// 파일명과 같은 파일명이 있을 경우 덮어쓰기 판단
-			FileWriter fw = new FileWriter(tempDir, true);
-			//File.separator
+			FileWriter fw = new FileWriter(tempDir);
+			// File.separator
 			BufferedWriter bf = new BufferedWriter(fw);
 
 			// 체크 박스 시, 누렀을 때 일요일
@@ -509,11 +508,9 @@ public class mainPanel extends JFrame implements ActionListener {
 			}
 
 			bf.write(textArea1.getText() + "\n"); // 마지막 입력후 한줄은 내린다
-			
+
 			bf.close(); // 저장 후 텍스트 필드의 값을 가져온 자원들을 해제한다.
-			
-			
-			
+
 			for (int i = 0; i < checkWeek.length; i++) {
 				checkWeek[i].setText("");
 			}
@@ -534,7 +531,7 @@ public class mainPanel extends JFrame implements ActionListener {
 			while ((line = br.readLine()) != null) {
 				String[] arr = line.split(",");
 				model.addRow(arr);
-				
+
 				System.out.println(line);
 
 			}
@@ -552,12 +549,12 @@ public class mainPanel extends JFrame implements ActionListener {
 	// 저장된 일기 내용 table에 보여주기
 	public void showAllList() {
 
-		BufferedReader br = null;
+		BufferedReader br2 = null;
 
 		try {
-			br = new BufferedReader(new FileReader("saveDiary.txt"));
+			br2 = new BufferedReader(new FileReader("saveDiary.txt"));
 			String str = null;
-			while ((str = br.readLine()) != null) { // 한줄씩 읽어오기
+			while ((str = br2.readLine()) != null) { // 한줄씩 읽어오기
 				String[] srr = str.split(", "); // , 를 기준으로 str 나눠서 arr 만들기
 				model.addRow(srr);
 
@@ -570,7 +567,7 @@ public class mainPanel extends JFrame implements ActionListener {
 			e.printStackTrace();
 		} finally {
 			try {
-				br.close();
+				br2.close();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -597,23 +594,13 @@ public class mainPanel extends JFrame implements ActionListener {
 					bw.write(table.getValueAt(i, j).toString() + ",");
 					// table의 행열 기준 각각 값 얻어와서 /로 구분하며 파일에 데이터 입력
 				}
-				bw.newLine(); // 행이 발뀔 때 라인 바꿔주기 
+				bw.newLine(); // 행이 발뀔 때 라인 바꿔주기
 			}
-		} catch (IndexOutOfBoundsException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			bw.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
-			try {
-				bw.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 		}
-
 	}
 
 	public JPanel seeJPanel() {
