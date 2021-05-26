@@ -1,21 +1,21 @@
-package com.kh.mini.searchAdmin.model.vo;
+package com.sy.mvc.model.vo;
 
 public class Nutri {
 
 	private String basicNutri; //주영양소
 	private String manufac; //제조회사
 	private String quantity; //용량
-	private int price;		//가격
+	private String price;		//가격
 	private String otherNutri; //기타영양소
 	private String effect; //효능효과(신체 부위)
-	private int viewCount;	//조회수(인기도)
+	private String viewCount;	//조회수(인기도)
 	
 	public Nutri() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Nutri(String basicNutri, String manufac, String quantity, int price, String otherNutri, String effect,
-			int viewCount) {
+	public Nutri(String basicNutri, String manufac, String quantity, String price, String otherNutri, String effect,
+			String viewCount) {
 		super();
 		this.basicNutri = basicNutri;
 		this.manufac = manufac;
@@ -50,11 +50,11 @@ public class Nutri {
 		this.quantity = quantity;
 	}
 
-	public int getPrice() {
+	public String getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 
@@ -74,11 +74,11 @@ public class Nutri {
 		this.effect = effect;
 	}
 
-	public int getViewCount() {
+	public String getViewCount() {
 		return viewCount;
 	}
 
-	public void setViewCount(int viewCount) {
+	public void setViewCount(String viewCount) {
 		this.viewCount = viewCount;
 	}
 	
