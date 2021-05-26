@@ -358,15 +358,14 @@ public class UserNutriSearch extends JFrame {
 	public void showDetail() {
 		
 		int rowSltd = table.getSelectedRow(); //선택한 셀의 행번호
-		TableModel m = table.getModel(); //테이블의 모델 객체 얻어오기
 		
-		String basicNutri = (String)m.getValueAt(rowSltd, 0);
-		String manufac = (String)m.getValueAt(rowSltd, 1);
-		String quantity = (String)m.getValueAt(rowSltd, 2);
-		String price = (String)m.getValueAt(rowSltd, 3);
-		String otherNutri = (String)m.getValueAt(rowSltd, 4);
-		String effect = (String)m.getValueAt(rowSltd, 5);
-		String viewCount = (String)m.getValueAt(rowSltd, 6);
+		String basicNutri = (String)table.getValueAt(rowSltd, 0);
+		String manufac = (String)table.getValueAt(rowSltd, 1);
+		String quantity = (String)table.getValueAt(rowSltd, 2);
+		String price = (String)table.getValueAt(rowSltd, 3);
+		String otherNutri = (String)table.getValueAt(rowSltd, 4);
+		String effect = (String)table.getValueAt(rowSltd, 5);
+		String viewCount = (String)table.getValueAt(rowSltd, 6);
 		
 		int viewCountInt = Integer.parseInt(viewCount);
 		viewCountInt++;
