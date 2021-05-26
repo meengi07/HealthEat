@@ -40,7 +40,7 @@ public class UserNutriSearch extends JFrame {
 			return false;
 		}
 	};
-	
+	 
 	JTextField text;
 	JTable table;
 	JTextArea txtInfo;

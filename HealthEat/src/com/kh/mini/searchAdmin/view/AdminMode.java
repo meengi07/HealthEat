@@ -46,7 +46,7 @@ public class AdminMode extends JFrame {
 	JTable table;
 	JTextArea txtInfo;
 	JScrollPane scroll;
-
+ 
 	
 	public AdminMode() {
 		//창 이름
