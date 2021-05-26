@@ -1,4 +1,4 @@
-package com.sy.mvc.view;
+package com.kh.mini.searchAdmin.view;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -9,13 +9,13 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -28,9 +28,6 @@ import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-
-import com.sy.mvc.controller.NutriManager2;
-import com.sy.mvc.model.vo.Nutri;
 
 public class UserNutriSearch extends JFrame {
 
@@ -51,6 +48,7 @@ public class UserNutriSearch extends JFrame {
 
 	
 	public UserNutriSearch() {
+
 		//------------------------------------------Main panel
 		//---------------------------------------영양제 검색 첫 화면
 		//창 이름
@@ -119,7 +117,7 @@ public class UserNutriSearch extends JFrame {
 		JPanel panelSelected = new JPanel();
 		panelSelected.setBounds(0, 0, 840, 840/12*9);
 		panelSelected.setLayout(null);
-		panelSelected.setBackground(Color.LIGHT_GRAY);
+		panelSelected.setBackground(new Color(205, 210, 245)); //연보라색 배경
 		
 		//상세정보조회 제목
 		JLabel titleSltd = new JLabel("영양제 상세 정보 조회");
@@ -133,7 +131,6 @@ public class UserNutriSearch extends JFrame {
 		txtScroll.setBounds(80, 200, 500, 200);
 		txtScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		txtScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		//txtInfo.setText(printDetail());
 		
 		//영양제 추천 버튼
 		JButton recommSltd = new JButton("영양제 추천받기");
@@ -159,19 +156,48 @@ public class UserNutriSearch extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) {
 					showDetail();
-				
-				/*	
-					//---------------------------------조회수 증가 구현하기
+
 					//조회수 1씩 증가시키기
 					BufferedWriter bw = null;
-					BufferedWriter bw2 = null;
-					BufferedWriter bw3 = null;
 					
 					try {
 						//선택 행 이전 데이터 입력
 						bw = new BufferedWriter(new FileWriter("nutriList.txt"));
 						
 						for (int i = 0; i < table.getSelectedRow(); i++) {
+							for (int j = 0; j < table.getColumnCount(); j++) {
+								bw.write(table.getValueAt(i, j).toString() + "/");
+							}
+							bw.newLine();
+						}
+						
+						//선택 행 데이터 텍스트필드값 입력받아 수정
+						TableModel m = table.getModel(); //테이블의 모델 객체 얻어오기
+						int rowSltd = table.getSelectedRow(); //선택한 셀의 행번호
+						
+						String basicNutri = (String)m.getValueAt(rowSltd, 0);
+						String manufac = (String)m.getValueAt(rowSltd, 1);
+						String quantity = (String)m.getValueAt(rowSltd, 2);
+						String price = (String)m.getValueAt(rowSltd, 3);
+						String otherNutri = (String)m.getValueAt(rowSltd, 4);
+						String effect = (String)m.getValueAt(rowSltd, 5);
+						String count = (String)m.getValueAt(rowSltd, 6);
+						
+						//조회수 형변환 후 1씩 더해주기++
+						int countInt = Integer.parseInt(count); //txt 숫자데이터에 공백이 포함되면 형변환 오류 발생함.
+						countInt++;
+						String countStr = String.valueOf(countInt);
+						
+						bw.write(basicNutri + "/");
+						bw.write(manufac + "/");
+						bw.write(quantity + "/");
+						bw.write(price + "/");
+						bw.write(otherNutri + "/");
+						bw.write(effect + "/");
+						bw.write(countStr + "/\n"); //인기도(조회수)
+						
+						//선택 행 이후 데이터 입력
+						for (int i = table.getSelectedRow() + 1; i < table.getRowCount(); i++) {
 							for (int j = 0; j < table.getColumnCount(); j++) {
 								bw.write(table.getValueAt(i, j).toString() + "/");
 							}
@@ -188,64 +214,6 @@ public class UserNutriSearch extends JFrame {
 						}
 					}
 					
-					
-					//선택 행 데이터 텍스트필드값 입력받아 수정
-					try {
-						bw2 = new BufferedWriter(new FileWriter("nutriList.txt", true));
-						
-						TableModel m = table.getModel(); //테이블의 모델 객체 얻어오기
-						int rowSltd = table.getSelectedRow(); //선택한 셀의 행번호
-						
-						String basicNutri = (String)m.getValueAt(rowSltd, 0);
-						String manufac = (String)m.getValueAt(rowSltd, 1);
-						String quantity = (String)m.getValueAt(rowSltd, 2);
-						String price = (String)m.getValueAt(rowSltd, 3);
-						String otherNutri = (String)m.getValueAt(rowSltd, 4);
-						String effect = (String)m.getValueAt(rowSltd, 5);
-						String count = (String)m.getValueAt(rowSltd, 6);
-						
-						//조회수 형변환 후 1씩 증가
-						int countInt = Integer.parseInt(count);
-						countInt++;
-						String countStr = String.valueOf(countInt);
-						
-						bw2.write(basicNutri + "/");
-						bw2.write(manufac + "/");
-						bw2.write(quantity + "/");
-						bw2.write(price + "/");
-						bw2.write(otherNutri + "/");
-						bw2.write(effect + "/");
-						bw2.write(countStr + "/\n"); //인기도(조회수)
-					} catch (IOException e1) {
-						e1.printStackTrace();
-					} finally {
-						try {
-							bw2.close();
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						}
-					}
-					
-					//선택 행 이후 데이터 입력
-					try {
-						bw3 = new BufferedWriter(new FileWriter("nutriList.txt", true));
-						for (int i = table.getSelectedRow() + 1; i < table.getRowCount(); i++) {
-							for (int j = 0; j < table.getColumnCount(); j++) {
-								bw3.write(table.getValueAt(i, j).toString() + "/");
-							}
-							bw3.newLine();
-						}
-					} catch (IOException e1) {
-						e1.printStackTrace();
-					} finally {
-						try {
-							bw3.close();
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						}
-					}
-					
-				*/	
 					panelMain.setVisible(false);
 					panelSelected.setVisible(true);
 				}
@@ -282,8 +250,8 @@ public class UserNutriSearch extends JFrame {
 				panelMain.setVisible(false);
 				panelSelected.setVisible(false);
 				
-				//메인페이지 클래스 화면 전환
-				//메인페이지클래스명 flip = new 메인페이지클래스명();
+				//------------------------------------------------------------------------메인페이지 클래스 화면 전환
+				//MenuBar flip = new MenuBar();
 				//flip.setVisible(true);
 				//frame.dispose();
 			}
@@ -295,7 +263,8 @@ public class UserNutriSearch extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				panelMain.setVisible(false);
 				panelSelected.setVisible(false);
-				//영양제 추천 클래스 화면 전환
+				
+				//------------------------------------------------------------------------영양제 추천 클래스 화면 전환
 				//영양제추천클래스명 flip = new 영양제추천클래스명();
 				//flip.setVisible(true);
 				//frame.dispose();
@@ -317,7 +286,8 @@ public class UserNutriSearch extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				panelSelected.setVisible(false);
 				panelMain.setVisible(false);
-				//영양제 추천 클래스 화면 전환
+				
+				//-------------------------------------------------------------------------영양제 추천 클래스 화면 전환
 				//영양제추천클래스명 flip = new 영양제추천클래스명();
 				//flip.setVisible(true);
 				//frame.dispose();
@@ -336,7 +306,6 @@ public class UserNutriSearch extends JFrame {
 		frame.setResizable(false); //false : 화면크기 조정 안되도록// true : 화면크기 조정되도록
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
 	}
 	
 	
@@ -386,33 +355,35 @@ public class UserNutriSearch extends JFrame {
 	public void showDetail() {
 		
 		int rowSltd = table.getSelectedRow(); //선택한 셀의 행번호
-		TableModel m = table.getModel(); //테이블의 모델 객체 얻어오기
 		
-		String basicNutri = (String)m.getValueAt(rowSltd, 0);
-		String manufac = (String)m.getValueAt(rowSltd, 1);
-		String quantity = (String)m.getValueAt(rowSltd, 2);
-		String price = (String)m.getValueAt(rowSltd, 3);
-		String otherNutri = (String)m.getValueAt(rowSltd, 4);
-		String effect = (String)m.getValueAt(rowSltd, 5);
-		String viewCount = (String)m.getValueAt(rowSltd, 6);
-		//viewCount++;
+		String basicNutri = (String)table.getValueAt(rowSltd, 0);
+		String manufac = (String)table.getValueAt(rowSltd, 1);
+		String quantity = (String)table.getValueAt(rowSltd, 2);
+		String price = (String)table.getValueAt(rowSltd, 3);
+		String otherNutri = (String)table.getValueAt(rowSltd, 4);
+		String effect = (String)table.getValueAt(rowSltd, 5);
+		String viewCount = (String)table.getValueAt(rowSltd, 6);
+		
+		int viewCountInt = Integer.parseInt(viewCount);
+		viewCountInt++;
 	
-		txtInfo.setText("");
-		txtInfo.append("주영양소 : ");
+		txtInfo.setText("\n");
+		txtInfo.append(" ▶ 주영양소 : ");
 		txtInfo.append(basicNutri + "\n");
-		txtInfo.append("제조사 : ");
+		txtInfo.append(" ▶ 제조사 : ");
 		txtInfo.append(manufac + "\n");
-		txtInfo.append("용량 : ");
+		txtInfo.append(" ▶ 용량 : ");
 		txtInfo.append(quantity + "\n");
-		txtInfo.append("가격 : ");
+		txtInfo.append(" ▶ 가격 : ");
 		txtInfo.append(price + "원\n");
-		txtInfo.append("부가영양소 : ");
+		txtInfo.append(" ▶ 부가영양소 : ");
 		txtInfo.append(otherNutri + "\n");
-		txtInfo.append("효능효과 : ");
+		txtInfo.append(" ▶ 효능효과 : ");
 		txtInfo.append(effect + "\n");
-		txtInfo.append("인기도(조회수) : ");
-		txtInfo.append(viewCount + "\n");
-
+		txtInfo.append(" ▶ 인기도(조회수) : ");
+		txtInfo.append(viewCountInt + "\n\n\n");
+		txtInfo.append("영양제 추천받기를 눌러서 다른 영양제도 알아보세요!\n");
+		txtInfo.append("▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽");
 	}
 	
 }

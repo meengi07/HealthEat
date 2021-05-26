@@ -1,7 +1,8 @@
-package com.sy.mvc.view;
+package com.kh.mini.searchAdmin.view;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
@@ -33,6 +34,10 @@ public class AdminNew extends JFrame {
 		panel.setBackground(Color.LIGHT_GRAY);
 		
 		//정보 입력창
+		JLabel title = new JLabel("영양제 신규 등록");
+		title.setBounds(150, 40, 200, 30);
+		title.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+		
 		JLabel lab1 = new JLabel("주영양소 : ");
 		lab1.setLocation(40, 100);
 		lab1.setSize(200, 30);
@@ -92,6 +97,7 @@ public class AdminNew extends JFrame {
 		exit.setBounds(200, 500, 200, 50);
 		
 		//패널에 레이블, 버튼 등 붙이기
+		panel.add(title);
 		panel.add(lab1);
 		panel.add(lab2);
 		panel.add(lab3);
