@@ -1,4 +1,4 @@
-package com.kh.tm1.chat.controller;
+package com.kh.mini.chat.controller;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -10,7 +10,6 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
-
 
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
@@ -24,7 +23,7 @@ public class Client extends JFrame implements ActionListener, Runnable{
 	
 	private Socket socket = null;
 	private int port = 1234;
-	private String IP = "172.30.1.36";
+	private String IP = "192.168.1.156";
 	
 	
 	public Client() {
@@ -36,7 +35,7 @@ public class Client extends JFrame implements ActionListener, Runnable{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		area.setEditable(false); //수정 못함
 		
-		add(pane, BorderLayout.EAST);
+		//add(pane, BorderLayout.EAST);
 		add(area, BorderLayout.CENTER);
 		add(field, BorderLayout.SOUTH);
 		
@@ -125,6 +124,10 @@ public class Client extends JFrame implements ActionListener, Runnable{
 		
 		
 	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		new Client().connect();
 	
-	
+	}
 }

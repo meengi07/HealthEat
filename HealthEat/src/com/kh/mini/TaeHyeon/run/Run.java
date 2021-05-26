@@ -3,7 +3,6 @@ package com.kh.mini.TaeHyeon.run;
 import javax.swing.JFrame;
 
 import com.kh.mini.TaeHyeon.view.mainPanel;
-import com.sun.java.swing.plaf.windows.resources.windows;
 
 public class Run extends JFrame{
 	
