@@ -1,4 +1,4 @@
-package com.kh.mini.MemberLogin.view.subMenu;
+package com.kh.mini.MemberLogin.view.menuBar;
 
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
@@ -17,7 +17,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import com.kh.mini.MemberLogin.view.front.Login;
-import com.kh.mini.MemberLogin.view.menuBar.UserInfo;
 
 public class ChangeInfo extends Frame {
 
@@ -30,8 +29,8 @@ public class ChangeInfo extends Frame {
 		//회원정보 수정 및 팝업 
 		//Login log = new Login();
 		//String str = log.strArr()
-		strArr = log.getArr();
-		System.out.println(strArr[1]);
+		//strArr = log.getArr();
+		//System.out.println(strArr[1]);
 		JFrame frame = new JFrame();
 		JPanel panel = new JPanel();
 		//프레임 크기 및 위치 설정 

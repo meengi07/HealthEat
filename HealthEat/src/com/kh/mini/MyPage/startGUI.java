@@ -1,41 +1,36 @@
-package src.com.kh.mini.MyPage;
+package com.kh.mini.MyPage;
 
 import javax.swing.JFrame;
 
-import Project.vo.Panel;
-import Project.vo.Panel2;
-
 public class startGUI extends JFrame {
 
-	private Panel p = new Panel();
-	private Panel2 p2 = new Panel2();
-	
+   private Panel p = new Panel();
 
 
 
-	public startGUI() {
-		this.setLayout(null); // ·¹ÀÌ¾Æ¿ô ¹Ì¼³Á¤
-		this.setTitle("¸¶ÀÌÆäÀÌÁö"); // Å¸ÀÌÆ² ¼³Á¤
-		this.setBounds(0, 0, 500, 700); // »çÀÌÁî À§Ä¡ ¼³Á¤
-		this.setResizable(false); // »çÀÌÁî ¼öÁ¤ ºÒ°¡
+   public startGUI() {
+      this.setLayout(null); // ë ˆì´ì•„ì›ƒ ë¯¸ì„¤ì •
+      this.setTitle("ë§ˆì´í˜ì´ì§€"); // íƒ€ì´í‹€ ì„¤ì •
+      this.setBounds(0, 0, 500, 700); // ì‚¬ì´ì¦ˆ ìœ„ì¹˜ ì„¤ì •
+      this.setResizable(false); // ì‚¬ì´ì¦ˆ ìˆ˜ì • ë¶ˆê°€
 
-		this.add(p.mainpanelM());
-		this.add(p.heatlhmainM());
-		this.add(p.heatlhcheck1M());
-		this.add(p.heatlhcheck2M());
-		this.add(p.heatlhendM());
-		this.add(p.reviewAddPenalM());
-		this.add(p.reviewplusPenalM());
-		this.add(p.reviewMainPenalM());
-		this.add(p.reviewcheckPenalM());
+      this.add(p.mainpanelM());
+      this.add(p.heatlhmainM());
+      this.add(p.heatlhcheck1M());
+      this.add(p.heatlhcheck2M());
+      this.add(p.heatlhendM());
+      this.add(p.reviewAddPenalM());
+      this.add(p.reviewplusPenalM());
+      this.add(p.reviewMainPenalM());
+      this.add(p.reviewcheckPenalM());
 
-		this.setVisible(true); // Ã¢ º¸ÀÌ°Ô Ç¥½Ã
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // ÇÁ·Î±×·¥ Á¾·á
+      this.setVisible(true); // ì°½ ë³´ì´ê²Œ í‘œì‹œ
+      this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // í”„ë¡œê·¸ë¨ ì¢…ë£Œ
 
-	}
+   }
 
-	public static void main(String[] args) {
-		new startGUI();
-	}
+   public static void main(String[] args) {
+      new startGUI();
+   }
 
 }

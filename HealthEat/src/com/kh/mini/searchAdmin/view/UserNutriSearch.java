@@ -9,13 +9,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -28,6 +26,8 @@ import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+
+import com.kh.mini.MemberLogin.view.front.MenuBar;
 
 public class UserNutriSearch extends JFrame {
 
@@ -251,9 +251,9 @@ public class UserNutriSearch extends JFrame {
 				panelSelected.setVisible(false);
 				
 				//------------------------------------------------------------------------메인페이지 클래스 화면 전환
-				//MenuBar flip = new MenuBar();
-				//flip.setVisible(true);
-				//frame.dispose();
+				MenuBar flip = new MenuBar();
+				flip.setVisible(true);
+				frame.dispose();
 			}
 		});
 		

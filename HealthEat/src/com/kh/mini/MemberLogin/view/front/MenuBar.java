@@ -8,12 +8,16 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import com.kh.mini.MemberLogin.view.menuBar.UserInfo;
-import com.kh.mini.MyPage.Panel;
-import com.kh.mini.TaeHyeon.view.mainPanel;
+import com.kh.mini.MyPage.startGUI;
+import com.kh.mini.TaeHyeon.view.MedicineDiaryUI;
+import com.kh.mini.chat.controller.Client;
+import com.kh.mini.chat.controller.Server;
+import com.kh.mini.searchAdmin.view.UserNutriSearch;
 
 public class MenuBar extends Frame{
 
+	private Login log = new Login();
+	
 	public MenuBar() {
 		//메뉴바 
 		JFrame frame = new JFrame();
@@ -59,7 +63,7 @@ public class MenuBar extends Frame{
 			public void actionPerformed(ActionEvent e) {
 				
 				try {
-					UserInfo ui = new UserInfo();
+					log.UserInfo();
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -73,8 +77,8 @@ public class MenuBar extends Frame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Panel pa = new Panel();
-				
+				//Panel pa = new Panel();
+				startGUI st = new startGUI();
 			}
 			
 		});
@@ -84,7 +88,7 @@ public class MenuBar extends Frame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				mainPanel mp = new mainPanel();
+				MedicineDiaryUI md = new MedicineDiaryUI();
 				
 			}
 			
@@ -95,7 +99,7 @@ public class MenuBar extends Frame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				UserNutriSearch uns = new UserNutriSearch();
 			}
 			
 		});
@@ -104,7 +108,8 @@ public class MenuBar extends Frame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				 
+				Server sv = new Server();
+				Client cl = new Client();
 				
 			}
 			

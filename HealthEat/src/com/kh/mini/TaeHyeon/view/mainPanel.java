@@ -28,11 +28,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
 import com.sun.glass.events.MouseEvent;
-
-import jdk.nashorn.internal.scripts.JO;
 
 public class mainPanel extends JFrame implements ActionListener {
 

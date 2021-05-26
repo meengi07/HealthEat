@@ -173,6 +173,6 @@ public class UserInfo extends Frame{
 		
 		
 	}
-	
+
 }
 
