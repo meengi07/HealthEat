@@ -17,7 +17,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class Server extends JFrame implements ActionListener,Runnable{
-
+//테스트 중입니깃 
 	
 	private JTextArea area = new JTextArea();
 	private JTextField field = new JTextField();
