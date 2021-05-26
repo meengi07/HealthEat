@@ -26,6 +26,13 @@ import com.kh.mini.MemberLogin.model.vo.Member;
 
 public class Login extends Frame {
 //로그인 화면 뷰어, 프레임과 패널을 구현해서 로그인창 만들기. 
+	private String[] arr = new String[5];
+	//ArrayList arr = new ArrayList<String[]>();
+	public String[] getArr() {
+		System.out.println(arr[0]);
+		return arr;
+		
+	}
 	
 	public Login() {
 		
@@ -96,8 +103,8 @@ public class Login extends Frame {
 				try {
 					String idT = idTxt.getText();
 					String str;
-					
-					String[] arr = new String[5]; //회원정보배열에 담기 
+					//String[] arr;
+					//arr = new String[5]; //회원정보배열에 담기 
 					BufferedReader br = new BufferedReader(new FileReader("UserInfo.txt"));
 						//아이디 비교해서 해당 아이디 정보 불러오기 
 						
@@ -106,7 +113,7 @@ public class Login extends Frame {
 								arr = str.split("/");
 							}
 						}
-						
+						//System.out.println(arr[1]);
 						if(idTxt.getText().equals(arr[0]) && pwTxt.getText().equals(arr[1])) {
 							JOptionPane.showMessageDialog(null, "로그인에 성공했습니다. ");
 							MenuBar mb = new MenuBar();
@@ -137,7 +144,7 @@ public class Login extends Frame {
 
 	}
 	
-
+	
 	
 }
 	
