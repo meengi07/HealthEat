@@ -1,8 +1,6 @@
 package com.kh.mini.MemberLogin.view.front;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,8 +16,6 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
-
-import com.kh.mini.MemberLogin.model.vo.Member;
 
 public class SignIn extends Frame{
 
@@ -85,7 +81,8 @@ public class SignIn extends Frame{
 		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
-
+		
+		
 	
 		// button -> back  로그인화면으로 돌아가기 
 		back.addActionListener(new ActionListener() {
@@ -117,7 +114,7 @@ public class SignIn extends Frame{
 					bw.close();
 					JOptionPane.showMessageDialog(null, "회원가입이 완료되었습니다.");
 					Login log = new Login();
-					
+					frame.setVisible(false);
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

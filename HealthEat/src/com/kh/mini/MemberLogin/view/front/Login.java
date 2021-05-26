@@ -26,7 +26,7 @@ import com.kh.mini.MemberLogin.model.vo.Member;
 
 public class Login extends Frame {
 //로그인 화면 뷰어, 프레임과 패널을 구현해서 로그인창 만들기. 
-
+	
 	public Login() {
 		
 		//로그인 메인페이지 
@@ -85,26 +85,33 @@ public class Login extends Frame {
 		panel.add(sigBtn);
 		panel.add(masterBtn);
 		
+		
 		//로그인버튼 
  		logBtn.addActionListener(new ActionListener() {
-
+ 			
+ 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
 				try {
+					String idT = idTxt.getText();
 					String str;
-					ArrayList arr = new ArrayList<String[]>();
+					
+					String[] arr = new String[5]; //회원정보배열에 담기 
 					BufferedReader br = new BufferedReader(new FileReader("UserInfo.txt"));
-				
+						//아이디 비교해서 해당 아이디 정보 불러오기 
+						
 						while((str=br.readLine()) !=null) {
-							String[] srr = str.split("/");
-							arr.add(srr);
-							if(idTxt.getText().equals(srr[0]) && pwTxt.getText().equals(srr[1])) {
-								JOptionPane.showMessageDialog(null, "로그인에 성공했습니다. ");
-								MenuBar mb = new MenuBar();
-							}else {
-								JOptionPane.showMessageDialog(null, "로그인에 실패했습니다. ");
+							if(str.indexOf(idT) == 0 )	{
+								arr = str.split("/");
 							}
+						}
+						
+						if(idTxt.getText().equals(arr[0]) && pwTxt.getText().equals(arr[1])) {
+							JOptionPane.showMessageDialog(null, "로그인에 성공했습니다. ");
+							MenuBar mb = new MenuBar();
+						}else {
+							JOptionPane.showMessageDialog(null, "로그인에 실패했습니다. ");
 						}
 						br.close();
 				} catch (IOException e1) {
@@ -112,6 +119,7 @@ public class Login extends Frame {
 					e1.printStackTrace();
 				}
 			}
+			
  			
  		});
  		sigBtn.addActionListener(new ActionListener() {
@@ -120,15 +128,15 @@ public class Login extends Frame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				SignIn sign = new SignIn();
+				frame.setVisible(false);
 			}
  			
  		});
- 		
- 		
+ 	
  		
 
 	}
-
+	
 
 	
 }
