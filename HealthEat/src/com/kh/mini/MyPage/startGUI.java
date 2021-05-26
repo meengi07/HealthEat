@@ -6,7 +6,7 @@ import Project.vo.Panel;
 import Project.vo.Panel2;
 
 public class startGUI extends JFrame {
-
+	//
 	private Panel p = new Panel();
 	private Panel2 p2 = new Panel2();
 	
