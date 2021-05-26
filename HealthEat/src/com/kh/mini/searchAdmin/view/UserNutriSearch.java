@@ -28,6 +28,7 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 import com.kh.mini.MemberLogin.view.front.MenuBar;
+import com.kh.mini.jaeseok.chap02.view.RecommMain;
 
 public class UserNutriSearch extends JFrame {
 
@@ -39,7 +40,7 @@ public class UserNutriSearch extends JFrame {
 			return false;
 		}
 	};
-	
+	 
 	JTextField text;
 	JTable table;
 	JTextArea txtInfo;
@@ -265,9 +266,9 @@ public class UserNutriSearch extends JFrame {
 				panelSelected.setVisible(false);
 				
 				//------------------------------------------------------------------------영양제 추천 클래스 화면 전환
-				//영양제추천클래스명 flip = new 영양제추천클래스명();
-				//flip.setVisible(true);
-				//frame.dispose();
+				RecommMain flip = new RecommMain();
+				flip.setVisible(true);
+				frame.dispose();
 			}
 		});
 		
@@ -288,9 +289,9 @@ public class UserNutriSearch extends JFrame {
 				panelMain.setVisible(false);
 				
 				//-------------------------------------------------------------------------영양제 추천 클래스 화면 전환
-				//영양제추천클래스명 flip = new 영양제추천클래스명();
-				//flip.setVisible(true);
-				//frame.dispose();
+				RecommMain flip = new RecommMain();
+				flip.setVisible(true);
+				frame.dispose();
 			}
 		});
 		

@@ -16,8 +16,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.sy.mvc.controller.NutriManager2;
-
 public class AdminNew extends JFrame {
 		
 	private AdminMode am = new AdminMode();
