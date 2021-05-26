@@ -47,7 +47,8 @@ public class mainPanel extends JFrame implements ActionListener {
 	private JTable table;
 	private String[] header = new String[] { "제목", "작성 일자", "내용" };
 	private String title, days, text;
-
+	
+	// table 변경 방지
 	DefaultTableModel model = new DefaultTableModel(header, 0) {
 		boolean isCellImmutable(int header, int data) {
 			// 테이블 내용 수정 방지
@@ -101,9 +102,6 @@ public class mainPanel extends JFrame implements ActionListener {
 
 		// 저장일기 table 생성
 		table = new JTable(model);
-		// table.setFillsViewportHeight(true); // 테이블이 뷰포트(정보창)를 둘러싸는 높이를 채울지
-		// table.setPreferredScrollableViewportSize(new Dimension(400, 400));
-		// table.setSize(150, 50);
 		table.setRowHeight(25); // 행 높이 25로 조정
 		table.getColumnModel().getColumn(0).setPreferredWidth(250); // 0번째 열 너비 100으로 조정
 		table.setModel(model);
