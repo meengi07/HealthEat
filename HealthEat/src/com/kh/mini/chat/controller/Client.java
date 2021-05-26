@@ -1,6 +1,7 @@
 package com.kh.tm1.chat.controller;
 
 import java.awt.BorderLayout;
+import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -13,7 +14,6 @@ import java.net.Socket;
 
 
 import javax.swing.JFrame;
-import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -21,14 +21,10 @@ public class Client extends JFrame implements ActionListener, Runnable{
 
 	private JTextArea area = new JTextArea();
 	private JTextField field = new JTextField();
-	private JScrollPane pane = new JScrollPane();
-	
 	
 	private Socket socket = null;
 	private int port = 1234;
-	private String IP = "172.30.1.36";
-	
-	
+	private String IP = "192.168.120.9";
 	
 	
 	public Client() {
@@ -44,9 +40,6 @@ public class Client extends JFrame implements ActionListener, Runnable{
 		add(field, BorderLayout.SOUTH);
 		
 		field.addActionListener(this);
-		
-		
-		
 		
 	}
 	

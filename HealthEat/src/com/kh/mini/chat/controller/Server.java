@@ -21,7 +21,7 @@ public class Server extends JFrame implements ActionListener,Runnable{
 	
 	private JTextArea area = new JTextArea();
 	private JTextField field = new JTextField();
-	
+
 	
 	//서버는 서버소켓, 소캣 둘다 있어야함
 	private ServerSocket serversocket = null;
@@ -35,7 +35,6 @@ public class Server extends JFrame implements ActionListener,Runnable{
 		setSize(300, 400);
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		
 		
 		
 		add(area, BorderLayout.CENTER);
