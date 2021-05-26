@@ -1,4 +1,5 @@
-package chat.controller;
+
+package com.kh.mini.chat.controller;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -23,11 +24,6 @@ public class Server extends JFrame implements ActionListener,Runnable{
 	private JTextField field = new JTextField();
 	
 	
-	
-	
-	
-	
-	
 	//서버는 서버소켓, 소캣 둘다 있어야함
 	private ServerSocket serversocket = null;
 	private Socket socket = null;
@@ -40,7 +36,7 @@ public class Server extends JFrame implements ActionListener,Runnable{
 		setSize(300, 400);
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		
+		area.setEditable(false); //수정 못함
 		
 		
 		
@@ -131,6 +127,12 @@ public class Server extends JFrame implements ActionListener,Runnable{
 		}
 		
 	}
-	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		new Server().serverStart();
+		
+	}
 
 }
+

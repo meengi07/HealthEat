@@ -91,8 +91,10 @@ public class Panel extends JFrame {
 
 		JButton btn1 = new JButton("건강 체크");
 		JButton btn2 = new JButton("리뷰 게시판");
+		JButton btn3 = new JButton("이전");
 		btn1.setBounds(70, 200, 150, 100);
 		btn2.setBounds(230, 200, 150, 100);
+		btn3.setBounds(70, 400, 150, 100);
 		btn1.addActionListener(new ActionListener() {
 
 			@Override
@@ -115,9 +117,20 @@ public class Panel extends JFrame {
 
 		});
 
+		btn3.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				mainpanel.setVisible(false);
+				
+			}
+			
+		});
+		
 		mainpanel.add(btn1);
 		mainpanel.add(btn2);
-
+		mainpanel.add(btn3);
+		
 		return mainpanel;
 
 	}

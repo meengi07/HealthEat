@@ -1,15 +1,10 @@
-package src.com.kh.mini.MyPage;
+package model.vo;
 
 import javax.swing.JFrame;
 
-import Project.vo.Panel;
-import Project.vo.Panel2;
-
 public class startGUI extends JFrame {
-	//
+
 	private Panel p = new Panel();
-	private Panel2 p2 = new Panel2();
-	
 
 
 
