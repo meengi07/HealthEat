@@ -326,15 +326,14 @@ public class AdminMode extends JFrame {
 				panelEdit.setVisible(true);
 				
 				//텍스트필드에 기존 값 출력해서 보여주기
-				TableModel m = table.getModel(); //테이블의 모델 객체 얻어오기
 				int rowSltd = table.getSelectedRow(); //선택한 셀의 행번호
 
-				text1.setText((String) m.getValueAt(rowSltd, 0));
-				text2.setText((String) m.getValueAt(rowSltd, 1));
-				text3.setText((String) m.getValueAt(rowSltd, 2));
-				text4.setText((String) m.getValueAt(rowSltd, 3));
-				text5.setText((String) m.getValueAt(rowSltd, 4));
-				text6.setText((String) m.getValueAt(rowSltd, 5));
+				text1.setText((String) table.getValueAt(rowSltd, 0));
+				text2.setText((String) table.getValueAt(rowSltd, 1));
+				text3.setText((String) table.getValueAt(rowSltd, 2));
+				text4.setText((String) table.getValueAt(rowSltd, 3));
+				text5.setText((String) table.getValueAt(rowSltd, 4));
+				text6.setText((String) table.getValueAt(rowSltd, 5));
 			}
 		});
 		
