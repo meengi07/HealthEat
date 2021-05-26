@@ -48,7 +48,7 @@ public class mainPanel extends JFrame implements ActionListener {
 	private String[] header = new String[] { "제목", "작성 일자", "내용" };
 	private String title, days, text;
 	
-	// table 변경 방지!!!
+	// table 변경 방지!!!!!!!
 	DefaultTableModel model = new DefaultTableModel(header, 0) {
 		boolean isCellImmutable(int header, int data) {
 			// 테이블 내용 수정 방지
