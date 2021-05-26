@@ -26,7 +26,7 @@ import javax.swing.table.DefaultTableModel;
 public class Panel extends JFrame {
 
 	////////// review /////////////////////////////////////////////////////////
-
+	/////
 	private JTable table;
 	private String[] header = new String[] { "별명", "영양제", "제목", "내용" };
 
