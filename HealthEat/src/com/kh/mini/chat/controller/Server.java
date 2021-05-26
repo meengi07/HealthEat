@@ -35,7 +35,7 @@ public class Server extends JFrame implements ActionListener,Runnable{
 		setSize(300, 400);
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		
+		area.setEditable(false); //수정 못함
 		
 		add(area, BorderLayout.CENTER);
 		add(field, BorderLayout.SOUTH);
