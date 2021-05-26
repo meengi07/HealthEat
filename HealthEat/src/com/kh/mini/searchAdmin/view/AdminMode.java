@@ -28,6 +28,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
+import com.kh.mini.MemberLogin.view.front.Login;
+
 public class AdminMode extends JFrame {
 	
 	//관리자 모드 - 영양제 등록, 수정, 삭제 메뉴
@@ -311,9 +313,9 @@ public class AdminMode extends JFrame {
 				panelEdit.setVisible(false);
 				
 				//------------------------------------------------------------------메인페이지 클래스 화면 전환
-				//Login flip = new Login();
-				//flip.setVisible(true);
-				//frame.dispose();
+				Login flip = new Login();
+				flip.setVisible(true);
+				frame.dispose();
 			}
 		});
 		
