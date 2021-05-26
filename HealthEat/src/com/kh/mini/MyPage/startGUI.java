@@ -1,11 +1,18 @@
-package model.vo;
+package src.com.kh.mini.MyPage;
 
 import javax.swing.JFrame;
 
+import Project.vo.Panel;
+import Project.vo.Panel2;
+
 public class startGUI extends JFrame {
 
-	Panel p = new Panel();
-	Panel2 p2 = new Panel2();
+	private Panel p = new Panel();
+	private Panel2 p2 = new Panel2();
+	
+
+
+
 	public startGUI() {
 		this.setLayout(null); // 레이아웃 미설정
 		this.setTitle("마이페이지"); // 타이틀 설정
@@ -17,18 +24,15 @@ public class startGUI extends JFrame {
 		this.add(p.heatlhcheck1M());
 		this.add(p.heatlhcheck2M());
 		this.add(p.heatlhendM());
-		this.add(p2.reviewAddPenalM());
-		this.add(p2.reviewplusPenalM());
-		this.add(p2.reviewMainPenalM());
-		this.add(p2.reviewcheckPenalM());
-		
+		this.add(p.reviewAddPenalM());
+		this.add(p.reviewplusPenalM());
+		this.add(p.reviewMainPenalM());
+		this.add(p.reviewcheckPenalM());
+
 		this.setVisible(true); // 창 보이게 표시
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // 프로그램 종료
 
 	}
-	
-	
-	
 
 	public static void main(String[] args) {
 		new startGUI();

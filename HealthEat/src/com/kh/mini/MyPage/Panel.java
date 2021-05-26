@@ -1,28 +1,78 @@
-package model.vo;
+package src.com.kh.mini.MyPage;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.border.BevelBorder;
+import javax.swing.table.DefaultTableModel;
+
+import Project.ui.startGUI;
 
 public class Panel extends JFrame {
 
-	Panel2 p2 = new Panel2();
+	////////// review /////////////////////////////////////////////////////////
 
-	private JPanel mainpanel = new JPanel(); /// ¸ŞÀÎÆäÀÌÁö
-	private JPanel heatlhmain = new JPanel(); // °Ë»ç ¸ŞÀÎ ÆäÀÌÁö
-	private JPanel heatlhcheck1 = new JPanel(); // °Ë»ç ¹®Ç× Ã¼Å©
-	private JPanel heatlhcheck2 = new JPanel(); // °Ë»ç ¹®Ç× Ã¼Å©2
-	private JPanel heatlhend = new JPanel(); // °Ë»ç °á°ú È®ÀÎ
-	private int count = 0; // °Ç°­ Á¡¼ö Ã¼Å©¿ë
+	private JTable table;
+	private String[] header = new String[] { "ë³„ëª…", "ì˜ì–‘ì œ", "ì œëª©", "ë‚´ìš©" };
+
+	DefaultTableModel model = new DefaultTableModel(header, 0) {
+		public boolean isCellEditable(int header, int data) {
+			// ï¿½ë€’ï¿½ì” é‡‰ï¿½ ï¿½ê¶¡ï¿½ìŠœ ï¿½ë‹”ï¿½ì ™ è«›â‘¹ï¿½
+			return false;
+		}
+	};
+
+	private BufferedReader br;
+	JLabel label4 = new JLabel();
+	JLabel label5 = new JLabel();
+	JLabel label6 = new JLabel();
+	JTextArea area = new JTextArea();
+	JTextField namef1 = new JTextField();
+	JTextField eat1 = new JTextField();
+	JTextField title1 = new JTextField();
+	JTextArea content1 = new JTextArea();
+	private String a1 = "";
+	private String a2 = "";
+	private String a3 = "";
+	private String a4 = "";
+	private int a = 0;
+	private String n;
+	private String n2;
+	private String n3;
+	private String n4;
+	private JPanel reviewMainPenal = new JPanel();
+	private JPanel reviewAddPenal = new JPanel();
+	private JPanel reviewplusPenal = new JPanel();
+	private JPanel reviewDelPenal = new JPanel();
+	private JPanel reviewcheckPenal = new JPanel();
+
+////////////////////////////////////////////////////////
+	Panel2 p2 = new Panel2();
+	private JPanel mainpanel = new JPanel(); /// ï§ë¶¿ì”¤ï¿½ëŸ¹ï¿½ì” ï§ï¿½
+	private JPanel heatlhmain = new JPanel(); // å¯ƒï¿½ï¿½ê¶— ï§ë¶¿ì”¤ ï¿½ëŸ¹ï¿½ì” ï§ï¿½
+	private JPanel heatlhcheck1 = new JPanel(); // å¯ƒï¿½ï¿½ê¶— è‡¾ëª…ë¹† ï§£ëŒ„ê²•
+	private JPanel heatlhcheck2 = new JPanel(); // å¯ƒï¿½ï¿½ê¶— è‡¾ëª…ë¹† ï§£ëŒ„ê²•2
+	private JPanel heatlhend = new JPanel(); // å¯ƒï¿½ï¿½ê¶— å¯ƒê³Œë‚µ ï¿½ì†—ï¿½ì”¤
+	private int count = 0; // å«„ë‹¿ì»¯ ï¿½ì ï¿½ë‹” ï§£ëŒ„ê²•ï¿½ìŠœ
 	private String counts = " ";
-	JLabel labelC = new JLabel("°Ç°­ Á¡¼ö ¹× ÄÚ¸ÇÆ® : " + counts); // ÀüÃ¼¿ë ¶óº§
+	JLabel labelC = new JLabel("å«„ë‹¿ì»¯ ï¿½ì ï¿½ë‹” è«›ï¿½ è‚„ë¶¾ã¤ï¿½ë“ƒ : " + counts); // ï¿½ìŸ¾ï§£ëŒìŠœ ï¿½ì”ªè¸°ï¿½
 
 	public Panel() {
 		mainpanel.setVisible(true);
@@ -30,6 +80,11 @@ public class Panel extends JFrame {
 		heatlhcheck1.setVisible(false);
 		heatlhcheck2.setVisible(false);
 		heatlhend.setVisible(false);
+		reviewMainPenal.setVisible(false);
+		reviewAddPenal.setVisible(false);
+		reviewDelPenal.setVisible(false);
+		reviewplusPenal.setVisible(false);
+		reviewcheckPenal.setVisible(false);
 	}
 
 	public JPanel mainpanelM() {
@@ -37,8 +92,8 @@ public class Panel extends JFrame {
 		mainpanel.setLayout(null);
 		mainpanel.setBounds(0, 0, 500, 700);
 
-		JButton btn1 = new JButton("°Ç°­ Ã¼Å©");
-		JButton btn2 = new JButton("¸®ºä °Ô½ÃÆÇ");
+		JButton btn1 = new JButton("å«„ë‹¿ì»¯ ï§£ëŒ„ê²•");
+		JButton btn2 = new JButton("ç”±Ñ‰ëŸ­ å¯ƒëš¯ë–†ï¿½ë™‹");
 		btn1.setBounds(70, 200, 150, 100);
 		btn2.setBounds(230, 200, 150, 100);
 		btn1.addActionListener(new ActionListener() {
@@ -56,7 +111,9 @@ public class Panel extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				mainpanel.setVisible(false);
-				p2.reviewMainPenalM().setVisible(true);
+
+				reviewMainPenal.setVisible(true);
+
 			}
 
 		});
@@ -73,7 +130,7 @@ public class Panel extends JFrame {
 		heatlhmain.setLayout(null);
 		heatlhmain.setBounds(0, 0, 500, 700);
 
-		JLabel label = new JLabel("°Ç°­ Ã¼Å©¸¦ ½ÃÀÛÇÏ½ÃÙ½À´Ï±î?");
+		JLabel label = new JLabel("å«„ë‹¿ì»¯ ï§£ëŒ„ê²•ç‘œï¿½ ï¿½ë–†ï¿½ì˜‰ï¿½ë¸¯ï¿½ë–†í˜–å¯ƒì›ë’¿ï¿½ë•²æºï¿½?");
 		label.setBounds(150, 200, 300, 100);
 
 		JButton btn1 = new JButton("YES");
@@ -111,8 +168,8 @@ public class Panel extends JFrame {
 
 		heatlhcheck1.setLayout(null);
 		heatlhcheck1.setBounds(0, 0, 500, 700);
-		JLabel label = new JLabel("ÁÖ À½ÁÖ È½¼ö");
-		JCheckBox box1 = new JCheckBox("ÁÖ 1È¸");
+		JLabel label = new JLabel("äºŒï¿½ ï¿½ì“¬äºŒï¿½ ï¿½ìŠï¿½ë‹”");
+		JCheckBox box1 = new JCheckBox("äºŒï¿½ 1ï¿½ì‰¶");
 
 		box1.addItemListener(new ItemListener() {
 
@@ -124,7 +181,7 @@ public class Panel extends JFrame {
 
 		});
 
-		JCheckBox box2 = new JCheckBox("ÁÖ 2~3È¸");
+		JCheckBox box2 = new JCheckBox("äºŒï¿½ 2~3ï¿½ì‰¶");
 		box2.addItemListener(new ItemListener() {
 
 			@Override
@@ -134,7 +191,7 @@ public class Panel extends JFrame {
 			}
 
 		});
-		JCheckBox box3 = new JCheckBox("ÁÖ 4~5È¸");
+		JCheckBox box3 = new JCheckBox("äºŒï¿½ 4~5ï¿½ì‰¶");
 		box3.addItemListener(new ItemListener() {
 
 			@Override
@@ -144,7 +201,7 @@ public class Panel extends JFrame {
 			}
 
 		});
-		JCheckBox box4 = new JCheckBox("¸ÅÀÏ");
+		JCheckBox box4 = new JCheckBox("ï§ã…¼ì”ª");
 		box4.addItemListener(new ItemListener() {
 
 			@Override
@@ -155,8 +212,8 @@ public class Panel extends JFrame {
 
 		});
 
-		JLabel label2 = new JLabel("ÇÏ·ç ´ã¹è È½¼ö");
-		JCheckBox box5 = new JCheckBox("1~5°³ÇÇ");
+		JLabel label2 = new JLabel("ï¿½ë¸¯çŒ·ï¿½ ï¿½ë–è«›ï¿½ ï¿½ìŠï¿½ë‹”");
+		JCheckBox box5 = new JCheckBox("1~5åª›ì’—ëµ¾");
 		box5.addItemListener(new ItemListener() {
 
 			@Override
@@ -165,7 +222,7 @@ public class Panel extends JFrame {
 			}
 
 		});
-		JCheckBox box6 = new JCheckBox("5~10°³ÇÇ");
+		JCheckBox box6 = new JCheckBox("5~10åª›ì’—ëµ¾");
 		box6.addItemListener(new ItemListener() {
 
 			@Override
@@ -175,7 +232,7 @@ public class Panel extends JFrame {
 			}
 
 		});
-		JCheckBox box7 = new JCheckBox("10~15°³ÇÇ");
+		JCheckBox box7 = new JCheckBox("10~15åª›ì’—ëµ¾");
 		box7.addItemListener(new ItemListener() {
 
 			@Override
@@ -185,7 +242,7 @@ public class Panel extends JFrame {
 			}
 
 		});
-		JCheckBox box8 = new JCheckBox("ÇÑ °©");
+		JCheckBox box8 = new JCheckBox("ï¿½ë¸³ åª›ï¿½");
 		box8.addItemListener(new ItemListener() {
 
 			@Override
@@ -196,7 +253,7 @@ public class Panel extends JFrame {
 
 		});
 
-		JLabel label3 = new JLabel("¾ÆÄ§¿¡ ÀÏ¾î³ª´Â°Ô ÇÇ°ïÇÏ°í Èûµé´Ù");
+		JLabel label3 = new JLabel("ï¿½ë¸˜ç§»â‘¥ë¿‰ ï¿½ì”ªï¿½ë¼±ï¿½êµ¹ï¿½ë’—å¯ƒï¿½ ï¿½ëµ¾æ€¨ã…½ë¸¯æ€¨ï¿½ ï¿½ì˜’ï¿½ë±¾ï¿½ë–");
 		JCheckBox box9 = new JCheckBox("YES");
 		box9.addItemListener(new ItemListener() {
 
@@ -216,7 +273,7 @@ public class Panel extends JFrame {
 
 		});
 
-		JLabel label4 = new JLabel("ÇÇºÎ°¡ °¡·Æ´Ù");
+		JLabel label4 = new JLabel("ï¿½ëµ¾éºï¿½åª›ï¿½ åª›ï¿½ï¿½ì¡„ï¿½ë–");
 		JCheckBox box11 = new JCheckBox("YES");
 		box9.addItemListener(new ItemListener() {
 
@@ -236,8 +293,8 @@ public class Panel extends JFrame {
 
 		});
 
-		JButton btn1 = new JButton("Ãë¼Ò");
-		JButton btn2 = new JButton("´ÙÀ½");
+		JButton btn1 = new JButton("ç—â‘¥ëƒ¼");
+		JButton btn2 = new JButton("ï¿½ë–ï¿½ì“¬");
 
 		btn1.addActionListener(new ActionListener() {
 
@@ -310,7 +367,7 @@ public class Panel extends JFrame {
 		heatlhcheck2.setLayout(null);
 		heatlhcheck2.setBounds(0, 0, 500, 700);
 
-		JLabel label = new JLabel("¼ÕÅéÀÌ ÇÏ¾é°Å³ª ¼¼·ÎÁÙÀÌ »ı±ä´Ù");
+		JLabel label = new JLabel("ï¿½ë„€ï¿½ë„²ï¿½ì”  ï¿½ë¸¯ï¿½ë¼å«„ê³•êµ¹ ï¿½ê½­æ¿¡ì’–ì¨ªï¿½ì”  ï¿½ê¹®æ¹²ëŒ€ë–");
 		JCheckBox box1 = new JCheckBox("YES");
 		JCheckBox box2 = new JCheckBox("NO");
 		box1.addItemListener(new ItemListener() {
@@ -323,7 +380,7 @@ public class Panel extends JFrame {
 
 		});
 
-		JLabel label2 = new JLabel("½ÅÃ¼¿¡ ºÓÀº ¹İÁ¡ÀÌ ÀÏ¾î³­´Ù");
+		JLabel label2 = new JLabel("ï¿½ë–Šï§£ëŒë¿‰ éºë±ï¿½ è«›ì„ì ï¿½ì”  ï¿½ì”ªï¿½ë¼±ï¿½ê¶ƒï¿½ë–");
 		JCheckBox box3 = new JCheckBox("YES");
 		JCheckBox box4 = new JCheckBox("NO");
 
@@ -336,7 +393,7 @@ public class Panel extends JFrame {
 
 		});
 
-		JLabel label3 = new JLabel("´Ù¸®°¡ Àú¸®´Ù");
+		JLabel label3 = new JLabel("ï¿½ë–ç”±Ñˆï¿½ ï¿½ï¿½ç”±Ñ‰ë–");
 		JCheckBox box5 = new JCheckBox("Yes");
 		JCheckBox box6 = new JCheckBox("NO");
 
@@ -349,7 +406,7 @@ public class Panel extends JFrame {
 
 		});
 
-		JLabel label4 = new JLabel("¼Õ¿¡ ¶¡ÀÌ Âù´Ù");
+		JLabel label4 = new JLabel("ï¿½ë„€ï¿½ë¿‰ ï¿½ï¿½ï¿½ì”  ï§¡Ñ‰ë–");
 		JCheckBox box7 = new JCheckBox("YES");
 		JCheckBox box8 = new JCheckBox("NO");
 		box7.addItemListener(new ItemListener() {
@@ -361,8 +418,8 @@ public class Panel extends JFrame {
 
 		});
 
-		JButton btn1 = new JButton("Ãë¼Ò");
-		JButton btn2 = new JButton("´ÙÀ½");
+		JButton btn1 = new JButton("ç—â‘¥ëƒ¼");
+		JButton btn2 = new JButton("ï¿½ë–ï¿½ì“¬");
 
 		btn1.addActionListener(new ActionListener() {
 
@@ -383,18 +440,18 @@ public class Panel extends JFrame {
 
 				String coment = "";
 				if (count < 21) {
-					coment = "°Ç°­ÇÏ½Ã³×¿ä!!!!";
+					coment = "å«„ë‹¿ì»¯ï¿½ë¸¯ï¿½ë–†ï¿½ê½•ï¿½ìŠ‚!!!!";
 				} else if (count < 41) {
-					coment = "Á¤»ó¹üÀ§ ÀÌ³»ÀÔ´Ï´Ù Á»´õ ³ë·ÂÇÏ¼¼¿ä!";
+					coment = "ï¿½ì ™ï¿½ê¸½è¸°ë¶¿ì ï¿½ì” ï¿½ê¶¡ï¿½ì—¯ï¿½ë•²ï¿½ë– é†«ï¿½ï¿½ëœ‘ ï¿½ë‚ï¿½ì °ï¿½ë¸¯ï¿½ê½­ï¿½ìŠ‚!";
 				} else if (count < 61) {
-					coment = "°Ç°­ Á» Ã¬±â¼Å¾ßÇØ¿ä!!!!";
+					coment = "å«„ë‹¿ì»¯ é†«ï¿½ ï§¢ìˆ†ë¦°ï¿½ë€›ï¿½ë¹ï¿½ë¹ï¿½ìŠ‚!!!!";
 				} else if (count < 81) {
-					coment = "´ç½Å À§ÇèÇØ!!!!!";
+					coment = "ï¿½ë–¦ï¿½ë–Š ï¿½ìï¿½ë¿•ï¿½ë¹!!!!!";
 				} else {
-					coment = "¾î¶»°Ô »ì¾ÆÀÖÁö???";
+					coment = "ï¿½ë¼±ï¿½ë¼¸å¯ƒï¿½ ï¿½ê¶¡ï¿½ë¸˜ï¿½ì—³ï§ï¿½???";
 				}
-				// ¶óº§°ª Àç¼³Á¤
-				counts = Integer.toString(count) + "Á¡" + "  " + coment;
+				// ï¿½ì”ªè¸°â‘£ì»ª ï¿½ì˜±ï¿½ê½•ï¿½ì ™
+				counts = Integer.toString(count) + "ï¿½ì " + "  " + coment;
 				count = 0;
 				labelC.setText(counts);
 
@@ -439,7 +496,7 @@ public class Panel extends JFrame {
 		heatlhend.setLayout(null);
 		heatlhend.setBounds(0, 0, 500, 700);
 
-		JButton btn = new JButton("È®ÀÎ");
+		JButton btn = new JButton("ï¿½ì†—ï¿½ì”¤");
 		btn.addActionListener(new ActionListener() {
 
 			@Override
@@ -456,4 +513,384 @@ public class Panel extends JFrame {
 		heatlhend.add(btn);
 		return heatlhend;
 	}
+
+	///////////////////////////////////////////////////// ç”±Ñ‰ëŸ­ å¯ƒëš¯ë–†ï¿½ë™‹
+	///////////////////////////////////////////////////////
+
+	public JPanel reviewMainPenalM() {
+
+		reviewMainPenal.setLayout(null);
+		reviewMainPenal.setBounds(0, 0, 500, 700);
+
+		JScrollPane scroll = new JScrollPane(init());
+		scroll.setBounds(80, 200, 300, 200);
+		reviewMainPenal.add(scroll);
+
+		JButton btn = new JButton("ç•°ë¶½ï¿½");
+		JButton btn2 = new JButton("ï¿½ë‹”ï¿½ì ™");
+		JButton btn3 = new JButton("ï¿½ê¶˜ï¿½ì £");
+		JButton btn4 = new JButton("å¯ƒëš¯ë–†æ¹²ï¿½ ï¿½ì†—ï¿½ì”¤");
+		JButton btn5 = new JButton("ï¿½ì” ï¿½ìŸ¾");
+		btn.setBounds(100, 100, 80, 80);
+		btn2.setBounds(200, 100, 80, 80);
+		btn3.setBounds(300, 100, 80, 80);
+		btn4.setBounds(260, 500, 150, 60);
+		btn5.setBounds(140, 500, 150, 60);
+		reviewMainPenal.add(btn);
+		reviewMainPenal.add(btn2);
+		reviewMainPenal.add(btn3);
+		reviewMainPenal.add(btn4);
+		reviewMainPenal.add(btn5);
+
+		//// ï¿½ë€’ï¿½ì” é‡‰ï¿½ ç•°ë¶½ï¿½ ////
+
+		btn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				reviewAddPenal.setVisible(true);
+				reviewMainPenal.setVisible(false);
+			}
+
+		});
+
+		/// ï¿½ë€’ï¿½ì” é‡‰ï¿½ ï¿½ë‹”ï¿½ì ™///
+		btn2.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				a = table.getSelectedRow();
+				n = (String) model.getValueAt(a, 0);
+				n2 = (String) model.getValueAt(a, 1);
+				n3 = (String) model.getValueAt(a, 2);
+				n4 = (String) model.getValueAt(a, 3);
+
+				namef1.setText(n);
+				eat1.setText(n2);
+				title1.setText(n3);
+				content1.setText(n4);
+				reviewplusPenalM().revalidate();
+				reviewplusPenalM().repaint();
+
+				reviewplusPenal.setVisible(true);
+				reviewMainPenal.setVisible(false);
+
+			}
+
+		});
+
+		/// ï¿½ë€’ï¿½ì” é‡‰ï¿½ ï¿½ê¶˜ï¿½ì £///
+		btn3.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (table.getSelectedRow() == -1) {
+					return;
+				} else {
+					model.removeRow(table.getSelectedRow());
+				}
+
+				try {
+					BufferedWriter bw = new BufferedWriter(new FileWriter("newList.txt"));
+					for (int i = 0; i < table.getRowCount(); i++) {
+						for (int j = 0; j < table.getColumnCount(); j++) {
+							bw.write(table.getValueAt(i, j).toString() + ",");
+						}
+						bw.newLine();
+					}
+
+					bw.close();
+
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+			}
+		});
+		// å¯ƒëš¯ë–†ï¿½ë™‹ï¿½ì†—ï¿½ì”¤
+		btn4.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (table.getSelectedRow() == -1) {
+					return;
+				} else {
+					a1 = (model.getValueAt(table.getSelectedRow(), 0)).toString();
+					label4.setText(a1);
+					a2 = (model.getValueAt(table.getSelectedRow(), 1)).toString();
+					label5.setText(a2);
+					a3 = (model.getValueAt(table.getSelectedRow(), 2)).toString();
+					label6.setText(a3);
+					a4 = (model.getValueAt(table.getSelectedRow(), 3)).toString();
+					area.setText(a4);
+					reviewcheckPenal.revalidate();
+					reviewcheckPenal.repaint();
+					reviewMainPenal.setVisible(false);
+					reviewcheckPenal.setVisible(true);
+
+				}
+			}
+		});
+		
+		//ï¿½ì” ï¿½ìŸ¾
+		btn5.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				mainpanel.setVisible(true);
+				reviewMainPenal.setVisible(false);
+			}
+		});
+		return reviewMainPenal;
+	}
+
+	public JTable init() {
+
+		try {
+			br = new BufferedReader(new FileReader("newList.txt"));
+			String str = null;
+			while ((str = br.readLine()) != null) {
+				String[] arr = str.split(",");
+				model.addRow(arr);
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				br.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		table = new JTable(model);
+		table.setModel(model);
+
+		return table;
+	}
+
+	public JPanel reviewAddPenalM() {
+
+		reviewAddPenal.setLayout(null);
+		reviewAddPenal.setBounds(0, 0, 500, 700);
+
+		JLabel label = new JLabel("è¹‚ê¾¨ì±¸");
+		JLabel label2 = new JLabel("ï¿½ìºï¿½ë¼‡ï¿½ì £");
+		JLabel label3 = new JLabel("ï¿½ì £ï§ï¿½");
+		JLabel label4 = new JLabel("ï¿½ê¶¡ï¿½ìŠœ");
+
+		JTextField namef = new JTextField();
+		JTextField eat = new JTextField();
+		JTextField title = new JTextField();
+		JTextArea content = new JTextArea();
+
+		JButton btn = new JButton("ç•°ë¶½ï¿½");
+
+		btn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String[] input = new String[4];
+
+				input[0] = namef.getText();
+				input[1] = eat.getText();
+				input[2] = title.getText();
+				input[3] = content.getText();
+				model.addRow(input);
+
+				namef.setText("");
+				eat.setText("");
+				title.setText("");
+				content.setText("");
+
+				try {
+					BufferedWriter bw = new BufferedWriter(new FileWriter("newList.txt"));
+					for (int i = 0; i < table.getRowCount(); i++) {
+						for (int j = 0; j < table.getColumnCount(); j++) {
+							bw.write(table.getValueAt(i, j).toString() + ",");
+						}
+						bw.newLine();
+					}
+
+					bw.close();
+
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+				reviewAddPenal.setVisible(false);
+				reviewMainPenal.setVisible(true);
+
+			}
+
+		});
+
+		btn.setBounds(100, 550, 60, 60);
+		label.setBounds(50, 10, 50, 150);
+		label2.setBounds(250, 10, 50, 150);
+		label3.setBounds(50, 100, 50, 150);
+		label4.setBounds(50, 250, 50, 150);
+		namef.setBounds(50, 120, 150, 50);
+		eat.setBounds(250, 120, 150, 50);
+		title.setBounds(50, 200, 150, 50);
+		content.setBounds(50, 340, 350, 200);
+
+		reviewAddPenal.add(btn);
+		reviewAddPenal.add(label);
+		reviewAddPenal.add(label2);
+		reviewAddPenal.add(label3);
+		reviewAddPenal.add(label4);
+		reviewAddPenal.add(namef);
+		reviewAddPenal.add(eat);
+		reviewAddPenal.add(title);
+		reviewAddPenal.add(content);
+
+		return reviewAddPenal;
+	}
+
+	public JPanel reviewplusPenalM() {
+
+		reviewplusPenal.setLayout(null);
+		reviewplusPenal.setBounds(0, 0, 500, 700);
+
+		JLabel label = new JLabel("è¹‚ê¾¨ì±¸");
+		JLabel label2 = new JLabel("ï¿½ìºï¿½ë¼‡ï¿½ì £");
+		JLabel label3 = new JLabel("ï¿½ì £ï§ï¿½");
+		JLabel label4 = new JLabel("ï¿½ê¶¡ï¿½ìŠœ");
+
+		namef1.repaint();
+		eat1.repaint();
+		title1.repaint();
+		content1.repaint();
+
+		JButton btn = new JButton("ï¿½ë‹”ï¿½ì ™");
+		btn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String[] input = new String[4];
+
+				// input[0] = namef.getText();
+				// input[1] = eat.getText();
+				// input[2] = title.getText();
+				// input[3] = content.getText();
+				model.setValueAt(namef1.getText(), a, 0);
+				model.setValueAt(eat1.getText(), a, 1);
+				model.setValueAt(title1.getText(), a, 2);
+				model.setValueAt(content1.getText(), a, 3);
+
+				namef1.setText("");
+				eat1.setText("");
+				title1.setText("");
+				content1.setText("");
+
+				try {
+					BufferedWriter bw = new BufferedWriter(new FileWriter("newList.txt"));
+					for (int i = 0; i < table.getRowCount(); i++) {
+						for (int j = 0; j < table.getColumnCount(); j++) {
+							bw.write(table.getValueAt(i, j).toString() + ",");
+						}
+						bw.newLine();
+					}
+
+					bw.close();
+
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+				reviewplusPenal.setVisible(false);
+				reviewMainPenal.setVisible(true);
+
+			}
+
+		});
+
+		label.setBounds(50, 10, 50, 150);
+		label2.setBounds(250, 10, 50, 150);
+		label3.setBounds(50, 100, 50, 150);
+		label4.setBounds(50, 250, 50, 150);
+		namef1.setBounds(50, 120, 150, 50);
+		eat1.setBounds(250, 120, 150, 50);
+		title1.setBounds(50, 200, 150, 50);
+		content1.setBounds(50, 340, 350, 200);
+		btn.setBounds(100, 550, 60, 60);
+
+		reviewplusPenal.add(btn);
+		reviewplusPenal.add(label);
+		reviewplusPenal.add(label2);
+		reviewplusPenal.add(label3);
+		reviewplusPenal.add(label4);
+		reviewplusPenal.add(namef1);
+		reviewplusPenal.add(eat1);
+		reviewplusPenal.add(title1);
+		reviewplusPenal.add(content1);
+
+		return reviewplusPenal;
+	}
+
+	public JPanel reviewcheckPenalM() {
+		BevelBorder border = new BevelBorder(BevelBorder.RAISED);
+
+		reviewcheckPenal.setLayout(null);
+		reviewcheckPenal.setBounds(0, 0, 500, 700);
+
+		JButton btn = new JButton("ï¿½ì” ï¿½ìŸ¾");
+
+		JLabel label = new JLabel("è¹‚ê¾¨ì±¸");
+		JLabel label1 = new JLabel("ï¿½ìºï¿½ë¼‡ï¿½ì £");
+		JLabel label2 = new JLabel("ï¿½ì £ï§ï¿½");
+		JLabel label3 = new JLabel("ï¿½ê¶¡ï¿½ìŠœ");
+
+		label.setBounds(50, 10, 50, 150);
+		label1.setBounds(250, 10, 50, 150);
+		label2.setBounds(50, 100, 50, 150);
+		label3.setBounds(50, 250, 50, 150);
+
+		area.setEditable(false);
+
+		btn.setBounds(150, 550, 60, 60);
+		label4.setBounds(50, 120, 150, 50);
+		label5.setBounds(250, 120, 150, 50);
+		label6.setBounds(50, 200, 150, 50);
+		area.setBounds(50, 340, 350, 200);
+
+		label4.setBorder(border);
+		label5.setBorder(border);
+		label6.setBorder(border);
+		area.setBorder(border);
+
+		reviewcheckPenal.add(btn);
+		reviewcheckPenal.add(area);
+		reviewcheckPenal.add(label);
+		reviewcheckPenal.add(label1);
+		reviewcheckPenal.add(label2);
+		reviewcheckPenal.add(label3);
+		reviewcheckPenal.add(label4);
+		reviewcheckPenal.add(label5);
+		reviewcheckPenal.add(label6);
+
+		btn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				reviewcheckPenal.setVisible(false);
+				reviewMainPenal.setVisible(true);
+
+			}
+
+		});
+		return reviewcheckPenal;
+	}
+
 }
