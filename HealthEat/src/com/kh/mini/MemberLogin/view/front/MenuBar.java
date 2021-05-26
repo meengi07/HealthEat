@@ -99,7 +99,6 @@ public class MenuBar extends Frame{
 			}
 			
 		});
-		
 		// 실시간 문의 연결버튼 
 		help.addActionListener(new ActionListener() {
 

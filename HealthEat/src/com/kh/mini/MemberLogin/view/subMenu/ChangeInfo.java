@@ -8,7 +8,6 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,7 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.kh.mini.MemberLogin.view.front.MenuBar;
+import com.kh.mini.MemberLogin.view.front.Login;
 import com.kh.mini.MemberLogin.view.menuBar.UserInfo;
 
 public class ChangeInfo extends Frame {
@@ -26,6 +25,8 @@ public class ChangeInfo extends Frame {
 	
 	public ChangeInfo() {
 		//회원정보 수정 및 팝업 
+		//Login log = new Login();
+		//String str = log.strArr()
 		
 		JFrame frame = new JFrame();
 		JPanel panel = new JPanel();

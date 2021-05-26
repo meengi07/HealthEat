@@ -102,6 +102,7 @@ public class UserInfo extends Frame{
 		while((str1=br.readLine()) !=null) {
 			String[] srr = str1.split("/");
 			arr.add(srr);
+			
 			name.setText(srr[2]);	// 회원이름 출력 
 			age.setText(srr[3]);	// 나이 출력 
 			gender.setText(srr[4]); // 성별 출력 
