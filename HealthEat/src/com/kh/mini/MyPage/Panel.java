@@ -23,8 +23,6 @@ import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
 
-import Project.ui.startGUI;
-
 public class Panel extends JFrame {
 
 	////////// review /////////////////////////////////////////////////////////
@@ -64,16 +62,15 @@ public class Panel extends JFrame {
 	private JPanel reviewcheckPenal = new JPanel();
 
 ////////////////////////////////////////////////////////
-	Panel2 p2 = new Panel2();
-	private JPanel mainpanel = new JPanel(); /// 硫붿씤�럹�씠吏�
-	private JPanel heatlhmain = new JPanel(); // 寃��궗 硫붿씤 �럹�씠吏�
-	private JPanel heatlhcheck1 = new JPanel(); // 寃��궗 臾명빆 泥댄겕
-	private JPanel heatlhcheck2 = new JPanel(); // 寃��궗 臾명빆 泥댄겕2
-	private JPanel heatlhend = new JPanel(); // 寃��궗 寃곌낵 �솗�씤
-	private int count = 0; // 嫄닿컯 �젏�닔 泥댄겕�슜
+	
+	private JPanel mainpanel = new JPanel(); /// 메인페이지
+	private JPanel heatlhmain = new JPanel(); // 검사 메인 페이지
+	private JPanel heatlhcheck1 = new JPanel(); // 검사 문항 체크
+	private JPanel heatlhcheck2 = new JPanel(); // 검사 문항 체크2
+	private JPanel heatlhend = new JPanel(); // 검사 결과 확인
+	private int count = 0; // 건강 점수 체크용
 	private String counts = " ";
-	JLabel labelC = new JLabel("嫄닿컯 �젏�닔 諛� 肄붾㎤�듃 : " + counts); // �쟾泥댁슜 �씪踰�
-
+	JLabel labelC = new JLabel("건강 점수 및 코맨트 : " + counts); // 전체용 라벨
 	public Panel() {
 		mainpanel.setVisible(true);
 		heatlhmain.setVisible(false);
@@ -92,8 +89,8 @@ public class Panel extends JFrame {
 		mainpanel.setLayout(null);
 		mainpanel.setBounds(0, 0, 500, 700);
 
-		JButton btn1 = new JButton("嫄닿컯 泥댄겕");
-		JButton btn2 = new JButton("由щ럭 寃뚯떆�뙋");
+		JButton btn1 = new JButton("건강 체크");
+		JButton btn2 = new JButton("리뷰 게시판");
 		btn1.setBounds(70, 200, 150, 100);
 		btn2.setBounds(230, 200, 150, 100);
 		btn1.addActionListener(new ActionListener() {
@@ -130,7 +127,7 @@ public class Panel extends JFrame {
 		heatlhmain.setLayout(null);
 		heatlhmain.setBounds(0, 0, 500, 700);
 
-		JLabel label = new JLabel("嫄닿컯 泥댄겕瑜� �떆�옉�븯�떆혖寃잛뒿�땲源�?");
+		JLabel label = new JLabel("건강 체크를 시작하시母윱歐?");
 		label.setBounds(150, 200, 300, 100);
 
 		JButton btn1 = new JButton("YES");
@@ -168,8 +165,8 @@ public class Panel extends JFrame {
 
 		heatlhcheck1.setLayout(null);
 		heatlhcheck1.setBounds(0, 0, 500, 700);
-		JLabel label = new JLabel("二� �쓬二� �슏�닔");
-		JCheckBox box1 = new JCheckBox("二� 1�쉶");
+		JLabel label = new JLabel("주 음주 횟수");
+		JCheckBox box1 = new JCheckBox("주 1회");
 
 		box1.addItemListener(new ItemListener() {
 
@@ -181,7 +178,7 @@ public class Panel extends JFrame {
 
 		});
 
-		JCheckBox box2 = new JCheckBox("二� 2~3�쉶");
+		JCheckBox box2 = new JCheckBox("주 2~3회");
 		box2.addItemListener(new ItemListener() {
 
 			@Override
@@ -191,7 +188,7 @@ public class Panel extends JFrame {
 			}
 
 		});
-		JCheckBox box3 = new JCheckBox("二� 4~5�쉶");
+		JCheckBox box3 = new JCheckBox("주 4~5회");
 		box3.addItemListener(new ItemListener() {
 
 			@Override
@@ -201,7 +198,7 @@ public class Panel extends JFrame {
 			}
 
 		});
-		JCheckBox box4 = new JCheckBox("留ㅼ씪");
+		JCheckBox box4 = new JCheckBox("매일");
 		box4.addItemListener(new ItemListener() {
 
 			@Override
@@ -212,8 +209,8 @@ public class Panel extends JFrame {
 
 		});
 
-		JLabel label2 = new JLabel("�븯猷� �떞諛� �슏�닔");
-		JCheckBox box5 = new JCheckBox("1~5媛쒗뵾");
+		JLabel label2 = new JLabel("하루 담배 횟수");
+		JCheckBox box5 = new JCheckBox("1~5개피");
 		box5.addItemListener(new ItemListener() {
 
 			@Override
@@ -222,7 +219,7 @@ public class Panel extends JFrame {
 			}
 
 		});
-		JCheckBox box6 = new JCheckBox("5~10媛쒗뵾");
+		JCheckBox box6 = new JCheckBox("5~10개피");
 		box6.addItemListener(new ItemListener() {
 
 			@Override
@@ -232,7 +229,7 @@ public class Panel extends JFrame {
 			}
 
 		});
-		JCheckBox box7 = new JCheckBox("10~15媛쒗뵾");
+		JCheckBox box7 = new JCheckBox("10~15개피");
 		box7.addItemListener(new ItemListener() {
 
 			@Override
@@ -242,7 +239,7 @@ public class Panel extends JFrame {
 			}
 
 		});
-		JCheckBox box8 = new JCheckBox("�븳 媛�");
+		JCheckBox box8 = new JCheckBox("한 갑");
 		box8.addItemListener(new ItemListener() {
 
 			@Override
@@ -253,7 +250,7 @@ public class Panel extends JFrame {
 
 		});
 
-		JLabel label3 = new JLabel("�븘移⑥뿉 �씪�뼱�굹�뒗寃� �뵾怨ㅽ븯怨� �옒�뱾�떎");
+		JLabel label3 = new JLabel("아침에 일어나는게 피곤하고 힘들다");
 		JCheckBox box9 = new JCheckBox("YES");
 		box9.addItemListener(new ItemListener() {
 
@@ -273,7 +270,7 @@ public class Panel extends JFrame {
 
 		});
 
-		JLabel label4 = new JLabel("�뵾遺�媛� 媛��졄�떎");
+		JLabel label4 = new JLabel("피부가 가렵다");
 		JCheckBox box11 = new JCheckBox("YES");
 		box9.addItemListener(new ItemListener() {
 
@@ -293,8 +290,8 @@ public class Panel extends JFrame {
 
 		});
 
-		JButton btn1 = new JButton("痍⑥냼");
-		JButton btn2 = new JButton("�떎�쓬");
+		JButton btn1 = new JButton("취소");
+		JButton btn2 = new JButton("다음");
 
 		btn1.addActionListener(new ActionListener() {
 
@@ -367,7 +364,7 @@ public class Panel extends JFrame {
 		heatlhcheck2.setLayout(null);
 		heatlhcheck2.setBounds(0, 0, 500, 700);
 
-		JLabel label = new JLabel("�넀�넲�씠 �븯�뼏嫄곕굹 �꽭濡쒖쨪�씠 �깮湲대떎");
+		JLabel label = new JLabel("손톱이 하얗거나 세로줄이 생긴다");
 		JCheckBox box1 = new JCheckBox("YES");
 		JCheckBox box2 = new JCheckBox("NO");
 		box1.addItemListener(new ItemListener() {
@@ -380,7 +377,7 @@ public class Panel extends JFrame {
 
 		});
 
-		JLabel label2 = new JLabel("�떊泥댁뿉 遺됱� 諛섏젏�씠 �씪�뼱�궃�떎");
+		JLabel label2 = new JLabel("신체에 붉은 반점이 일어난다");
 		JCheckBox box3 = new JCheckBox("YES");
 		JCheckBox box4 = new JCheckBox("NO");
 
@@ -393,7 +390,7 @@ public class Panel extends JFrame {
 
 		});
 
-		JLabel label3 = new JLabel("�떎由ш� ��由щ떎");
+		JLabel label3 = new JLabel("다리가 저리다");
 		JCheckBox box5 = new JCheckBox("Yes");
 		JCheckBox box6 = new JCheckBox("NO");
 
@@ -406,7 +403,7 @@ public class Panel extends JFrame {
 
 		});
 
-		JLabel label4 = new JLabel("�넀�뿉 ���씠 李щ떎");
+		JLabel label4 = new JLabel("손에 땀이 찬다");
 		JCheckBox box7 = new JCheckBox("YES");
 		JCheckBox box8 = new JCheckBox("NO");
 		box7.addItemListener(new ItemListener() {
@@ -418,8 +415,8 @@ public class Panel extends JFrame {
 
 		});
 
-		JButton btn1 = new JButton("痍⑥냼");
-		JButton btn2 = new JButton("�떎�쓬");
+		JButton btn1 = new JButton("취소");
+		JButton btn2 = new JButton("다음");
 
 		btn1.addActionListener(new ActionListener() {
 
@@ -440,18 +437,18 @@ public class Panel extends JFrame {
 
 				String coment = "";
 				if (count < 21) {
-					coment = "嫄닿컯�븯�떆�꽕�슂!!!!";
+					coment = "건강하시네요!!!!";
 				} else if (count < 41) {
-					coment = "�젙�긽踰붿쐞 �씠�궡�엯�땲�떎 醫��뜑 �끂�젰�븯�꽭�슂!";
+					coment = "정상범위 이내입니다 좀더 노력하세요!";
 				} else if (count < 61) {
-					coment = "嫄닿컯 醫� 梨숆린�뀛�빞�빐�슂!!!!";
+					coment = "건강 좀 챙기셔야해요!!!!";
 				} else if (count < 81) {
-					coment = "�떦�떊 �쐞�뿕�빐!!!!!";
+					coment = "당신 위험해!!!!!";
 				} else {
-					coment = "�뼱�뼸寃� �궡�븘�엳吏�???";
+					coment = "어떻게 살아있지???";
 				}
-				// �씪踰④컪 �옱�꽕�젙
-				counts = Integer.toString(count) + "�젏" + "  " + coment;
+				// 라벨값 재설정
+				counts = Integer.toString(count) + "점" + "  " + coment;
 				count = 0;
 				labelC.setText(counts);
 
@@ -496,7 +493,7 @@ public class Panel extends JFrame {
 		heatlhend.setLayout(null);
 		heatlhend.setBounds(0, 0, 500, 700);
 
-		JButton btn = new JButton("�솗�씤");
+		JButton btn = new JButton("확인");
 		btn.addActionListener(new ActionListener() {
 
 			@Override
@@ -526,11 +523,11 @@ public class Panel extends JFrame {
 		scroll.setBounds(80, 200, 300, 200);
 		reviewMainPenal.add(scroll);
 
-		JButton btn = new JButton("異붽�");
-		JButton btn2 = new JButton("�닔�젙");
-		JButton btn3 = new JButton("�궘�젣");
-		JButton btn4 = new JButton("寃뚯떆湲� �솗�씤");
-		JButton btn5 = new JButton("�씠�쟾");
+		JButton btn = new JButton("추가");
+		JButton btn2 = new JButton("수정");
+		JButton btn3 = new JButton("삭제");
+		JButton btn4 = new JButton("게시글 확인");
+		JButton btn5 = new JButton("이전");
 		btn.setBounds(100, 100, 80, 80);
 		btn2.setBounds(200, 100, 80, 80);
 		btn3.setBounds(300, 100, 80, 80);
@@ -542,7 +539,7 @@ public class Panel extends JFrame {
 		reviewMainPenal.add(btn4);
 		reviewMainPenal.add(btn5);
 
-		//// �뀒�씠釉� 異붽� ////
+		////추가 ////
 
 		btn.addActionListener(new ActionListener() {
 
@@ -681,11 +678,10 @@ public class Panel extends JFrame {
 
 		reviewAddPenal.setLayout(null);
 		reviewAddPenal.setBounds(0, 0, 500, 700);
-
-		JLabel label = new JLabel("蹂꾨챸");
-		JLabel label2 = new JLabel("�쁺�뼇�젣");
-		JLabel label3 = new JLabel("�젣紐�");
-		JLabel label4 = new JLabel("�궡�슜");
+		JLabel label = new JLabel("별명");
+		JLabel label2 = new JLabel("영양제");
+		JLabel label3 = new JLabel("제목");
+		JLabel label4 = new JLabel("내용");
 
 		JTextField namef = new JTextField();
 		JTextField eat = new JTextField();
@@ -761,12 +757,10 @@ public class Panel extends JFrame {
 
 		reviewplusPenal.setLayout(null);
 		reviewplusPenal.setBounds(0, 0, 500, 700);
-
-		JLabel label = new JLabel("蹂꾨챸");
-		JLabel label2 = new JLabel("�쁺�뼇�젣");
-		JLabel label3 = new JLabel("�젣紐�");
-		JLabel label4 = new JLabel("�궡�슜");
-
+		JLabel label = new JLabel("별명");
+		JLabel label2 = new JLabel("영양제");
+		JLabel label3 = new JLabel("제목");
+		JLabel label4 = new JLabel("내용");
 		namef1.repaint();
 		eat1.repaint();
 		title1.repaint();
@@ -845,13 +839,13 @@ public class Panel extends JFrame {
 		reviewcheckPenal.setLayout(null);
 		reviewcheckPenal.setBounds(0, 0, 500, 700);
 
-		JButton btn = new JButton("�씠�쟾");
 
-		JLabel label = new JLabel("蹂꾨챸");
-		JLabel label1 = new JLabel("�쁺�뼇�젣");
-		JLabel label2 = new JLabel("�젣紐�");
-		JLabel label3 = new JLabel("�궡�슜");
+		JButton btn = new JButton("이전");
 
+		JLabel label = new JLabel("별명");
+		JLabel label1 = new JLabel("영양제");
+		JLabel label2 = new JLabel("제목");
+		JLabel label3 = new JLabel("내용");
 		label.setBounds(50, 10, 50, 150);
 		label1.setBounds(250, 10, 50, 150);
 		label2.setBounds(50, 100, 50, 150);
