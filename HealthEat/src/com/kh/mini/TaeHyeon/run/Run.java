@@ -11,7 +11,7 @@ public class Run extends JFrame{
 	
 	
 	public Run() {
-		
+		//실행 코드입니다.
 		this.setLayout(null);
 		this.setTitle("복용 일기 메인메뉴");
 		this.setBounds(600, 100, 600, 900);
