@@ -1,6 +1,5 @@
 package jaeseok.chap02.view;
 
-import java.awt.Choice;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,12 +11,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 
-
-
-public class k_list extends JFrame {
+public class k_list_r extends JFrame {
 	
-
-	public k_list()
+	public k_list_r()
     {
         	
 	
@@ -32,7 +28,7 @@ public class k_list extends JFrame {
         JButton btn1 = new JButton("돌아가기");
         JButton btn2 = new JButton("Next");
         JButton btn3 = new JButton("수정");
-        String[] mok= {"조회순","랜덤순"};
+        String[] mok= {"랜덤순","조회순"};
 		JComboBox strCombo= new JComboBox(mok);	
         btn1.setBounds(350, 400, 100, 50);
         btn2.setBounds(610, 330, 100, 50);
@@ -42,14 +38,13 @@ public class k_list extends JFrame {
         getContentPane().add(btn2);
         getContentPane().add(btn3);
         getContentPane().add(strCombo);
-        String data[][] = {           
-                {"비타민D3", "Now Foods", "6500"},
-                {"마그네슘", "Doctor's Best", "10700"},
-                {"CoQ10", "California Gold Nutrition", "20000"},
-                {"LactoBif 프로바이오틱", "California Gold Nutrition", "22000"},
+        String data[][] = {                          
+                {"마그네슘", "Doctor's Best", "10700"},                             
                 {"프로폴리스", "Y.S. Eco Bee Farms", "12800"},
-                {"분리유청단백질", "EVLution Nutrition", "31000"}
-                
+                {"LactoBif 프로바이오틱", "California Gold Nutrition", "22000"},
+                {"분리유청단백질", "EVLution Nutrition", "31000"},
+                {"CoQ10", "California Gold Nutrition", "20000"},
+                {"비타민D3", "Now Foods", "6500"},
         };
         
         JTable table = new JTable(data, title2);
@@ -79,14 +74,7 @@ public class k_list extends JFrame {
 			}
 			
 		});
-        strCombo.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				k_list_r ui = new k_list_r();
-			}
-			
-		});
+        
 
     	    
     }

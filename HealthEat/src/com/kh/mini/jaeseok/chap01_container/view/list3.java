@@ -27,12 +27,16 @@ public class list3 extends JFrame{
         JButton btn1 = new JButton("돌아가기");
         JButton btn2 = new JButton("Prev");
         JButton btn3 = new JButton("수정");
+        String[] mok= {"조회순","랜덤순"};
+		JComboBox strCombo= new JComboBox(mok);	
         btn1.setBounds(350, 400, 100, 50);
         btn2.setBounds(110, 330, 100, 50);
         btn3.setBounds(110, 140, 100, 50);
+        strCombo.setBounds(610, 140, 100, 50);
         getContentPane().add(btn1);
         getContentPane().add(btn2);
         getContentPane().add(btn3);
+        getContentPane().add(strCombo);
         String data[][] = {
         		  {"비타민D3", "Now Foods", "6500"},
                   {"마그네슘", "Doctor's Best", "10700"},
@@ -53,6 +57,7 @@ public class list3 extends JFrame{
         frame.add(btn2);	              	        
         frame.add(btn3);
         frame.add(panel);
+        panel.add(strCombo);
         frame.setPreferredSize(new Dimension(840, 840/12*9));
         frame.setSize(840, 840/12*9);
         frame.setLocationRelativeTo(null); //화면 가운데 뜨게
