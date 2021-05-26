@@ -13,7 +13,6 @@ import java.net.Socket;
 
 
 import javax.swing.JFrame;
-import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -21,14 +20,11 @@ public class Client extends JFrame implements ActionListener, Runnable{
 
 	private JTextArea area = new JTextArea();
 	private JTextField field = new JTextField();
-	private JScrollPane pane = new JScrollPane();
 	
 	
 	private Socket socket = null;
 	private int port = 1234;
 	private String IP = "172.30.1.36";
-	
-	
 	
 	
 	public Client() {
@@ -44,9 +40,6 @@ public class Client extends JFrame implements ActionListener, Runnable{
 		add(field, BorderLayout.SOUTH);
 		
 		field.addActionListener(this);
-		
-		
-		
 		
 	}
 	

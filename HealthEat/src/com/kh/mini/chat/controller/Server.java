@@ -13,7 +13,6 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import javax.swing.JFrame;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -153,11 +152,6 @@ public class Server extends JFrame implements ActionListener,Runnable{
 	
 	private JTextArea area = new JTextArea();
 	private JTextField field = new JTextField();
-	
-	
-	
-	
-	
 	
 	
 	//서버는 서버소켓, 소캣 둘다 있어야함
