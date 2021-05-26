@@ -29,6 +29,7 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
 
+import com.kh.mini.TaeHyeon.run.Run;
 import com.sun.glass.events.MouseEvent;
 
 public class mainPanel extends JFrame implements ActionListener {
@@ -46,7 +47,8 @@ public class mainPanel extends JFrame implements ActionListener {
 	private JTable table;
 	private String[] header = new String[] { "제목", "작성 일자", "내용" };
 	private String title, days, text;
-
+	
+	// table 변경 방지!!!!!!!
 	DefaultTableModel model = new DefaultTableModel(header, 0) {
 		boolean isCellImmutable(int header, int data) {
 			// 테이블 내용 수정 방지
@@ -67,7 +69,7 @@ public class mainPanel extends JFrame implements ActionListener {
 	public JPanel mainPanelUI() {
 
 		mainPanel.setLayout(null);
-		mainPanel.setBounds(10, 50, 500, 700);
+		mainPanel.setBounds(10, 50, 900, 600); 
 
 		JButton btn1 = new JButton("복용 일기 작성하기");
 		JButton btn2 = new JButton("돌아가기");// 메인 선택 창으로 돌아가기 버튼
@@ -75,7 +77,7 @@ public class mainPanel extends JFrame implements ActionListener {
 		btn4 = new JButton("수정");
 		btn5 = new JButton("확인");
 
-		btn1.setBounds(180, 500, 200, 40); // 복용일기 작성하기 버튼 위치 및 크기
+		btn1.setBounds(650, 100, 200, 40); // 복용일기 작성하기 버튼 위치 및 크기
 		btn1.addActionListener(new ActionListener() {
 
 			@Override
@@ -87,27 +89,25 @@ public class mainPanel extends JFrame implements ActionListener {
 			}
 		});
 		// 해당 버튼을 누렀을 시 메인 선택창으로 돌아가는 액션리스너를 추가
-		btn2.setBounds(230, 600, 100, 40);
+		btn2.setBounds(700, 430, 100, 40);
 
 		// 삭제 버튼 위치
-		btn3.setBounds(300, 320, 70, 50);
+		btn3.setBounds(200, 400, 70, 50);
 
 		// 수정하기 버튼 위치
-		btn4.setBounds(200, 320, 70, 50);
-
-		btn5.setBounds(400, 320, 70, 50);
+		btn4.setBounds(100, 400, 70, 50);
+		
+		// 확인하기 버튼 위치
+		btn5.setBounds(300, 400, 70, 50);
 
 		// 저장일기 table 생성
 		table = new JTable(model);
-		// table.setFillsViewportHeight(true); // 테이블이 뷰포트(정보창)를 둘러싸는 높이를 채울지
-		// table.setPreferredScrollableViewportSize(new Dimension(400, 400));
-		// table.setSize(150, 50);
 		table.setRowHeight(25); // 행 높이 25로 조정
 		table.getColumnModel().getColumn(0).setPreferredWidth(250); // 0번째 열 너비 100으로 조정
 		table.setModel(model);
 
 		JScrollPane scroll = new JScrollPane(table);
-		scroll.setBounds(90, 100, 350, 200);
+		scroll.setBounds(50, 40, 550, 300);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		table.revalidate();
 		table.repaint();
@@ -196,7 +196,7 @@ public class mainPanel extends JFrame implements ActionListener {
 		String[] weekDays = { "월", "화", "수", "목", "금", "토", "일" };
 
 		writePanel.setLayout(null);
-		writePanel.setBounds(0, 0, 600, 800);
+		writePanel.setBounds(0, 0, 900, 600);
 
 		JLabel labelDiary1 = new JLabel("영양제 복용 일기 작성");
 		JLabel labelDiary2 = new JLabel("복용 타입을 선택해주세요");
@@ -245,7 +245,7 @@ public class mainPanel extends JFrame implements ActionListener {
 		labelDiary1.setBounds(100, 30, 200, 40);
 		labelDiary2.setBounds(100, 120, 200, 40);
 		labelDiary3.setBounds(20, 270, 200, 40);
-		labelDiary4.setBounds(150, 470, 250, 40);
+		labelDiary4.setBounds(550, 50, 250, 40);
 
 		labelDiaryArr[0].setBounds(150, 300, 100, 40);
 		labelDiaryArr[1].setBounds(150, 350, 100, 40);
@@ -256,7 +256,7 @@ public class mainPanel extends JFrame implements ActionListener {
 		textField3.setBounds(250, 360, 250, 25);
 		textField4.setBounds(250, 410, 250, 25);
 
-		textArea1.setBounds(75, 530, 400, 200);
+		textArea1.setBounds(550, 100, 300, 200);
 
 		combo.setBounds(20, 300, 100, 40); // 복용 횟수 선택 콤보 박스
 
@@ -276,8 +276,8 @@ public class mainPanel extends JFrame implements ActionListener {
 		byTextField1.setBounds(80, 220, 200, 20);
 		byTextField2.setBounds(300, 220, 200, 20);
 
-		backBtn.setBounds(400, 750, 150, 50);
-		saveBtn.setBounds(180, 750, 150, 50);
+		backBtn.setBounds(650, 450, 150, 50);
+		saveBtn.setBounds(650, 350, 150, 50);
 
 		// 복용 주기 회수 선택
 		combo.addActionListener(new ActionListener() {
@@ -290,7 +290,7 @@ public class mainPanel extends JFrame implements ActionListener {
 				if (index == 0) {
 					writePanel.add(labelDiaryArr[0]);
 					writePanel.add(textField2);
-					writePanel.setBounds(0, 0, 700, 900);
+					writePanel.setBounds(0, 0, 900, 600);
 
 					labelDiaryArr[0].setVisible(true);
 					labelDiaryArr[1].setVisible(false);
@@ -302,11 +302,11 @@ public class mainPanel extends JFrame implements ActionListener {
 				} else if (index == 1) {
 					writePanel.add(labelDiaryArr[0]);
 					writePanel.add(textField2);
-					writePanel.setBounds(0, 0, 700, 900);
+					writePanel.setBounds(0, 0, 900, 600);
 
 					writePanel.add(labelDiaryArr[1]);
 					writePanel.add(textField3);
-					writePanel.setBounds(0, 0, 750, 900);
+					writePanel.setBounds(0, 0, 900, 600);
 
 					labelDiaryArr[0].setVisible(true);
 					labelDiaryArr[1].setVisible(true);
@@ -318,15 +318,15 @@ public class mainPanel extends JFrame implements ActionListener {
 				} else {
 					writePanel.add(labelDiaryArr[0]);
 					writePanel.add(textField2);
-					writePanel.setBounds(0, 0, 700, 900);
+					writePanel.setBounds(0, 0, 900, 600);
 
 					writePanel.add(labelDiaryArr[1]);
 					writePanel.add(textField3);
-					writePanel.setBounds(0, 0, 750, 900);
+					writePanel.setBounds(0, 0, 900, 600);
 
 					writePanel.add(labelDiaryArr[2]);
 					writePanel.add(textField4);
-					writePanel.setBounds(0, 0, 800, 900);
+					writePanel.setBounds(0, 0, 900, 600);
 
 					labelDiaryArr[0].setVisible(true);
 					labelDiaryArr[1].setVisible(true);
@@ -350,7 +350,7 @@ public class mainPanel extends JFrame implements ActionListener {
 						checkWeek[i].setVisible(true);
 					}
 
-					writePanel.setBounds(0, 0, 700, 900);
+					writePanel.setBounds(0, 0, 950, 600);
 
 				} else {
 
@@ -358,7 +358,7 @@ public class mainPanel extends JFrame implements ActionListener {
 						checkWeek[i].setVisible(false);
 					}
 
-					writePanel.setBounds(0, 0, 700, 900);
+					writePanel.setBounds(0, 0, 970, 600);
 
 				}
 
@@ -410,13 +410,13 @@ public class mainPanel extends JFrame implements ActionListener {
 					bylabelDiary2.setVisible(true);
 					byTextField1.setVisible(true);
 					byTextField2.setVisible(true);
-					writePanel.setBounds(0, 0, 700, 900);
+					writePanel.setBounds(0, 0, 900, 600);
 				} else {
 					bylabelDiary1.setVisible(false);
 					bylabelDiary2.setVisible(false);
 					byTextField1.setVisible(false);
 					byTextField2.setVisible(false);
-					writePanel.setBounds(0, 0, 700, 900);
+					writePanel.setBounds(0, 0, 900, 600);
 				}
 			}
 		});
@@ -603,7 +603,7 @@ public class mainPanel extends JFrame implements ActionListener {
 	public JPanel seeJPanel() {
 
 		seePanel.setLayout(null);
-		seePanel.setBounds(10, 50, 500, 700);
+		seePanel.setBounds(10, 50, 900, 600);
 		// seePanel.setVisible(true);
 		// mainPanel.setVisible(false);
 
@@ -618,7 +618,7 @@ public class mainPanel extends JFrame implements ActionListener {
 		textArea4.setBounds(50, 50, 300, 100);
 		textArea5.setBounds(50, 200, 300, 100);
 		textArea6.setBounds(50, 350, 450, 100);
-		btn6.setBounds(230, 600, 100, 100);
+		btn6.setBounds(650, 450, 100, 100);
 
 		// 돌아가기 버튼 활성화
 		btn6.addActionListener(new ActionListener() {
@@ -640,5 +640,27 @@ public class mainPanel extends JFrame implements ActionListener {
 		return seePanel;
 
 	}
+	
+	public void Run() {
+		//실행 코드입니다.
+		this.setLayout(null);
+		this.setTitle("복용 일기 메인메뉴");
+		this.setBounds(600, 100, 900, 600);
+		// this.setSize(600, 800);
+		this.setResizable(false); // 사이즈 수정 불가
+		
+		this.add(seeJPanel());
+		this.add(mainPanelUI());
+		this.add(writeJPanelUI());
+		this.setVisible(true);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+	}
+	
+	public static void main(String[] args) {
+		
+		new Run();
 
+	}
+	
 }
