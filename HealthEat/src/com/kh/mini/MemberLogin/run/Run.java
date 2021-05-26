@@ -10,6 +10,7 @@ public class Run {
 		Login log = new Login();
 		//SignIn sig = new SignIn();
 		//MenuBar mb = new MenuBar();
+		//UserInfo ui = new UserInfo();
 		/*
 		try {
 			UserInfo ui = new UserInfo();

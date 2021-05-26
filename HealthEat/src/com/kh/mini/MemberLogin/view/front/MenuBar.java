@@ -1,16 +1,16 @@
 package com.kh.mini.MemberLogin.view.front;
 
-import java.awt.Container;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import com.kh.mini.MemberLogin.view.menuBar.UserInfo;
+import com.kh.mini.MyPage.Panel;
+import com.kh.mini.TaeHyeon.view.mainPanel;
 
 public class MenuBar extends Frame{
 
@@ -60,7 +60,7 @@ public class MenuBar extends Frame{
 				
 				try {
 					UserInfo ui = new UserInfo();
-				} catch (IOException e1) {
+				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
@@ -73,7 +73,7 @@ public class MenuBar extends Frame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				Panel pa = new Panel();
 				
 			}
 			
@@ -84,7 +84,7 @@ public class MenuBar extends Frame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				mainPanel mp = new mainPanel();
 				
 			}
 			

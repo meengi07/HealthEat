@@ -105,6 +105,7 @@ public class SignIn extends Frame{
 				
 				try {
 					BufferedWriter bw = new BufferedWriter(new FileWriter("UserInfo.txt",true));
+					bw.write("\n");
 					bw.write(idTxt.getText() + "/");
 					bw.write(pw1F.getText() + "/");
 					bw.write(nameTxt.getText() + "/");

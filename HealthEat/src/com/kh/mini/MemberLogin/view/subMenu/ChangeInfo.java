@@ -22,12 +22,16 @@ import com.kh.mini.MemberLogin.view.menuBar.UserInfo;
 public class ChangeInfo extends Frame {
 
 	//private UserInfo ui = new UserInfo();
+	Login log = new Login();
+	private String[] strArr = new String[5];
+	
 	
 	public ChangeInfo() {
 		//회원정보 수정 및 팝업 
 		//Login log = new Login();
 		//String str = log.strArr()
-		
+		strArr = log.getArr();
+		System.out.println(strArr[1]);
 		JFrame frame = new JFrame();
 		JPanel panel = new JPanel();
 		//프레임 크기 및 위치 설정 
@@ -88,7 +92,7 @@ public class ChangeInfo extends Frame {
 					String dum = "" ;
 					String str ;
 					String[] arr = new String[5]; //기존 txt 
-					String[] srr = new String[5]; //수정 txt 
+					strArr = new String[5]; //수정 txt 
 					BufferedReader br = new BufferedReader(new FileReader("UserInfo.txt"));
 					BufferedWriter bw = new BufferedWriter(new FileWriter("UserInfo.txt",true));
 					String pw = pwTxt2.getText();
@@ -97,25 +101,31 @@ public class ChangeInfo extends Frame {
 					while((str=br.readLine()) !=null) {
 						arr = str.split("/");		
 					}
-					for(int i = 0; i < srr.length; i++) {
+					
+					for(int i = 0; i < strArr.length; i++) {
 						if(i == 1) {
-							srr[i] = pw;
+							strArr[i] = pw;
 						}
+						
 						if(i != 1) {
-							srr[i] = arr[i];
+							strArr[i] = arr[i];
 						}
+						
 					}
-					for(int i = 0; i < srr.length; i++) {
-						dum += srr[i];
+					for(int i = 0; i < strArr.length; i++) {
+						dum += strArr[i];
 						if(i != 4) {
 							dum +="/";
 						}
+						if(i == 4) {
+							dum += "\n";
+						}
 					}
-					BufferedWriter bw2 = new BufferedWriter(new FileWriter("UserInfo.txt"));
-					bw2.write(dum);
+					//BufferedWriter bw2 = new BufferedWriter(new FileWriter("UserInfo.txt",true));
+					//bw.write("\n");
 					
+					bw.write(dum);
 					bw.close();
-					bw2.close();
 					br.close();
 				} catch (IOException e2) {
 					// TODO Auto-generated catch block
@@ -126,7 +136,7 @@ public class ChangeInfo extends Frame {
 				JOptionPane.showMessageDialog(null, "내용이 변경되었습니다.");
 				try {
 					UserInfo ui = new UserInfo();
-				} catch (IOException e1) {
+				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
@@ -142,7 +152,7 @@ public class ChangeInfo extends Frame {
 				// TODO Auto-generated method stub
 				try {
 					UserInfo ui = new UserInfo();
-				} catch (IOException e1) {
+				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
