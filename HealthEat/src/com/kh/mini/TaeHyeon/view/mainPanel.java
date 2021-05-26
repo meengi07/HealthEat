@@ -1,13 +1,12 @@
 package com.kh.mini.TaeHyeon.view;
 
-import java.awt.Button;
-import java.awt.Dimension;
 import java.awt.TextArea;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.MouseAdapter;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -27,24 +26,32 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.text.Position;
+import javax.swing.table.TableModel;
+
+import com.sun.glass.events.MouseEvent;
 
 public class mainPanel extends JFrame implements ActionListener {
 
+	private JTextArea textArea4;
+	private JTextArea textArea5;
+	private JTextArea textArea6;
 	// FunctionPanel fp = new FunctionPanel();
 
 	private JPanel mainPanel = new JPanel(); // 복용일기 메인 메뉴
 	private JPanel writePanel = new JPanel(); // 복용일기 작성 페이지
 	private JPanel seePanel = new JPanel(); // 뵥용일기 작성된 내용 확인
 	private TextField textField1, textField2, textField3, textField4, byTextField1, byTextField2;
-	private TextArea textArea1;
-	private JButton btn3, btn4;
+	private TextArea textArea1, textArea2, textArea3;
+	private JButton btn3, btn4, btn5, btn6;
 	private JCheckBox[] checkWeek = new JCheckBox[7];
 	private String[] weekDays = { "월", "화", "수", "목", "금", "토", "일" };
 	private String[] count = new String[7];
 	private JTable table;
-	private String[] header = new String[] {"제목", "작성 일자"};
+	private String[] header = new String[] {"제목", "작성 일자","내용"};
+	private String a, b, c;
+	
 	
 	DefaultTableModel model = new DefaultTableModel(header, 0) {
 		boolean isCellImmutable(int header, int data) {
@@ -53,6 +60,7 @@ public class mainPanel extends JFrame implements ActionListener {
 		}
 	};
 	
+	int row = 0;
 	
 	public mainPanel() {
 		// 메인 메뉴 패널 활성화
@@ -65,7 +73,9 @@ public class mainPanel extends JFrame implements ActionListener {
 	
 
 	public JPanel mainPanelUI() {
-
+		
+		
+		
 		mainPanel.setLayout(null);
 		mainPanel.setBounds(10, 50, 500, 700);
 
@@ -73,7 +83,7 @@ public class mainPanel extends JFrame implements ActionListener {
 		JButton btn2 = new JButton("돌아가기");// 메인 선택 창으로 돌아가기 버튼
 		btn3 = new JButton("삭제");
 		btn4 = new JButton("수정");
-		
+		btn5 = new JButton("확인");
 		
 		btn1.setBounds(180, 500, 200, 40); // 복용일기 작성하기 버튼 위치 및 크기
 		btn1.addActionListener(new ActionListener() {
@@ -95,6 +105,7 @@ public class mainPanel extends JFrame implements ActionListener {
 		// 수정하기 버튼 위치
 		btn4.setBounds(200, 320, 70, 50);
 		
+		btn5.setBounds(400, 320, 70, 50);
 		
 		// 저장일기 table 생성
 		table = new JTable(model);
@@ -109,7 +120,60 @@ public class mainPanel extends JFrame implements ActionListener {
 		scroll.setBounds(90, 100, 350, 200);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		//scroll.setVerticalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		showAllList(); // MDiary.txt 정보 출력 메소드
 		
+		
+		// table 마우스 클릭 시 객체 선택하기
+		table.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				row = table.getSelectedRow();
+			}
+			
+		});
+		
+		// table 목록에서 선택하여 더블 클릭 시 상세 조회로 이동
+		table.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				int row = table.getSelectedRow(); // 선택한 셀의 행번호
+				String a = (String) model.getValueAt(row, 0); // 첫번쩨 행에서 몇번짼꺼를 가져올것이다.
+				// 라벨을 활용해서 
+				JLabel label = new JLabel(a); // label을 패널에 넣으면 됨
+				
+				TableModel m = table.getModel(); // 테이블의 모델 객체 얻어오기
+				
+				// 데티블에 값을 위치 시키는 코드 필요
+				
+				
+				
+			}
+		
+		});
+		// 선택한 테이블 행 확인하기 버튼
+		btn5.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int row = table.getSelectedRow(); // 선택한 셀의 행번호
+				a = (String) table.getValueAt(row, 0); // 첫번쩨 행에서 몇번짼꺼를 가져올것이다.
+				b = (String) table.getValueAt(row, 1);
+				c = (String) table.getValueAt(row, 2);
+				
+				System.out.println(a);
+				System.out.println(b);
+				System.out.print(c);
+				textArea4.setText(a);
+				textArea5.setText(b);
+				textArea6.setText(c);
+
+				seePanel.revalidate();
+				seePanel.repaint();
+				
+				mainPanel.setVisible(false);
+				seePanel.setVisible(true);
+				
+				
+			}
+		});
 		
 		
 		JLabel showTitle = new JLabel("등록된 영양제 복용 일기");
@@ -118,6 +182,7 @@ public class mainPanel extends JFrame implements ActionListener {
 		mainPanel.add(btn2); // 메인 선택화면으로 돌아가기
 		mainPanel.add(btn3); // 일기 삭제하기
 		mainPanel.add(btn4); // 일기 수정하기
+		mainPanel.add(btn5); // 복용일기 확인 버튼
 		mainPanel.add(scroll);
 		
 		
@@ -411,7 +476,7 @@ public class mainPanel extends JFrame implements ActionListener {
 		Date today = new Date();
 		SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
 		String ftToday = ft.format(today);
-		String[] weekDays = { "월", "화", "수", "목", "금", "토", "일" };
+		//String[] weekDays = { "월", "화", "수", "목", "금", "토", "일" };
 		String dummy = ""; 
 		
 		try {
@@ -420,24 +485,26 @@ public class mainPanel extends JFrame implements ActionListener {
 				tempDir.mkdirs(); // 물리적으로 폴더 생성
 
 			// 파일명과 같은 파일명이 있을 경우 덮어쓰기 판단
-			FileWriter fw = new FileWriter(tempDir + File.separator + ftToday + ".txt", true);
+			FileWriter fw = new FileWriter(tempDir + File.separator + "MDiary.txt", true);
 
 			BufferedWriter bf = new BufferedWriter(fw);
 			
 			// 체크 박스 시, 누렀을 때 일요일 
 			
 			bf.write(textField1.getText() + ", ");
-			bf.write(textField2.getText() + ", ");
-			bf.write(textField3.getText() + ", ");
-			bf.write(textField4.getText() + ", ");
-			bf.write(byTextField1.getText() + ", ");
-			bf.write(byTextField2.getText() + ", ");
+			bf.write(ftToday + ", /");
+			bf.write(textField2.getText() + " ");
+			bf.write(textField3.getText() + " ");
+			bf.write(textField4.getText() + " ");
+			bf.write(byTextField1.getText() + " ");
+			bf.write(byTextField2.getText() + " ");
+			
 			//아이템 리스너 필드 count만 가져와서 일요일을 가져오기
 			
 			// 선택한 요일별 체큭 박스 text 파일에 저장
 			for(int i = 0; i < count.length; i++) {
 				if(count[i] != null)
-				bf.write(count[i] + ", ");
+				bf.write(count[i] + "");
 			}
 
 			bf.write(textArea1.getText() + "\n"); // 마지막 입력후 한줄은 내린다
@@ -457,7 +524,7 @@ public class mainPanel extends JFrame implements ActionListener {
 			byTextField2.setText("");
 			textArea1.setText("");
 
-			FileReader fr = new FileReader("C:\\new\\" + ftToday + ".txt"); // String 형으로 파일을 불러온다.
+			FileReader fr = new FileReader("C:\\new\\" + "MDiary.txt"); // String 형으로 파일을 불러온다.
 			BufferedReader br = new BufferedReader(fr); // 한줄씩 일기 위해(빠른속도로 읽기위해)
 			// 파일 이름을 현제 Date 값으로 받아서 이름을 짓자
 			String line; // while의 조건부
@@ -495,10 +562,80 @@ public class mainPanel extends JFrame implements ActionListener {
 		
 		
 	}
-	// 저장된 일기 내용 삭제
-	public void deleteDiary() {
+	// 저장된 일기 내용 table에 보여주기
+	public void showAllList() {
+		
+		BufferedReader br = null;
+		
+		try {
+			br = new BufferedReader(new FileReader("C:\\new\\" + "MDiary.txt"));
+			String str = null;
+			while ((str = br.readLine()) != null) { // 한줄씩 읽어오기
+				String[] arr = str.split(", "); // , 를 기준으로 str 나눠서 arr 만들기
+				model.addRow(arr);
+				
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				br.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		
 	}
 	
+public JPanel seeJPanel() { 
+		
+		
+		
+		seePanel.setLayout(null);
+		seePanel.setBounds(10, 50, 500, 700);
+		//seePanel.setVisible(true);
+		//mainPanel.setVisible(false);
+		
+		
+		btn6 = new JButton("돌아가기");
+		
+		System.out.println(a);
+		System.out.println(b);
+		
+		textArea4 = new JTextArea(a);
+		textArea5 = new JTextArea(b);
+		textArea6 = new JTextArea(c);
+		
+		textArea4.setBounds(50, 50, 300, 100);
+		textArea5.setBounds(50, 200, 300, 100);
+		btn6.setBounds(230, 600, 100, 100);
+		
+		// 돌아가기 버튼 활성화
+		btn6.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				seePanel.setVisible(false);
+				mainPanel.setVisible(true); // 복용 일기 작성 페이지 활성화
+				
+			}
+		});
+		
+		seePanel.add(textArea4);
+		seePanel.add(textArea5);
+		seePanel.add(textArea6);
+		
+		
+		seePanel.add(btn6);
+		
+		return seePanel;
+		
+		
+	}
 	
 }

@@ -18,6 +18,7 @@ public class Run extends JFrame{
 		// this.setSize(600, 800);
 		this.setResizable(false); // 사이즈 수정 불가
 		
+		this.add(mp.seeJPanel());
 		this.add(mp.mainPanelUI());
 		this.add(mp.writeJPanelUI());
 		this.setVisible(true);
