@@ -46,7 +46,7 @@ public class AdminMode extends JFrame {
 	JTable table;
 	JTextArea txtInfo;
 	JScrollPane scroll;
- 
+
 	
 	public AdminMode() {
 		//창 이름
@@ -55,40 +55,41 @@ public class AdminMode extends JFrame {
 		//----------------------------------------------Main panel
 		//메인 패널
 		JPanel panelMain = new JPanel();
-		panelMain.setBounds(0, 0, 840, 840/12*9);
+		panelMain.setBounds(0, 0, 900, 600);
 		panelMain.setLayout(null);
 		panelMain.setBackground(Color.LIGHT_GRAY);
 				
 		//검색어 설명
 		JLabel search = new JLabel("검색할 키워드 : ");
-		search.setLocation(100, 100);
-		search.setSize(100, 50);
+		search.setBounds(130, 70, 120, 50);
 		
 		//검색어 입력창
 		text = new JTextField();
-		text.setLocation(200, 100);
-		text.setSize(200, 50);
+		text.setBounds(235, 70, 280, 50);
 		
 		//검색 버튼
 		JButton btn = new JButton("검  색");
-		btn.setLocation(400, 100);
-		btn.setSize(100, 50);
+		btn.setBounds(525, 70, 100, 50);
 		
 		//전체목록조회 버튼
 		JButton reload = new JButton("전체조회");
-		reload.setLocation(500, 100);
-		reload.setSize(100, 50);	
+		reload.setBounds(635, 70, 100 ,50);	
 		
 		//영양제 목록 출력
 		table = new JTable(model);
 		//table.setPreferredScrollableViewportSize(new Dimension(400, 400)); //뷰포트 기본 크기
 		//table.setFillsViewportHeight(true); //테이블이 뷰포트(정보창)를 둘러싸는 높이를 채울지
 		table.setRowHeight(25); //행 높이 25로 조정
-		table.getColumnModel().getColumn(0).setPreferredWidth(100); //0번째 열너비 100으로 조정
-		table.setModel(model);
+		table.getColumnModel().getColumn(0).setPreferredWidth(100); //0번째 열너비 100으로 조정 //주영양소
+		table.getColumnModel().getColumn(1).setPreferredWidth(100); //1번째 열너비 //제조사
+		table.getColumnModel().getColumn(2).setPreferredWidth(50); //2번째 열너비 //용량
+		table.getColumnModel().getColumn(3).setPreferredWidth(50); //3번째 열너비 //가격
+		table.getColumnModel().getColumn(4).setPreferredWidth(100); //4번째 열너비 //부가영양소
+		table.getColumnModel().getColumn(5).setPreferredWidth(100); //5번째 열너비 //효능효과
+		table.getColumnModel().getColumn(6).setPreferredWidth(50); //6번째 열너비 //인기도(조회수)
 		
 		scroll = new JScrollPane(table);
-		scroll.setBounds(80, 200, 500, 200);
+		scroll.setBounds(135, 170, 600, 200);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		showAllList(); //nutriList 정보 출력 메소드
@@ -96,11 +97,11 @@ public class AdminMode extends JFrame {
 		
 		//영양제 추가 버튼
 		JButton newNutriMain = new JButton("영양제 추가하기");
-		newNutriMain.setBounds(200, 440, 200, 50);
+		newNutriMain.setBounds(335, 410, 200, 50);
 		
 		//나가기 버튼
 		JButton exitMain = new JButton("나가기");
-		exitMain.setBounds(200, 500, 200, 50);
+		exitMain.setBounds(335, 470, 200, 50);
 		
 		//패널에 레이블, 버튼 등 붙이기
 		panelMain.add(search);
@@ -115,35 +116,34 @@ public class AdminMode extends JFrame {
 		//-----------------------------메인 영양제 목록에서 클릭해서 조회했을 때
 		//전체조회에서 선택된 패널
 		JPanel panelSelected = new JPanel();
-		panelSelected.setBounds(0, 0, 840, 840/12*9);
+		panelSelected.setBounds(0, 0, 900, 600);
 		panelSelected.setLayout(null);
 		panelSelected.setBackground(Color.LIGHT_GRAY);
 		
 		//상세정보조회 제목
 		JLabel titleSltd = new JLabel("영양제 상세 정보 조회");
-		titleSltd.setBounds(200, 100, 250, 50);
-		titleSltd.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+		titleSltd.setBounds(275, 70, 350, 50);
+		titleSltd.setFont(new Font("맑은 고딕", Font.BOLD, 30));
 		
 		//상세정보조회 텍스트 상자
 		txtInfo = new JTextArea(); 
 		txtInfo.setEditable(false); //텍스트상자 읽기 전용(not editable)
 		JScrollPane txtScroll = new JScrollPane(txtInfo); //txtInfo에 스크롤 넣기
-		txtScroll.setBounds(80, 200, 500, 200);
+		txtScroll.setBounds(135, 170, 600, 200);
 		txtScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		txtScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		
 
 		//수정 버튼
 		JButton editNutriSltd = new JButton("수정하기");
-		editNutriSltd.setBounds(150, 440, 200, 50);
+		editNutriSltd.setBounds(230, 410, 200, 50);
 		
 		//삭제 버튼
 		JButton delNutriSltd = new JButton("삭제하기");
-		delNutriSltd.setBounds(350, 440, 200, 50);
+		delNutriSltd.setBounds(440, 410, 200, 50);
 		
 		//돌아가기 버튼
 		JButton exitSltd = new JButton("돌아가기");
-		exitSltd.setBounds(200, 500, 200, 50);
+		exitSltd.setBounds(335, 470, 200, 50);
 		
 		//패널에 레이블, 버튼 등 붙이기
 		panelSelected.add(titleSltd);
@@ -157,69 +157,57 @@ public class AdminMode extends JFrame {
 		//-------------------------------------------영양제 수정 화면
 		//패널
 		JPanel panelEdit = new JPanel();
-		panelEdit.setBounds(0, 0, 840, 840 / 12 * 9);
+		panelEdit.setBounds(0, 0, 900, 600);
 		panelEdit.setLayout(null);
 		panelEdit.setBackground(Color.LIGHT_GRAY);
 
 		// 정보 입력창
-		JLabel title = new JLabel("영양제 수정");
-		title.setBounds(200, 30, 200, 50);
-		title.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+		JLabel title = new JLabel("영양제 정보 수정");
+		title.setBounds(315, 50, 350, 50);
+		title.setFont(new Font("맑은 고딕", Font.BOLD, 30));
 
 		JLabel lab1 = new JLabel("주영양소 : ");
-		lab1.setLocation(40, 100);
-		lab1.setSize(200, 30);
-
+		lab1.setBounds(90, 140, 200, 30);
+		
 		JTextField text1 = new JTextField();
-		text1.setLocation(150, 100);
-		text1.setSize(300, 30);
-
+		text1.setBounds(210, 140, 350, 30);
+		
 		JLabel lab2 = new JLabel("제조사 : ");
-		lab2.setLocation(40, 150);
-		lab2.setSize(200, 30);
-
+		lab2.setBounds(90, 190, 200, 30);
+		
 		JTextField text2 = new JTextField();
-		text2.setLocation(150, 150);
-		text2.setSize(300, 30);
-
+		text2.setBounds(210, 190, 350, 30);
+		
 		JLabel lab3 = new JLabel("용량 : ");
-		lab3.setLocation(40, 200);
-		lab3.setSize(200, 30);
-
+		lab3.setBounds(90, 240, 200, 30);
+		
 		JTextField text3 = new JTextField();
-		text3.setLocation(150, 200);
-		text3.setSize(300, 30);
-
+		text3.setBounds(210, 240, 350, 30);
+		
 		JLabel lab4 = new JLabel("가격 : ");
-		lab4.setLocation(40, 250);
-		lab4.setSize(200, 30);
-
+		lab4.setBounds(90, 290, 200, 30);
+		
 		JTextField text4 = new JTextField();
-		text4.setLocation(150, 250);
-		text4.setSize(300, 30);
-
-		JLabel lab5 = new JLabel("부가영양소 : ");
-		lab5.setLocation(40, 300);
-		lab5.setSize(200, 30);
-
+		text4.setBounds(210, 290, 350, 30);
+		
+		JLabel lab5 = new JLabel("기타영양소 : ");
+		lab5.setBounds(90, 340, 200, 30);
+		
 		JTextField text5 = new JTextField();
-		text5.setLocation(150, 300);
-		text5.setSize(300, 30);
-
+		text5.setBounds(210, 340, 350, 30);
+		
 		JLabel lab6 = new JLabel("효능효과 : ");
-		lab6.setLocation(40, 350);
-		lab6.setSize(200, 30);
-
+		lab6.setBounds(90, 390, 200, 30);
+		
 		JTextField text6 = new JTextField();
-		text6.setLocation(150, 350);
-		text6.setSize(300, 30);
+		text6.setBounds(210, 390, 350, 30);
 
 		// 버튼
-		JButton btnEdit = new JButton("수  정");
-		btnEdit.setBounds(200, 440, 200, 50);
+		JButton btnEdit = new JButton("수       정");
+		btnEdit.setBounds(590, 240, 150, 80);
 
 		JButton exitEdit = new JButton("돌아가기");
-		exitEdit.setBounds(200, 500, 200, 50);
+		exitEdit.setBounds(335, 470, 200, 50);
 
 		// 패널에 레이블, 버튼 등 붙이기
 		panelEdit.add(title);
@@ -239,7 +227,7 @@ public class AdminMode extends JFrame {
 		panelEdit.add(exitEdit);
 		
 		//기본 패널뷰 조정
-		panelMain.setVisible(true);
+		//panelMain.setVisible(true);
 		panelSelected.setVisible(false);
 		panelEdit.setVisible(false);
 		
@@ -299,7 +287,6 @@ public class AdminMode extends JFrame {
 				panelEdit.setVisible(false);
 				
 				AdminNew flip = new AdminNew();
-				flip.setVisible(true);
 				frame.dispose();
 			}
 		});
@@ -314,7 +301,6 @@ public class AdminMode extends JFrame {
 				
 				//------------------------------------------------------------------메인페이지 클래스 화면 전환
 				Login flip = new Login();
-				flip.setVisible(true);
 				frame.dispose();
 			}
 		});
@@ -417,12 +403,9 @@ public class AdminMode extends JFrame {
 					JOptionPane.showMessageDialog(null, "수정이 완료되었습니다.");
 					
 					//수정 후 목록 재출력
+					model.fireTableDataChanged();
 					showAllList();
 					
-					//table.revalidate();
-					//table.repaint();
-					//panelMain.revalidate();
-					//panelMain.repaint();
 					panelMain.setVisible(true);
 					panelSelected.setVisible(false);
 					panelEdit.setVisible(false);
@@ -448,8 +431,8 @@ public class AdminMode extends JFrame {
 		frame.add(panelEdit);
 		
 		//프레임 기본 설정
-		frame.setPreferredSize(new Dimension(840, 840/12*9));
-		frame.setSize(840, 840/12*9);
+		frame.setPreferredSize(new Dimension(900, 600));
+		frame.setSize(900, 600);
 		frame.setLocationRelativeTo(null); //화면 가운데 뜨게
 		frame.setResizable(false); //false : 화면크기 조정 안되도록// true : 화면크기 조정되도록
 		frame.setVisible(true);

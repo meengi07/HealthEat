@@ -40,7 +40,7 @@ public class UserNutriSearch extends JFrame {
 			return false;
 		}
 	};
-	 
+	
 	JTextField text;
 	JTable table;
 	JTextArea txtInfo;
@@ -57,38 +57,40 @@ public class UserNutriSearch extends JFrame {
 		
 		//메인 패널
 		JPanel panelMain = new JPanel();
-		panelMain.setBounds(0, 0, 840, 840/12*9);
+		panelMain.setBounds(0, 0, 900, 600);
 		panelMain.setLayout(null);
 		panelMain.setBackground(new Color(232, 217, 255)); //연보라색 배경
 
 		//검색어 설명
 		JLabel search = new JLabel("검색할 키워드 : ");
-		search.setLocation(100, 100);
-		search.setSize(100, 50);
+		search.setBounds(130, 70, 120, 50);
 		
 		//검색어 입력창
 		text = new JTextField();
-		text.setLocation(200, 100);
-		text.setSize(200, 50);
+		text.setBounds(235, 70, 280, 50);
 		
 		//검색 버튼
 		JButton btn = new JButton("검  색");
-		btn.setLocation(400, 100);
-		btn.setSize(100, 50);	
+		btn.setBounds(525, 70, 100, 50);
 		
 		//전체목록조회 버튼
 		JButton reload = new JButton("전체조회");
-		reload.setLocation(500, 100);
-		reload.setSize(100, 50);	
+		reload.setBounds(635, 70, 100 ,50);
 		
 		table = new JTable(model);
 		//table.setPreferredScrollableViewportSize(new Dimension(400, 400)); //뷰포트 기본 크기
 		//table.setFillsViewportHeight(true); //테이블이 뷰포트(정보창)를 둘러싸는 높이를 채울지
 		table.setRowHeight(25); //행 높이 25로 조정
-		table.getColumnModel().getColumn(0).setPreferredWidth(100); //0번째 열너비 100으로 조정
+		table.getColumnModel().getColumn(0).setPreferredWidth(100); //0번째 열너비 100으로 조정 //주영양소
+		table.getColumnModel().getColumn(1).setPreferredWidth(100); //1번째 열너비 //제조사
+		table.getColumnModel().getColumn(2).setPreferredWidth(50); //2번째 열너비 //용량
+		table.getColumnModel().getColumn(3).setPreferredWidth(50); //3번째 열너비 //가격
+		table.getColumnModel().getColumn(4).setPreferredWidth(100); //4번째 열너비 //부가영양소
+		table.getColumnModel().getColumn(5).setPreferredWidth(100); //5번째 열너비 //효능효과
+		table.getColumnModel().getColumn(6).setPreferredWidth(50); //6번째 열너비 //인기도(조회수)
 		
 		JScrollPane scroll = new JScrollPane(table);
-		scroll.setBounds(80, 200, 500, 200);
+		scroll.setBounds(135, 170, 600, 200);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		scroll.getVerticalScrollBar().setValue(scroll.getVerticalScrollBar().getMaximum()); //테이블 최하단 자동스크롤
@@ -96,11 +98,11 @@ public class UserNutriSearch extends JFrame {
 		
 		//영양제 추천 버튼
 		JButton recommMain = new JButton("영양제 추천받기");
-		recommMain.setBounds(200, 440, 200, 50);
+		recommMain.setBounds(335, 410, 200, 50);
 		
 		//돌아가기 버튼
 		JButton exitMain = new JButton("돌아가기");
-		exitMain.setBounds(200, 500, 200, 50);
+		exitMain.setBounds(335, 470, 200, 50);
 		
 		//패널에 레이블, 버튼 등 붙이기
 		panelMain.add(search);
@@ -116,30 +118,30 @@ public class UserNutriSearch extends JFrame {
 		//-----------------------------메인 영양제 목록에서 클릭해서 조회했을 때
 		//전체조회에서 선택된 패널
 		JPanel panelSelected = new JPanel();
-		panelSelected.setBounds(0, 0, 840, 840/12*9);
+		panelSelected.setBounds(0, 0, 900, 600);
 		panelSelected.setLayout(null);
 		panelSelected.setBackground(new Color(205, 210, 245)); //연보라색 배경
 		
 		//상세정보조회 제목
 		JLabel titleSltd = new JLabel("영양제 상세 정보 조회");
-		titleSltd.setBounds(200, 100, 250, 50);
-		titleSltd.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+		titleSltd.setBounds(275, 70, 350, 50);
+		titleSltd.setFont(new Font("맑은 고딕", Font.BOLD, 30));
 		
 		//상세정보조회 텍스트 상자
 		txtInfo = new JTextArea(); //nutriList 넣기
 		txtInfo.setEditable(false); //텍스트상자 읽기 전용(not editable)
 		JScrollPane txtScroll = new JScrollPane(txtInfo); //txtInfo에 스크롤 넣기
-		txtScroll.setBounds(80, 200, 500, 200);
+		txtScroll.setBounds(135, 170, 600, 200);
 		txtScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		txtScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		
 		//영양제 추천 버튼
 		JButton recommSltd = new JButton("영양제 추천받기");
-		recommSltd.setBounds(200, 440, 200, 50);
+		recommSltd.setBounds(335, 410, 200, 50);
 		
 		//돌아가기 버튼
 		JButton exitSltd = new JButton("돌아가기");
-		exitSltd.setBounds(200, 500, 200, 50);
+		exitSltd.setBounds(335, 470, 200, 50);
 		
 		//패널에 레이블, 버튼 등 붙이기
 		panelSelected.add(txtScroll);
@@ -148,7 +150,7 @@ public class UserNutriSearch extends JFrame {
 		panelSelected.add(exitSltd);
 		
 		//기본 패널뷰 조정
-		panelMain.setVisible(true);
+		//panelMain.setVisible(true);
 		panelSelected.setVisible(false);
 		
 		//-------------------------------------------------이벤트 추가
@@ -157,7 +159,10 @@ public class UserNutriSearch extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) {
 					showDetail();
-
+					
+					panelMain.setVisible(false);
+					panelSelected.setVisible(true);
+					
 					//조회수 1씩 증가시키기
 					BufferedWriter bw = null;
 					
@@ -214,9 +219,7 @@ public class UserNutriSearch extends JFrame {
 							e1.printStackTrace();
 						}
 					}
-					
-					panelMain.setVisible(false);
-					panelSelected.setVisible(true);
+
 				}
 				
 			}
@@ -253,7 +256,6 @@ public class UserNutriSearch extends JFrame {
 				
 				//------------------------------------------------------------------------메인페이지 클래스 화면 전환
 				MenuBar flip = new MenuBar();
-				flip.setVisible(true);
 				frame.dispose();
 			}
 		});
@@ -265,9 +267,7 @@ public class UserNutriSearch extends JFrame {
 				panelMain.setVisible(false);
 				panelSelected.setVisible(false);
 				
-				//------------------------------------------------------------------------영양제 추천 클래스 화면 전환
 				RecommMain flip = new RecommMain();
-				flip.setVisible(true);
 				frame.dispose();
 			}
 		});
@@ -276,6 +276,9 @@ public class UserNutriSearch extends JFrame {
 		exitSltd.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				model.fireTableDataChanged();
+				panelMain.repaint();
+				
 				panelMain.setVisible(true);
 				panelSelected.setVisible(false);
 			}
@@ -290,7 +293,6 @@ public class UserNutriSearch extends JFrame {
 				
 				//-------------------------------------------------------------------------영양제 추천 클래스 화면 전환
 				RecommMain flip = new RecommMain();
-				flip.setVisible(true);
 				frame.dispose();
 			}
 		});
@@ -301,8 +303,8 @@ public class UserNutriSearch extends JFrame {
 		frame.add(panelSelected);
 		
 		//프레임 기본 설정
-		frame.setPreferredSize(new Dimension(840, 840/12*9));
-		frame.setSize(840, 840/12*9);
+		frame.setPreferredSize(new Dimension(900, 600));
+		frame.setSize(900, 600);
 		frame.setLocationRelativeTo(null); //화면 가운데 뜨게
 		frame.setResizable(false); //false : 화면크기 조정 안되도록// true : 화면크기 조정되도록
 		frame.setVisible(true);
@@ -332,6 +334,7 @@ public class UserNutriSearch extends JFrame {
 				e.printStackTrace();
 			}
 		}
+
 	}
 	
 	
