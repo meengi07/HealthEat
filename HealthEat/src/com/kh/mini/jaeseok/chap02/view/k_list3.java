@@ -23,7 +23,7 @@ public class k_list3 extends JFrame {
 		panel.setBounds(200,200,200,200);
 		panel.setLayout(null);
         panel.setVisible(true);			
-		String title2[] = {"순위", "이름", "제약사" , "가격"};
+		String title2[] = {"주영양소", "제조사" , "가격"};
         JButton btn1 = new JButton("돌아가기");
         JButton btn2 = new JButton("Prev");
         JButton btn3 = new JButton("수정");
@@ -34,18 +34,16 @@ public class k_list3 extends JFrame {
         getContentPane().add(btn2);
         getContentPane().add(btn3);
         String data[][] = {
-                {"순위", "이름", "제약사", "가격"},
-                {"1", "B약", "A제약", "1000"},
-                {"2", "C약", "A제약", "1000"},
-                {"3", "C약", "A제약", "1000"},
-                {"4", "C약", "A제약", "1000"},
-                {"5", "C약", "A제약", "1000"},
-                {"6", "C약", "A제약", "1000"},
-                {"7", "D약", "A제약", "1000"}
+        		  {"비타민D3", "Now Foods", "6500"},
+                  {"마그네슘", "Doctor's Best", "10700"},
+                  {"CoQ10", "California Gold Nutrition", "20000"},
+                  {"LactoBif 프로바이오틱", "California Gold Nutrition", "22000"},
+                  {"프로폴리스", "Y.S. Eco Bee Farms", "12800"},
+                  {"분리유청단백질", "EVLution Nutrition", "31000"}
         };
         
         JTable table = new JTable(data, title2);
-        table.setBounds(110,200,600,400);	        
+        table.setBounds(110,200,600,100);	        
         title.setBounds(360,50,150,100);
         gender.setBounds(390,150,50,50);	
         panel.add(title);
