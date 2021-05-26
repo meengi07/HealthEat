@@ -1,8 +1,10 @@
-package com.kh.tm1.chat.controller;
+package com.kh.mini.chat.controller;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,7 +19,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class Server extends JFrame implements ActionListener,Runnable{
-//테스트 중입니깃 
+
 	
 	private JTextArea area = new JTextArea();
 	private JTextField field = new JTextField();
@@ -42,6 +44,19 @@ public class Server extends JFrame implements ActionListener,Runnable{
 		
 		
 		field.addActionListener(this);
+		
+		
+		this.addWindowListener(new WindowAdapter() {
+			
+			 public void windowClosing(WindowEvent e) {
+				 
+				 
+				 dispose();
+				 
+				 
+			 }
+			
+		});
 		
 	}
 	

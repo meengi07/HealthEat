@@ -1,10 +1,14 @@
-package com.kh.tm1.chat.controller;
+package com.kh.mini.chat.controller;
 
 import java.awt.BorderLayout;
 import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -35,6 +39,28 @@ public class Client extends JFrame implements ActionListener, Runnable{
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		area.setEditable(false); //수정 못함
+		
+		this.addWindowListener(new WindowAdapter() { // txt 로 저장
+			
+			  public void windowClosing(WindowEvent e) { 
+				  
+				  BufferedWriter bw1;
+				try {
+					bw1 = new BufferedWriter(new FileWriter("log3.txt"));
+					bw1.write(area.getText());
+					System.out.println(area.getText());
+					bw1.close();
+	                  dispose(); // 닫으면 전으로 ( 메뉴바 안꺼지고 채팅만 끔)
+	                  
+	          
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				  
+        }
+
+		});
 		
 		add(area, BorderLayout.CENTER);
 		add(field, BorderLayout.SOUTH);
