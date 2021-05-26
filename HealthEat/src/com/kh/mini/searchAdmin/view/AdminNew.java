@@ -27,72 +27,60 @@ public class AdminNew extends JFrame {
 		
 		//패널
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 840, 840/12*9);
+		panel.setBounds(0, 0, 900, 600);
 		panel.setLayout(null);
 		panel.setBackground(Color.LIGHT_GRAY);
 		
 		//정보 입력창
 		JLabel title = new JLabel("영양제 신규 등록");
-		title.setBounds(150, 40, 200, 30);
-		title.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+		title.setBounds(315, 50, 350, 50);
+		title.setFont(new Font("맑은 고딕", Font.BOLD, 30));
 		
 		JLabel lab1 = new JLabel("주영양소 : ");
-		lab1.setLocation(40, 100);
-		lab1.setSize(200, 30);
+		lab1.setBounds(90, 140, 200, 30);
 		
 		JTextField text1 = new JTextField();
-		text1.setLocation(150, 100);
-		text1.setSize(300, 30);
+		text1.setBounds(210, 140, 350, 30);
 		
 		JLabel lab2 = new JLabel("제조사 : ");
-		lab2.setLocation(40, 150);
-		lab2.setSize(200, 30);
+		lab2.setBounds(90, 190, 200, 30);
 		
 		JTextField text2 = new JTextField();
-		text2.setLocation(150, 150);
-		text2.setSize(300, 30);
+		text2.setBounds(210, 190, 350, 30);
 		
 		JLabel lab3 = new JLabel("용량 : ");
-		lab3.setLocation(40, 200);
-		lab3.setSize(200, 30);
+		lab3.setBounds(90, 240, 200, 30);
 		
 		JTextField text3 = new JTextField();
-		text3.setLocation(150, 200);
-		text3.setSize(300, 30);
+		text3.setBounds(210, 240, 350, 30);
 		
 		JLabel lab4 = new JLabel("가격 : ");
-		lab4.setLocation(40, 250);
-		lab4.setSize(200, 30);
+		lab4.setBounds(90, 290, 200, 30);
 		
 		JTextField text4 = new JTextField();
-		text4.setLocation(150, 250);
-		text4.setSize(300, 30);
+		text4.setBounds(210, 290, 350, 30);
 		
-		JLabel lab5 = new JLabel("부가영양소 : ");
-		lab5.setLocation(40, 300);
-		lab5.setSize(200, 30);
+		JLabel lab5 = new JLabel("기타영양소 : ");
+		lab5.setBounds(90, 340, 200, 30);
 		
 		JTextField text5 = new JTextField();
-		text5.setLocation(150, 300);
-		text5.setSize(300, 30);
+		text5.setBounds(210, 340, 350, 30);
 		
 		JLabel lab6 = new JLabel("효능효과 : ");
-		lab6.setLocation(40, 350);
-		lab6.setSize(200, 30);
+		lab6.setBounds(90, 390, 200, 30);
 		
 		JTextField text6 = new JTextField();
-		text6.setLocation(150, 350);
-		text6.setSize(300, 30);
+		text6.setBounds(210, 390, 350, 30);
 		
 		//버튼
 		JButton reset = new JButton("모두 지우기");
-		reset.setBounds(50, 470, 120, 50);
+		reset.setBounds(590, 140, 150, 80);
 		
 		JButton register = new JButton("등  록");
-		register.setBounds(200, 440, 200, 50);
+		register.setBounds(590, 340, 150, 80);
 		
 		JButton exit = new JButton("돌아가기");
-		exit.setBounds(200, 500, 200, 50);
+		exit.setBounds(335, 470, 200, 50);
 		
 		//패널에 레이블, 버튼 등 붙이기
 		panel.add(title);
@@ -182,7 +170,6 @@ public class AdminNew extends JFrame {
 				panel.setVisible(false);
 				
 				AdminMode flip = new AdminMode();
-				flip.setVisible(true);
 				frame.dispose();
 			}
 		});
@@ -191,8 +178,8 @@ public class AdminNew extends JFrame {
 		frame.add(panel);
 		
 		//프레임 기본 설정
-		frame.setPreferredSize(new Dimension(840, 840/12*9));
-		frame.setSize(840, 840/12*9);
+		frame.setPreferredSize(new Dimension(900, 600));
+		frame.setSize(900, 600);
 		frame.setLayout(null);
 		frame.setLocationRelativeTo(null); //화면 가운데 뜨게
 		frame.setResizable(false); //false : 화면크기 조정 안되도록// true : 화면크기 조정되도록
