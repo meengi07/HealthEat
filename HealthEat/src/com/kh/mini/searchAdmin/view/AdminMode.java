@@ -380,7 +380,12 @@ public class AdminMode extends JFrame {
 							}
 							bw.newLine();
 						}
-
+						
+						//txt파일의 조회수 데이터 가져오기
+						TableModel m = table.getModel(); //테이블의 모델 객체 얻어오기
+						int rowSltd = table.getSelectedRow(); //선택한 셀의 행번호
+						String count = (String)m.getValueAt(rowSltd, 6);
+						
 						//선택 행 데이터 텍스트필드값 입력받아 수정
 						bw.write(text1.getText() + "/");
 						bw.write(text2.getText() + "/");
@@ -388,7 +393,7 @@ public class AdminMode extends JFrame {
 						bw.write(text4.getText() + "/");
 						bw.write(text5.getText() + "/");
 						bw.write(text6.getText() + "/");
-						bw.write("0/\n"); // 인기도(조회수) - 기본 0으로 셋팅
+						bw.write(count + "\n"); // 인기도(조회수) - 기본 0으로 셋팅
 
 						//선택 행 이후 데이터 입력
 						for (int i = table.getSelectedRow() + 1; i < table.getRowCount(); i++) {
@@ -407,11 +412,15 @@ public class AdminMode extends JFrame {
 						}
 					}
 					
-					//수정 후 목록 재출력
-					showAllList();
-
 					JOptionPane.showMessageDialog(null, "수정이 완료되었습니다.");
 					
+					//수정 후 목록 재출력
+					showAllList();
+					
+					//table.revalidate();
+					//table.repaint();
+					//panelMain.revalidate();
+					//panelMain.repaint();
 					panelMain.setVisible(true);
 					panelSelected.setVisible(false);
 					panelEdit.setVisible(false);

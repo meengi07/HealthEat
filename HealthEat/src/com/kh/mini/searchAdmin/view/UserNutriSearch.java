@@ -9,13 +9,13 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -25,13 +25,9 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.RowFilter;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-
-import com.sy.mvc.controller.NutriManager2;
-import com.sy.mvc.model.vo.Nutri;
 
 public class UserNutriSearch extends JFrame {
 
@@ -52,6 +48,7 @@ public class UserNutriSearch extends JFrame {
 
 	
 	public UserNutriSearch() {
+
 		//------------------------------------------Main panel
 		//---------------------------------------영양제 검색 첫 화면
 		//창 이름
