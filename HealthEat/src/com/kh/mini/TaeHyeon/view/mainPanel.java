@@ -1,6 +1,7 @@
 package com.kh.mini.TaeHyeon.view;
 
-import java.awt.Checkbox;
+import java.awt.Button;
+import java.awt.Dimension;
 import java.awt.TextArea;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
@@ -24,9 +25,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
-import javafx.scene.control.ComboBox;
-import sun.java2d.pipe.SpanShapeRenderer.Simple;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.text.Position;
 
 public class mainPanel extends JFrame implements ActionListener {
 
@@ -37,14 +39,30 @@ public class mainPanel extends JFrame implements ActionListener {
 	private JPanel seePanel = new JPanel(); // 뵥용일기 작성된 내용 확인
 	private TextField textField1, textField2, textField3, textField4, byTextField1, byTextField2;
 	private TextArea textArea1;
+	private JButton btn3, btn4;
 	private JCheckBox[] checkWeek = new JCheckBox[7];
+	private String[] weekDays = { "월", "화", "수", "목", "금", "토", "일" };
+	private String[] count = new String[7];
+	private JTable table;
+	private String[] header = new String[] {"제목", "작성 일자"};
+	
+	DefaultTableModel model = new DefaultTableModel(header, 0) {
+		boolean isCellImmutable(int header, int data) {
+			// 테이블 내용 수정 방지
+			return false;
+		}
+	};
+	
+	
 	public mainPanel() {
 		// 메인 메뉴 패널 활성화
 		mainPanel.setVisible(true);
 		writePanel.setVisible(false);
 		seePanel.setVisible(false);
-
+		
 	}
+	
+	
 
 	public JPanel mainPanelUI() {
 
@@ -53,8 +71,11 @@ public class mainPanel extends JFrame implements ActionListener {
 
 		JButton btn1 = new JButton("복용 일기 작성하기");
 		JButton btn2 = new JButton("돌아가기");// 메인 선택 창으로 돌아가기 버튼
-
-		btn1.setBounds(200, 500, 200, 40); // 복용일기 작성하기 버튼 위치 및 크기
+		btn3 = new JButton("삭제");
+		btn4 = new JButton("수정");
+		
+		
+		btn1.setBounds(180, 500, 200, 40); // 복용일기 작성하기 버튼 위치 및 크기
 		btn1.addActionListener(new ActionListener() {
 
 			@Override
@@ -65,15 +86,41 @@ public class mainPanel extends JFrame implements ActionListener {
 
 			}
 		});
-
-		btn2.setBounds(250, 600, 100, 40);
 		// 해당 버튼을 누렀을 시 메인 선택창으로 돌아가는 액션리스너를 추가
-
+		btn2.setBounds(230, 600, 100, 40);
+		
+		// 삭제 버튼 위치
+		btn3.setBounds(300, 320, 70, 50);
+		
+		// 수정하기 버튼 위치
+		btn4.setBounds(200, 320, 70, 50);
+		
+		
+		// 저장일기 table 생성
+		table = new JTable(model);
+		//table.setFillsViewportHeight(true); // 테이블이 뷰포트(정보창)를 둘러싸는 높이를 채울지
+		//table.setPreferredScrollableViewportSize(new Dimension(400, 400));
+		//table.setSize(150, 50);
+		table.setRowHeight(25); // 행 높이 25로 조정
+		table.getColumnModel().getColumn(0).setPreferredWidth(250); //0번째 열 너비 100으로 조정
+		table.setModel(model);
+		
+		JScrollPane scroll = new JScrollPane(table);
+		scroll.setBounds(90, 100, 350, 200);
+		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		//scroll.setVerticalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		
+		
+		
 		JLabel showTitle = new JLabel("등록된 영양제 복용 일기");
-
-		mainPanel.add(btn1);
-		mainPanel.add(btn2);
-
+		
+		mainPanel.add(btn1); // 복용 일기 작성하기
+		mainPanel.add(btn2); // 메인 선택화면으로 돌아가기
+		mainPanel.add(btn3); // 일기 삭제하기
+		mainPanel.add(btn4); // 일기 수정하기
+		mainPanel.add(scroll);
+		
+		
 		return mainPanel;
 
 	}
@@ -102,10 +149,6 @@ public class mainPanel extends JFrame implements ActionListener {
 		
 		
 		// 요일별 체크시 요일 체크 박스
-		//JCheckBox[] checkWeek = { new JCheckBox("월"), new JCheckBox("화"), new JCheckBox("수"), new JCheckBox("목"),
-				//new JCheckBox("금"), new JCheckBox("토"), new JCheckBox("일"), };
-		//checkWeek = {new Checkbox("월"), new Checkbox("화"), new Checkbox("수"),
-		//		new Checkbox("목"), new Checkbox("금"), new Checkbox("토"), new Checkbox("일")};
 		checkWeek[0] = new JCheckBox(weekDays[0]);
 		checkWeek[1] = new JCheckBox(weekDays[1]);
 		checkWeek[2] = new JCheckBox(weekDays[2]);
@@ -146,10 +189,10 @@ public class mainPanel extends JFrame implements ActionListener {
 		labelDiaryArr[1].setBounds(150, 350, 100, 40);
 		labelDiaryArr[2].setBounds(150, 400, 100, 40);
 
-		textField1.setBounds(100, 80, 250, 20);
-		textField2.setBounds(250, 310, 250, 20);
-		textField3.setBounds(250, 360, 250, 20);
-		textField4.setBounds(250, 410, 250, 20);
+		textField1.setBounds(100, 80, 250, 25);
+		textField2.setBounds(250, 310, 250, 25);
+		textField3.setBounds(250, 360, 250, 25);
+		textField4.setBounds(250, 410, 250, 25);
 
 		textArea1.setBounds(75, 530, 400, 200);
 
@@ -263,25 +306,25 @@ public class mainPanel extends JFrame implements ActionListener {
 		
 		for (int i = 0; i < checkWeek.length; i++) {
 			checkWeek[i].addItemListener(new ItemListener() {
-
+				
 				@Override
 				public void itemStateChanged(ItemEvent e) {
 					if (e.getStateChange() == ItemEvent.SELECTED) {
 						
 						if(e.getItem()==checkWeek[0]) {
-							System.out.println(weekDays[0]);
+							count[0] = "월";
 						}else if(e.getItem()==checkWeek[1]) {
-							System.out.println(weekDays[1]);
+							count[1] = "화";
 						}else if(e.getItem()==checkWeek[2]) {
-							System.out.println(weekDays[2]);
+							count[2] = "수";
 						}else if(e.getItem()==checkWeek[3]) {
-							System.out.println(weekDays[3]);
+							count[3] = "목";
 						}else if(e.getItem()==checkWeek[4]) {
-							System.out.println(weekDays[4]);
+							count[4] = "금";
 						}else if(e.getItem()==checkWeek[5]) {
-							System.out.println(weekDays[5]);
+							count[5] = "토";
 						}else  {
-							System.out.println(weekDays[6]);
+							count[6] = "일";
 						}
 						
 					}
@@ -369,40 +412,33 @@ public class mainPanel extends JFrame implements ActionListener {
 		SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
 		String ftToday = ft.format(today);
 		String[] weekDays = { "월", "화", "수", "목", "금", "토", "일" };
+		String dummy = ""; 
 		
 		try {
 			File tempDir = new File("C:\\new");
 			if (!tempDir.exists()) // 경로에 폴더가 존재하지 않으면
 				tempDir.mkdirs(); // 물리적으로 폴더 생성
-			// File dirFile = new File(tempDir + File.separator + "\saveDiay.txt");
-			//File[] fileList = tempDir.listFiles();
 
 			// 파일명과 같은 파일명이 있을 경우 덮어쓰기 판단
-			// FileWriter fw = new FileWriter("saveDiary.txt", true);
-
 			FileWriter fw = new FileWriter(tempDir + File.separator + ftToday + ".txt", true);
 
 			BufferedWriter bf = new BufferedWriter(fw);
 			
+			// 체크 박스 시, 누렀을 때 일요일 
 			
+			bf.write(textField1.getText() + ", ");
+			bf.write(textField2.getText() + ", ");
+			bf.write(textField3.getText() + ", ");
+			bf.write(textField4.getText() + ", ");
+			bf.write(byTextField1.getText() + ", ");
+			bf.write(byTextField2.getText() + ", ");
+			//아이템 리스너 필드 count만 가져와서 일요일을 가져오기
 			
-			bf.write(textField1.getText() + " ");
-			bf.write(textField2.getText() + " ");
-			bf.write(textField3.getText() + " ");
-			bf.write(textField4.getText() + " ");
-			bf.write(byTextField1.getText() + " ");
-			bf.write(byTextField2.getText() + " ");
-			
-			
-			/*
-			bf.write(checkWeek[0].getText() + " ");
-			bf.write(checkWeek[1].getText() + " ");
-			bf.write(checkWeek[2].getText() + " ");
-			bf.write(checkWeek[3].getText() + " ");
-			bf.write(checkWeek[4].getText() + " ");
-			bf.write(checkWeek[5].getText() + " ");
-			bf.write(checkWeek[6].getText() + " ");
-			*/
+			// 선택한 요일별 체큭 박스 text 파일에 저장
+			for(int i = 0; i < count.length; i++) {
+				if(count[i] != null)
+				bf.write(count[i] + ", ");
+			}
 
 			bf.write(textArea1.getText() + "\n"); // 마지막 입력후 한줄은 내린다
 			
@@ -424,20 +460,45 @@ public class mainPanel extends JFrame implements ActionListener {
 			FileReader fr = new FileReader("C:\\new\\" + ftToday + ".txt"); // String 형으로 파일을 불러온다.
 			BufferedReader br = new BufferedReader(fr); // 한줄씩 일기 위해(빠른속도로 읽기위해)
 			// 파일 이름을 현제 Date 값으로 받아서 이름을 짓자
-			String str = null; // while의 조건부
-
-			while ((str = br.readLine()) != null) {
-				System.out.println(str); // null이 될때까지 한줄씩 읽어온다.
-
+			String line; // while의 조건부
+			
+			// 버튼 클리시 삭제하기
+			/*
+			btn3.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if(tempDir.exists()) {
+						tempDir.delete();
+						System.out.println("폴더가 삭제되었습니다.");
+					}
+					
+				}
+			});
+			*/
+			while ((line = br.readLine()) != null) {
+				//String[] tokens = line.split(", ");
+				//line = line.replaceAll(", ", "1");
+				System.out.println(line);
+				
 			}
 			br.close(); // 읽어온 자원들을 해제한다.
+			
 		} catch (FileNotFoundException e1) {
 			System.out.println("파일이 존재하지 않네용!");
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-
+		
+		
+		
+		
 	}
-
+	// 저장된 일기 내용 삭제
+	public void deleteDiary() {
+		
+	}
+	
+	
 }
