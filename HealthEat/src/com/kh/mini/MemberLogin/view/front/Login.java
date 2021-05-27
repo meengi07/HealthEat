@@ -111,12 +111,6 @@ public class Login extends Frame {
 							}
 						}
 						
-							System.out.println(arr[0]);
-							System.out.println(arr[1]);
-							System.out.println(arr[2]);
-							System.out.println(arr[3]);
-							System.out.println(arr[4]);
-						
 						
 						if(idTxt.getText().equals(arr[0]) && pwTxt.getText().equals(arr[1])) {
 							JOptionPane.showMessageDialog(null, "로그인에 성공했습니다. ");
