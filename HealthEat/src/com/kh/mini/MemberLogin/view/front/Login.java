@@ -295,7 +295,7 @@ public class Login extends Frame {
 	
 	
 	public void ChangeInfo() {
-		//회원정보 수정 및 팝업 
+		//회원정보 수정 및 팝업 !
 		JPanel panel = new JPanel();
 		JFrame frame = new JFrame();
 		//프레임 크기 및 위치 설정 

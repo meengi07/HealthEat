@@ -20,7 +20,7 @@ import javax.swing.border.LineBorder;
 public class SignIn extends Frame{
 
 	public SignIn() {
-		//창 띄우기 !
+		//창 띄우기 !!
 		JFrame frame = new JFrame();
 		JPanel panel = new JPanel();
 		
