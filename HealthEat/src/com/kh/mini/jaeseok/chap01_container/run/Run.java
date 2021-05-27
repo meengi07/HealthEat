@@ -1,15 +1,34 @@
 package jaeseok.chap01_container.run;
 
-import jaeseok.chap01_container.view.list3;
+import javax.swing.JFrame;
 
-public class Run {
+import jaeseok.chap01_container.view.list;
+	
 
-	public static void main(String[] args) {
+ 
+public class Run extends JFrame
+{
+	
+	list u = new list();	
+	
+			
+	public Run() {
 		
-		   new list3();
-		  //new list2();
+		
+		this.setSize(800, 600);
+        this.setResizable(true);      
+        this.add(u.klist());
+       // this.add(u.klist2());     
+      //  this.add(u.klist3());
+        this.setVisible(true);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		
 	}
-
+	public static void main(String[] args) {
+	
+		new Run();
+	
+	}
+	
 }
-
