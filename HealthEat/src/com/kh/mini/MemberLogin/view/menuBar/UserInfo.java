@@ -33,7 +33,7 @@ public class UserInfo extends Frame{
 		//이름 나이 성별 출력 후 
 		//버튼 -> 회원정보수정 , 회원탈퇴하기, 돌아가기 
 		//패널, 버튼만들기 
-		strArr = log.getArr();
+		//strArr = log.getArr();
 			//로그인한 유저정보 가져옴 
 		//System.out.println(strArr[0]);
 		JFrame frame = new JFrame();
