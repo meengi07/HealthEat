@@ -1,4 +1,4 @@
-package com.kh.mini.MemberLogin.controller;
+package com.kh.mini.Member.controller;
 
 public class remote {
 

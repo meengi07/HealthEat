@@ -1,16 +1,13 @@
-package com.kh.mini.MemberLogin.view.menuBar;
+package com.kh.mini.Member.view.menuBar;
 
 import java.awt.Font;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.font.TextAttribute;
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Map;
 
 import javax.swing.JButton;
@@ -19,9 +16,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import com.kh.mini.MemberLogin.view.front.Login;
-import com.kh.mini.MemberLogin.view.front.MenuBar;
-import com.kh.mini.MemberLogin.view.subMenu.ChangeInfo;
+import com.kh.mini.Member.view.front.Login;
+import com.kh.mini.Member.view.front.MenuBar;
 
 public class UserInfo extends Frame{
 
@@ -33,7 +29,7 @@ public class UserInfo extends Frame{
 		//이름 나이 성별 출력 후 
 		//버튼 -> 회원정보수정 , 회원탈퇴하기, 돌아가기 
 		//패널, 버튼만들기 
-		strArr = log.getArr();
+		//strArr = log.getArr();
 			//로그인한 유저정보 가져옴 
 		//System.out.println(strArr[0]);
 		JFrame frame = new JFrame();

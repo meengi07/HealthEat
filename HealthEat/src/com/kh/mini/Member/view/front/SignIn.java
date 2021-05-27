@@ -1,4 +1,4 @@
-package com.kh.mini.MemberLogin.view.front;
+package com.kh.mini.Member.view.front;
 
 import java.awt.Color;
 import java.awt.Frame;

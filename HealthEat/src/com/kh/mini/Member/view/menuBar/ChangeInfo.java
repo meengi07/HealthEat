@@ -1,4 +1,4 @@
-package com.kh.mini.MemberLogin.view.menuBar;
+package com.kh.mini.Member.view.menuBar;
 
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.kh.mini.MemberLogin.view.front.Login;
+import com.kh.mini.Member.view.front.Login;
 
 public class ChangeInfo extends Frame {
 

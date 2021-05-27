@@ -1,4 +1,4 @@
-package com.kh.mini.MemberLogin.view.front;
+package com.kh.mini.Member.view.front;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -22,7 +22,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
-import com.kh.mini.MemberLogin.view.menuBar.UserInfo;
+import com.kh.mini.Member.view.menuBar.UserInfo;
 import com.kh.mini.searchAdmin.view.AdminMode;
 
 public class Login extends Frame {

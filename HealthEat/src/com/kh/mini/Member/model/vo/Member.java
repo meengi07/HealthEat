@@ -1,4 +1,4 @@
-package com.kh.mini.MemberLogin.model.vo;
+package com.kh.mini.Member.model.vo;
 
 public class Member {
 // 로그인단 구현을 위한 뼈

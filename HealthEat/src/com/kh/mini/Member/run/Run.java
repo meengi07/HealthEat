@@ -1,6 +1,6 @@
-package com.kh.mini.MemberLogin.run;
+package com.kh.mini.Member.run;
 
-import com.kh.mini.MemberLogin.view.front.MenuBar;
+import com.kh.mini.Member.view.front.MenuBar;
 
 public class Run {
 

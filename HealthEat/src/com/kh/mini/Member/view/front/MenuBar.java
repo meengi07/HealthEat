@@ -1,4 +1,4 @@
-package com.kh.mini.MemberLogin.view.front;
+package com.kh.mini.Member.view.front;
 
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
