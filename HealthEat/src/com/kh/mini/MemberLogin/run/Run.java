@@ -8,8 +8,6 @@ public class Run {
 		
 
 		Login log = new Login();
-		//SignIn sig = new SignIn();
-		//MenuBar mb = new MenuBar();
 		
 		
 		
