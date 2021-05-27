@@ -110,7 +110,7 @@ public class Login extends Frame {
 								arr = str.split("/");
 							}
 						}
-						
+						//뭐
 						
 						if(idTxt.getText().equals(arr[0]) && pwTxt.getText().equals(arr[1])) {
 							JOptionPane.showMessageDialog(null, "로그인에 성공했습니다. ");
