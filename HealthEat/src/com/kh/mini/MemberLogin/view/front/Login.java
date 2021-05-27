@@ -11,8 +11,6 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import javax.swing.JButton;
@@ -24,14 +22,15 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
-
+import com.kh.mini.MemberLogin.view.menuBar.UserInfo;
+import com.kh.mini.searchAdmin.view.AdminMode;
 
 public class Login extends Frame {
 //로그인 화면 뷰어, 프레임과 패널을 구현해서 로그인창 만들기. 
-	//private String[] arr = new String[5];
-	public String[] arr = new String[5];
-	//private MenuBar mb;
-	private JPanel panel = new JPanel();
+	private String[] arr = new String[5];
+	//ArrayList arr = new ArrayList<String[]>();
+	//private String[] krr= new String[5];
+	private JPanel panel1 = new JPanel();
 	public Login() {
 		
 		//로그인 메인페이지 
@@ -102,10 +101,9 @@ public class Login extends Frame {
 					String idT = idTxt.getText();
 					String str;
 					//String[] arr;
-					//회원정보배열에 담기 
+					//arr = new String[5]; //회원정보배열에 담기 
 					BufferedReader br = new BufferedReader(new FileReader("UserInfo.txt"));
-					BufferedWriter bw = new BufferedWriter(new FileWriter("LoginInfo.txt"));
-					//아이디 비교해서 해당 아이디 정보 불러오기 
+						//아이디 비교해서 해당 아이디 정보 불러오기 
 						
 						while((str=br.readLine()) !=null) {
 							if(str.indexOf(idT) == 0 )	{
@@ -113,21 +111,22 @@ public class Login extends Frame {
 							}
 						}
 						
-						//System.out.println(arr[1]);
+							System.out.println(arr[0]);
+							System.out.println(arr[1]);
+							System.out.println(arr[2]);
+							System.out.println(arr[3]);
+							System.out.println(arr[4]);
+						
+						
 						if(idTxt.getText().equals(arr[0]) && pwTxt.getText().equals(arr[1])) {
-							for(int i = 0; i < arr.length; i++) {
-								bw.write(arr[i]+"/");
-							}
 							JOptionPane.showMessageDialog(null, "로그인에 성공했습니다. ");
 							MenuBar mb = new MenuBar();
-							
-							
 						}else {
 							JOptionPane.showMessageDialog(null, "로그인에 실패했습니다. ");
 						};
+						panel1.revalidate();
+						panel1.repaint();
 						
-						
-						bw.close();
 						br.close();
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
@@ -138,7 +137,7 @@ public class Login extends Frame {
  			
 			
  		});
- 		
+ 		System.out.println(arr[0]); // 결과값 null뜸. 
  		sigBtn.addActionListener(new ActionListener() {
 
 			@Override
@@ -149,19 +148,34 @@ public class Login extends Frame {
 			}
  			
  		});
- 	}
+ 		masterBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				AdminMode am = new AdminMode();
+			}
+ 			
+ 		});
+ 		
+
+	}
 
 		
 		public void UserInfo() {
-						
+			
+			String[] srr = arr;
+			System.out.println(arr[1]);
+			System.out.println(srr[1]);
+			//System.out.println(krr[1]);
+			
 			//회원님의 개인정보입니다. 
 			//이름 나이 성별 출력 후 
 			//버튼 -> 회원정보수정 , 회원탈퇴하기, 돌아가기 
 			//패널, 버튼만들기 
 			
 			//로그인한 유저정보 가져옴 
-			
-			
+			System.out.println("arr의 값은 ? : "+arr[2]);
 			JFrame frame = new JFrame();
 			//JPanel panel = new JPanel();
 			
@@ -176,7 +190,7 @@ public class Login extends Frame {
 			JButton deleteInfo = new JButton("회원 탈퇴");
 			JButton back = new JButton("돌아가기");
 			
-			panel.setLayout(null);
+			panel1.setLayout(null);
 			
 			//				(가로위치, 세로위치, 가로크기, 세로크기)
 			info.setBounds			(400, 30, 200, 50); //회원님의 개인정보입니다 라벨 띄움 (위치 중앙 상단)
@@ -214,24 +228,37 @@ public class Login extends Frame {
 			frame.setResizable(false);
 			frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
 			
-			//name.setText();	// 회원이름 출력 
-			//age.setText(arr[3]);	// 나이 출력 
-			//gender.setText(arr[4]); // 성별 출력 
+			/*
+			String str1;
+			ArrayList arr = new ArrayList<String[]>();
+
+			BufferedReader br = new BufferedReader(new FileReader("UserInfo.txt"));
+			
+			while((str1=br.readLine()) !=null) {
+				String[] srr = str1.split("/");
+				arr.add(srr);
+				
+				
+			}
+			*/
+			name.setText(arr[2]);	// 회원이름 출력 
+			age.setText(arr[3]);	// 나이 출력 
+			gender.setText(arr[4]); // 성별 출력 
 			//회원정보수정 화면으로 이동 버튼 
 			
-			panel.add(info);
-			panel.add(nameLabel);
-			panel.add(name);
-			panel.add(ageLabel);
-			panel.add(age);
-			panel.add(genderLabel);
-			panel.add(gender);
-			panel.add(changeInfo);
-			panel.add(deleteInfo);
-			panel.add(back);
+			panel1.add(info);
+			panel1.add(nameLabel);
+			panel1.add(name);
+			panel1.add(ageLabel);
+			panel1.add(age);
+			panel1.add(genderLabel);
+			panel1.add(gender);
+			panel1.add(changeInfo);
+			panel1.add(deleteInfo);
+			panel1.add(back);
 			//panel.repaint();
 			
-			frame.add(panel);
+			frame.add(panel1);
 			
 			changeInfo.addActionListener(new ActionListener() {
 
@@ -252,38 +279,17 @@ public class Login extends Frame {
 					int result = JOptionPane.showConfirmDialog(null, "회원을 탈퇴 하시겠습니까?", "확인", JOptionPane.YES_NO_OPTION);
 					if(result == JOptionPane.YES_OPTION) {
 						try {
-							String line;
-							String userLine;
-							String dummy = "";
-							BufferedReader br = new BufferedReader(new FileReader("LoginInfo.txt"));
-							BufferedReader br2 = new BufferedReader(new FileReader("UserInfo.txt"));
-							BufferedWriter bw = new BufferedWriter(new FileWriter("UserInfo.txt"));
-							line = br.readLine();
-							
-							while((userLine=br2.readLine()) !=null) {
-								
-								if(userLine.indexOf(line) == 0) {
-									
-								}else {
-									dummy += (userLine + "\r\n");
-									bw.write(dummy);
-								}
-								
-							}
-							
-							//System.out.println(dummy);
-							
+							BufferedWriter bw = new BufferedWriter(new FileWriter("UserInfo",true));
 							//bw = new BufferedWriter(new FileWriter("UserInfo")); //재선언 시 파일내용 초기화, 즉 삭제한다.
 							//한줄만 삭제하게 만들어야함. 
-							br.close();
-							br2.close();
+							
 							bw.close();
 						} catch (IOException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						} 
 						JOptionPane.showMessageDialog(null, "회원탈퇴가 완료되었습니다.");
-						//Login lg = new Login();
+						Login lg = new Login();
 					}else {
 						return;
 					}
@@ -303,11 +309,11 @@ public class Login extends Frame {
 				
 			});
 			
-		//	return panel1;
+			
 		}
 
 	
-		
+	
 	public void ChangeInfo() {
 		//회원정보 수정 및 팝업 
 		//Login log = new Login();
@@ -417,7 +423,7 @@ public class Login extends Frame {
 				
 				JOptionPane.showMessageDialog(null, "내용이 변경되었습니다.");
 				try {
-					//UserInfo ui = new UserInfo();
+					UserInfo ui = new UserInfo();
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -433,7 +439,7 @@ public class Login extends Frame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				try {
-					//UserInfo ui = new UserInfo();
+					UserInfo ui = new UserInfo();
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -446,6 +452,7 @@ public class Login extends Frame {
 		
 		
 	}
+	
 	
 }
 	
