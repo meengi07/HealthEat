@@ -17,7 +17,7 @@ import com.kh.mini.searchAdmin.view.UserNutriSearch;
 public class MenuBar extends Frame{
 
 	private Login log = new Login();
-	
+	//로그인 후 메뉴
 	public MenuBar() {
 		//메뉴바 
 		log.setVisible(false);

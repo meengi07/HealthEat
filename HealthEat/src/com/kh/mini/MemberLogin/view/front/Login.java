@@ -27,7 +27,7 @@ import com.kh.mini.searchAdmin.view.AdminMode;
 public class Login extends Frame {
 //로그인 화면 뷰어, 프레임과 패널을 구현해서 로그인창 만들기. 
 	private String[] arr = new String[5];
-	
+	//전역변수 배열 
 	public Login() {
 		
 		//로그인 메인페이지 

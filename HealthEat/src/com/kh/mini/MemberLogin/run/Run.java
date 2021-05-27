@@ -6,8 +6,9 @@ public class Run {
 
 	public static void main(String[] args) {
 		
-
+		//실행 
 		Login log = new Login();
+		
 		
 		
 		
