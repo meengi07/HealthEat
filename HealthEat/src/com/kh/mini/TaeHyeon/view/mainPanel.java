@@ -33,7 +33,7 @@ import com.sun.glass.events.MouseEvent;
 
 public class mainPanel extends JFrame implements ActionListener {
 
-	private JPanel mainPanel = new JPanel(); // 복용일기 메인 메뉴
+	private JPanel mainPanel = new JPanel(); // 복용일기 메인 메뉴.
 	private JPanel writePanel = new JPanel(); // 복용일기 작성 페이지
 	private JPanel seePanel = new JPanel(); // 뵥용일기 작성된 내용 확인
 	private TextField textField1, textField2, textField3, textField4, byTextField1, byTextField2;
@@ -47,7 +47,7 @@ public class mainPanel extends JFrame implements ActionListener {
 	private String[] header = new String[] { "제목", "작성 일자", "내용" };
 	private String title, days, text;
 	
-	// 현재 날짜 가져오기.
+	// 현재 날짜 가져오기
 	Date today = new Date();
 	SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
 	String ftToday = ft.format(today);
