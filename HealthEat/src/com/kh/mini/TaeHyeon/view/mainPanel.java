@@ -47,7 +47,7 @@ public class mainPanel extends JFrame implements ActionListener {
 	private String[] header = new String[] { "제목", "작성 일자", "내용" };
 	private String title, days, text;
 	
-	// 현재 날짜 가져오기
+	// 현재 날짜 가져오기.
 	Date today = new Date();
 	SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
 	String ftToday = ft.format(today);
