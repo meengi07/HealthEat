@@ -20,6 +20,7 @@ public class MenuBar extends Frame{
 	
 	public MenuBar() {
 		//메뉴바 
+		log.setVisible(false);
 		JFrame frame = new JFrame();
 		JPanel panel = new JPanel();
 		
