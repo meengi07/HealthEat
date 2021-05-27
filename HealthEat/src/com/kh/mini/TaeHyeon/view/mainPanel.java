@@ -29,7 +29,6 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
 
-import com.kh.mini.TaeHyeon.run.Run;
 import com.sun.glass.events.MouseEvent;
 
 public class mainPanel extends JFrame implements ActionListener {
@@ -69,6 +68,20 @@ public class mainPanel extends JFrame implements ActionListener {
 		mainPanel.setVisible(true);
 		writePanel.setVisible(false);
 		seePanel.setVisible(false);
+		
+		this.setLayout(null);
+		this.setTitle("복용 일기 메인메뉴");
+		this.setBounds(600, 100, 900, 600);
+		// this.setSize(600, 800);
+		this.setResizable(false); // 사이즈 수정 불가
+		
+		this.add(seeJPanel());
+		this.add(mainPanelUI());
+		this.add(writeJPanelUI());
+		this.setVisible(true);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		
 
 	}
 	// 메인 UI 패널
@@ -81,9 +94,6 @@ public class mainPanel extends JFrame implements ActionListener {
 		JButton btn2 = new JButton("돌아가기");// 메인 선택 창으로 돌아가기 버튼
 		btn3 = new JButton("삭제");
 		btn4 = new JButton("확인");
-		
-		
-		
 		
 		btn1.setBounds(650, 100, 200, 40); // 복용일기 작성하기 버튼 위치 및 크기
 		btn1.addActionListener(new ActionListener() {
@@ -103,7 +113,7 @@ public class mainPanel extends JFrame implements ActionListener {
 		// 삭제 버튼 위치
 		btn3.setBounds(200, 400, 70, 50);
 		
-		
+		// 수정하기 기능 코드
 		btn7.addActionListener(new ActionListener() {
 			
 			@Override
@@ -704,26 +714,9 @@ public class mainPanel extends JFrame implements ActionListener {
 
 	}
 	
-	// 실행 메소드
-	public void Run() {
-		//실행 코드입니다.
-		this.setLayout(null);
-		this.setTitle("복용 일기 메인메뉴");
-		this.setBounds(600, 100, 900, 600);
-		// this.setSize(600, 800);
-		this.setResizable(false); // 사이즈 수정 불가
-		
-		this.add(seeJPanel());
-		this.add(mainPanelUI());
-		this.add(writeJPanelUI());
-		this.setVisible(true);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-	}
-	
 	public static void main(String[] args) {
 		
-		new Run();
+		new mainPanel();
 
 	}
 	
